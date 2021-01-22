@@ -41,5 +41,10 @@ namespace MELCORUncertaintyHelper.View
             }
             this.tvwFiles.Nodes.Add(fileNode);
         }
+
+        public void DeleteAllFiles()
+        {
+            this.tvwFiles.Nodes.Clear();
+        }
     }
 }

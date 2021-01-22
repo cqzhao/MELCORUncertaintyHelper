@@ -50,5 +50,18 @@ namespace MELCORUncertaintyHelper.View
 
             this.frmFileExplorer.OpenFiles(openService.GetFiles());
         }
+
+        private void MsiDeleteAllFiles_Click(object sender, EventArgs e)
+        {
+            var openService = PTFFileOpenService.GetOpenService;
+            openService.DeleteFiles();
+
+            this.frmFileExplorer.DeleteAllFiles();
+        }
+
+        private void MsiShowInputFileList_Click(object sender, EventArgs e)
+        {
+            this.frmFileExplorer.Show(this.dockPnlMain, DockState.DockLeft);
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MELCORUncertaintyHelper.Service
 {
@@ -59,6 +60,17 @@ namespace MELCORUncertaintyHelper.Service
                 fullPath = filePath
             };
             return file;
+        }
+
+        public void DeleteFiles()
+        {
+            if (MessageBox.Show("Are you sure you want to delete?", "Notice", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            {
+                return;
+            }
+
+            var files = new List<PTFFile>();
+            this.files = files.ToArray();
         }
     }
 }

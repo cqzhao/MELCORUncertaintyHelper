@@ -34,13 +34,19 @@
             this.dockPnlMain = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             this.vS2015DarkTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2015DarkTheme();
             this.msiOpen = new System.Windows.Forms.ToolStripMenuItem();
+            this.editEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.msiDeleteAllFiles = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.msiShowInputFileList = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileFToolStripMenuItem});
+            this.fileFToolStripMenuItem,
+            this.editEToolStripMenuItem,
+            this.viewVToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1008, 24);
@@ -82,6 +88,36 @@
             this.msiOpen.Text = "Open(&O)";
             this.msiOpen.Click += new System.EventHandler(this.MsiOpen_Click);
             // 
+            // editEToolStripMenuItem
+            // 
+            this.editEToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.msiDeleteAllFiles});
+            this.editEToolStripMenuItem.Name = "editEToolStripMenuItem";
+            this.editEToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.editEToolStripMenuItem.Text = "Edit(&E)";
+            // 
+            // msiDeleteAllFiles
+            // 
+            this.msiDeleteAllFiles.Name = "msiDeleteAllFiles";
+            this.msiDeleteAllFiles.Size = new System.Drawing.Size(202, 22);
+            this.msiDeleteAllFiles.Text = "Delete All Input Files(&D)";
+            this.msiDeleteAllFiles.Click += new System.EventHandler(this.MsiDeleteAllFiles_Click);
+            // 
+            // viewVToolStripMenuItem
+            // 
+            this.viewVToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.msiShowInputFileList});
+            this.viewVToolStripMenuItem.Name = "viewVToolStripMenuItem";
+            this.viewVToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.viewVToolStripMenuItem.Text = "View(&V)";
+            // 
+            // msiShowInputFileList
+            // 
+            this.msiShowInputFileList.Name = "msiShowInputFileList";
+            this.msiShowInputFileList.Size = new System.Drawing.Size(180, 22);
+            this.msiShowInputFileList.Text = "Input File List";
+            this.msiShowInputFileList.Click += new System.EventHandler(this.MsiShowInputFileList_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -112,5 +148,9 @@
         private WeifenLuo.WinFormsUI.Docking.DockPanel dockPnlMain;
         private WeifenLuo.WinFormsUI.Docking.VS2015DarkTheme vS2015DarkTheme1;
         private System.Windows.Forms.ToolStripMenuItem msiOpen;
+        private System.Windows.Forms.ToolStripMenuItem editEToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem msiDeleteAllFiles;
+        private System.Windows.Forms.ToolStripMenuItem viewVToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem msiShowInputFileList;
     }
 }

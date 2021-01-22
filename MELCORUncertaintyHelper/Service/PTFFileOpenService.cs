@@ -43,7 +43,8 @@ namespace MELCORUncertaintyHelper.Service
             }
             catch (Exception ex)
             {
-
+                var logWrite = new LogFileWriteService(ex);
+                logWrite.MakeLogFile();
             }
             finally
             {

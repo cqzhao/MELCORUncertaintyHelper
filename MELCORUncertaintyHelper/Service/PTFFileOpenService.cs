@@ -28,7 +28,17 @@ namespace MELCORUncertaintyHelper.Service
             }
         }
 
-        public object GetFiles() => this.files.Clone();
+        public object GetFiles()
+        {
+            if (this.files == null || this.files.Length < 1)
+            {
+                return null;
+            }
+            else
+            {
+                return this.files.Clone();
+            }
+        }
 
         public void OpenFiles(string[] inputFiles)
         {

@@ -12,7 +12,7 @@ namespace MELCORUncertaintyHelper.Service
     {
         private string[] inputs;
         private string[] inputPackageNames;
-        private int[] inputPackageNodes;
+        private int[] inputControlVolumes;
 
         private InputVariableReadService()
         {
@@ -71,12 +71,12 @@ namespace MELCORUncertaintyHelper.Service
         private void InputPostProcess()
         {
             var packageNames = new List<string>();
-            var packageNodes = new List<int>();
+            var controlVolumes = new List<int>();
 
             for (var i = 0; i < this.inputs.Length; i++)
             {
-                string name = null;
-                int node = 0;
+                string name;
+                int node;
 
                 if (this.inputs[i].Contains("."))
                 {
@@ -90,11 +90,11 @@ namespace MELCORUncertaintyHelper.Service
                 }
 
                 packageNames.Add(name);
-                packageNodes.Add(node);
+                controlVolumes.Add(node);
             }
 
             this.inputPackageNames = packageNames.ToArray();
-            this.inputPackageNodes = packageNodes.ToArray();
+            this.inputControlVolumes = controlVolumes.ToArray();
         }
     }
 }

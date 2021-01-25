@@ -10,15 +10,26 @@ namespace MELCORUncertaintyHelper.Service
     public class LogFileWriteService
     {
         private Exception exception;
+        private string fileName;
 
         public LogFileWriteService(Exception ex)
         {
             this.exception = ex;
         }
 
+        public LogFileWriteService(Exception ex, string fileName)
+        {
+            this.exception = ex;
+            this.fileName = fileName;
+        }
+
         public void MakeLogFile()
         {
             var msg = new StringBuilder();
+            if (!string.IsNullOrEmpty(this.fileName))
+            {
+                msg.Append(this.fileName);
+            }
             msg.Append(this.exception.ToString());
 
             var fileName = new StringBuilder();

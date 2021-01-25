@@ -15,17 +15,20 @@ namespace MELCORUncertaintyHelper.View
     public partial class MainForm : Form
     {
         private FileExplorerForm frmFileExplorer;
+        private VariableInputForm frmVariableInput;
 
         public MainForm()
         {
             InitializeComponent();
 
             this.frmFileExplorer = new FileExplorerForm();
+            this.frmVariableInput = new VariableInputForm();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
             this.frmFileExplorer.Show(this.dockPnlMain, DockState.DockLeft);
+            this.frmVariableInput.Show(this.dockPnlMain, DockState.DockLeftAutoHide);
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -62,6 +65,11 @@ namespace MELCORUncertaintyHelper.View
         private void MsiShowInputFileList_Click(object sender, EventArgs e)
         {
             this.frmFileExplorer.Show(this.dockPnlMain, DockState.DockLeft);
+        }
+
+        private void MsiShowVariableInput_Click(object sender, EventArgs e)
+        {
+            this.frmVariableInput.Show(this.dockPnlMain, DockState.DockLeft);
         }
     }
 }

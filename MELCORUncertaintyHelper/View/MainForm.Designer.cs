@@ -30,14 +30,15 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.dockPnlMain = new WeifenLuo.WinFormsUI.Docking.DockPanel();
-            this.vS2015DarkTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2015DarkTheme();
             this.msiOpen = new System.Windows.Forms.ToolStripMenuItem();
             this.editEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msiDeleteAllFiles = new System.Windows.Forms.ToolStripMenuItem();
             this.viewVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msiShowInputFileList = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.dockPnlMain = new WeifenLuo.WinFormsUI.Docking.DockPanel();
+            this.vS2015DarkTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2015DarkTheme();
+            this.msiShowVariableInput = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,30 +62,10 @@
             this.fileFToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
             this.fileFToolStripMenuItem.Text = "File(&F)";
             // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 539);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1008, 22);
-            this.statusStrip1.TabIndex = 1;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // dockPnlMain
-            // 
-            this.dockPnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dockPnlMain.DockBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.dockPnlMain.Location = new System.Drawing.Point(0, 24);
-            this.dockPnlMain.Name = "dockPnlMain";
-            this.dockPnlMain.Padding = new System.Windows.Forms.Padding(6);
-            this.dockPnlMain.ShowAutoHideContentOnHover = false;
-            this.dockPnlMain.Size = new System.Drawing.Size(1008, 515);
-            this.dockPnlMain.TabIndex = 2;
-            this.dockPnlMain.Theme = this.vS2015DarkTheme1;
-            // 
             // msiOpen
             // 
             this.msiOpen.Name = "msiOpen";
-            this.msiOpen.Size = new System.Drawing.Size(180, 22);
+            this.msiOpen.Size = new System.Drawing.Size(120, 22);
             this.msiOpen.Text = "Open(&O)";
             this.msiOpen.Click += new System.EventHandler(this.MsiOpen_Click);
             // 
@@ -106,7 +87,8 @@
             // viewVToolStripMenuItem
             // 
             this.viewVToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.msiShowInputFileList});
+            this.msiShowInputFileList,
+            this.msiShowVariableInput});
             this.viewVToolStripMenuItem.Name = "viewVToolStripMenuItem";
             this.viewVToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.viewVToolStripMenuItem.Text = "View(&V)";
@@ -117,6 +99,33 @@
             this.msiShowInputFileList.Size = new System.Drawing.Size(180, 22);
             this.msiShowInputFileList.Text = "Input File List";
             this.msiShowInputFileList.Click += new System.EventHandler(this.MsiShowInputFileList_Click);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Location = new System.Drawing.Point(0, 539);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1008, 22);
+            this.statusStrip1.TabIndex = 1;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // dockPnlMain
+            // 
+            this.dockPnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dockPnlMain.DockBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.dockPnlMain.Location = new System.Drawing.Point(0, 24);
+            this.dockPnlMain.Name = "dockPnlMain";
+            this.dockPnlMain.Padding = new System.Windows.Forms.Padding(6);
+            this.dockPnlMain.ShowAutoHideContentOnHover = false;
+            this.dockPnlMain.Size = new System.Drawing.Size(1008, 515);
+            this.dockPnlMain.TabIndex = 2;
+            this.dockPnlMain.Theme = this.vS2015DarkTheme1;
+            // 
+            // msiShowVariableInput
+            // 
+            this.msiShowVariableInput.Name = "msiShowVariableInput";
+            this.msiShowVariableInput.Size = new System.Drawing.Size(180, 22);
+            this.msiShowVariableInput.Text = "Variable Input List";
+            this.msiShowVariableInput.Click += new System.EventHandler(this.MsiShowVariableInput_Click);
             // 
             // MainForm
             // 
@@ -152,5 +161,6 @@
         private System.Windows.Forms.ToolStripMenuItem msiDeleteAllFiles;
         private System.Windows.Forms.ToolStripMenuItem viewVToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem msiShowInputFileList;
+        private System.Windows.Forms.ToolStripMenuItem msiShowVariableInput;
     }
 }

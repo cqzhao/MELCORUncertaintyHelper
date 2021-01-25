@@ -62,9 +62,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Manager\ExtractManager.cs" />
     <Compile Include="Model\PTFFile.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\ExtractInputVariableService.cs" />
     <Compile Include="Service\LogFileWriteService.cs" />
     <Compile Include="Service\PTFFileOpenService.cs" />
     <Compile Include="Service\PTFFileReadService.cs" />
@@ -118,6 +120,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>if not exist "$(TargetDir)\lib" mkdir "$(TargetDir)\lib"

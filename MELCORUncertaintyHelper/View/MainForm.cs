@@ -1,4 +1,5 @@
-﻿using MELCORUncertaintyHelper.Service;
+﻿using MELCORUncertaintyHelper.Manager;
+using MELCORUncertaintyHelper.Service;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,7 +23,7 @@ namespace MELCORUncertaintyHelper.View
             InitializeComponent();
 
             this.frmFileExplorer = new FileExplorerForm();
-            this.frmVariableInput = new VariableInputForm();
+            this.frmVariableInput = VariableInputForm.GetFrmVariableInput;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -70,6 +71,12 @@ namespace MELCORUncertaintyHelper.View
         private void MsiShowVariableInput_Click(object sender, EventArgs e)
         {
             this.frmVariableInput.Show(this.dockPnlMain, DockState.DockLeft);
+        }
+
+        private void MsiRun_Click(object sender, EventArgs e)
+        {
+            var manager = new ExtractManager();
+            manager.Run();
         }
     }
 }

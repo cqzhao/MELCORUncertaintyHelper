@@ -39,6 +39,8 @@
             this.dockPnlMain = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             this.vS2015DarkTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2015DarkTheme();
             this.msiShowVariableInput = new System.Windows.Forms.ToolStripMenuItem();
+            this.buildBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.msiRun = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,7 +49,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileFToolStripMenuItem,
             this.editEToolStripMenuItem,
-            this.viewVToolStripMenuItem});
+            this.viewVToolStripMenuItem,
+            this.buildBToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1008, 24);
@@ -127,6 +130,21 @@
             this.msiShowVariableInput.Text = "Variable Input List";
             this.msiShowVariableInput.Click += new System.EventHandler(this.MsiShowVariableInput_Click);
             // 
+            // buildBToolStripMenuItem
+            // 
+            this.buildBToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.msiRun});
+            this.buildBToolStripMenuItem.Name = "buildBToolStripMenuItem";
+            this.buildBToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.buildBToolStripMenuItem.Text = "Build(&B)";
+            // 
+            // msiRun
+            // 
+            this.msiRun.Name = "msiRun";
+            this.msiRun.Size = new System.Drawing.Size(180, 22);
+            this.msiRun.Text = "Run(&R)";
+            this.msiRun.Click += new System.EventHandler(this.MsiRun_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -162,5 +180,7 @@
         private System.Windows.Forms.ToolStripMenuItem viewVToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem msiShowInputFileList;
         private System.Windows.Forms.ToolStripMenuItem msiShowVariableInput;
+        private System.Windows.Forms.ToolStripMenuItem buildBToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem msiRun;
     }
 }

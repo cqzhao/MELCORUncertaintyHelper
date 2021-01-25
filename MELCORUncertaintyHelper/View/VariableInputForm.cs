@@ -15,12 +15,22 @@ namespace MELCORUncertaintyHelper.View
     {
         private string[] colNames;
 
-        public VariableInputForm()
+        private VariableInputForm()
         {
             InitializeComponent();
 
             this.SetColNames();
             this.ShowColNames();
+        }
+
+        private static readonly Lazy<VariableInputForm> frmVariableInput = new Lazy<VariableInputForm>(() => new VariableInputForm());
+
+        public static VariableInputForm GetFrmVariableInput
+        {
+            get
+            {
+                return frmVariableInput.Value;
+            }
         }
 
         private void VariableInputForm_FormClosing(object sender, FormClosingEventArgs e)

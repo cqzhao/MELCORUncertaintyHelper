@@ -1,4 +1,5 @@
-﻿using MELCORUncertaintyHelper.Model;
+﻿using MELCORUncertaintyHelper.Manager;
+using MELCORUncertaintyHelper.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -58,11 +59,14 @@ namespace MELCORUncertaintyHelper.Service
             {
                 this.ReadTitleSection(fileStream, this.files[nth].name);
                 this.ReadPackageSection(fileStream, this.files[nth].name);
-                this.ReadSPecialSection(fileStream, this.files[nth].name);
+                var lastLeftDelimiter = this.ReadSPecialSection(fileStream, this.files[nth].name);
                 var inputService = InputVariableReadService.GetInputReadService;
                 inputService.MakeIndexes(this.packageNames, this.packageVariableCnt, this.controlVolumes);
                 this.inputs = (string[])inputService.GetInputs();
                 this.totalIdxes = (int[])inputService.GetTotalIdxes();
+                var timeRecordDatas = (TimeRecordData[])this.ReadTimeRecordsSection(fileStream, this.files[nth].name, lastLeftDelimiter);
+                var dataManager = ExtractDataManager.GetDataManager;
+                dataManager.AddData(this.files[nth].name, this.inputs, timeRecordDatas);
             }
         }
 
@@ -293,7 +297,7 @@ namespace MELCORUncertaintyHelper.Service
             return lastLeftDelimiter;
         }
 
-        private void ReadTimeRecordsSection(FileStream fileStream, string fileName, int lastLeftDelimiter)
+        private Object ReadTimeRecordsSection(FileStream fileStream, string fileName, int lastLeftDelimiter)
         {
             var isVisited = false;
             var leftDelimiter = lastLeftDelimiter;
@@ -317,6 +321,13 @@ namespace MELCORUncertaintyHelper.Service
             }
 
             var lineData = new List<double>();
+            var timeData = new List<double>();
+            var valueData = new List<List<double>>();
+
+            for (var i = 0; i < this.inputs.Length; i++)
+            {
+                valueData.Add(new List<double>());
+            }
 
             try
             {
@@ -348,6 +359,7 @@ namespace MELCORUncertaintyHelper.Service
 
                                 var time = binaryReader.ReadSingle();
                                 lineData.Add(time);
+                                timeData.Add(time);
 
                                 for (var i = 0; i < this.inputs.Length; i++)
                                 {
@@ -369,9 +381,12 @@ namespace MELCORUncertaintyHelper.Service
 
                                 for (var i = 0; i < pointing.Length; i++)
                                 {
-                                    
+                                    if (i != 0)
+                                    {
+                                        var value = lineData[i];
+                                        valueData[i - 1].Add(value);
+                                    }
                                 }
-
                             }
                             else
                             {
@@ -394,6 +409,20 @@ namespace MELCORUncertaintyHelper.Service
                 var logWrite = new LogFileWriteService(ex, fileName);
                 logWrite.MakeLogFile();
             }
+
+            var timeRecordDatas = new List<TimeRecordData>();
+            for (var i = 0; i < this.inputs.Length; i++)
+            {
+                var recordData = new TimeRecordData
+                {
+                    variableName = this.inputs[i],
+                    time = timeData.ToArray(),
+                    value = valueData[i].ToArray(),
+                };
+                timeRecordDatas.Add(recordData);
+            }
+
+            return timeRecordDatas.ToArray().Clone();
         }
     }
 }

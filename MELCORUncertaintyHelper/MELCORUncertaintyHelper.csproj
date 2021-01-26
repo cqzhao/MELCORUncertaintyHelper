@@ -62,6 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Manager\ExtractDataManager.cs" />
     <Compile Include="Manager\ExtractManager.cs" />
     <Compile Include="Model\ExtractData.cs" />
     <Compile Include="Model\PTFFile.cs" />

@@ -1,5 +1,6 @@
 ﻿using MELCORUncertaintyHelper.Manager;
 using MELCORUncertaintyHelper.Model;
+using MELCORUncertaintyHelper.View;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -37,9 +38,12 @@ namespace MELCORUncertaintyHelper.Service
         private string[] inputs;
         private int[] totalIdxes;
 
+        private StatusOutputForm frmStatus;
+
         public PTFFileReadService(PTFFile[] files)
         {
             this.files = files;
+            this.frmStatus = StatusOutputForm.GetFrmStatus;
         }
 
         public void Read()
@@ -49,7 +53,17 @@ namespace MELCORUncertaintyHelper.Service
                 /*var thread = new Thread(() => this.ReadFile(i));
                 thread.Start();
                 thread.Join();*/
+                var str = new StringBuilder();
+                str.AppendLine("==========================================================================================");
+                str.Append("Start Read PTF File : ");
+                str.AppendLine(this.files[i].name);
+                this.frmStatus.PrintStatus(str);
                 this.ReadFile(i);
+                str.Clear();
+                str.Append("Complete Read PTF File : ");
+                str.AppendLine(this.files[i].name);
+                str.AppendLine("==========================================================================================");
+                this.frmStatus.PrintStatus(str);
             }
         }
 

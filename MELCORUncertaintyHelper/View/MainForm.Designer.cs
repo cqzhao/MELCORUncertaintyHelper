@@ -35,12 +35,13 @@
             this.msiDeleteAllFiles = new System.Windows.Forms.ToolStripMenuItem();
             this.viewVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msiShowInputFileList = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.dockPnlMain = new WeifenLuo.WinFormsUI.Docking.DockPanel();
-            this.vS2015DarkTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2015DarkTheme();
             this.msiShowVariableInput = new System.Windows.Forms.ToolStripMenuItem();
             this.buildBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msiRun = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.dockPnlMain = new WeifenLuo.WinFormsUI.Docking.DockPanel();
+            this.vS2015DarkTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2015DarkTheme();
+            this.msiShowStatus = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -91,7 +92,8 @@
             // 
             this.viewVToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.msiShowInputFileList,
-            this.msiShowVariableInput});
+            this.msiShowVariableInput,
+            this.msiShowStatus});
             this.viewVToolStripMenuItem.Name = "viewVToolStripMenuItem";
             this.viewVToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.viewVToolStripMenuItem.Text = "View(&V)";
@@ -102,6 +104,28 @@
             this.msiShowInputFileList.Size = new System.Drawing.Size(180, 22);
             this.msiShowInputFileList.Text = "Input File List";
             this.msiShowInputFileList.Click += new System.EventHandler(this.MsiShowInputFileList_Click);
+            // 
+            // msiShowVariableInput
+            // 
+            this.msiShowVariableInput.Name = "msiShowVariableInput";
+            this.msiShowVariableInput.Size = new System.Drawing.Size(180, 22);
+            this.msiShowVariableInput.Text = "Variable Input List";
+            this.msiShowVariableInput.Click += new System.EventHandler(this.MsiShowVariableInput_Click);
+            // 
+            // buildBToolStripMenuItem
+            // 
+            this.buildBToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.msiRun});
+            this.buildBToolStripMenuItem.Name = "buildBToolStripMenuItem";
+            this.buildBToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.buildBToolStripMenuItem.Text = "Build(&B)";
+            // 
+            // msiRun
+            // 
+            this.msiRun.Name = "msiRun";
+            this.msiRun.Size = new System.Drawing.Size(110, 22);
+            this.msiRun.Text = "Run(&R)";
+            this.msiRun.Click += new System.EventHandler(this.MsiRun_Click);
             // 
             // statusStrip1
             // 
@@ -123,27 +147,12 @@
             this.dockPnlMain.TabIndex = 2;
             this.dockPnlMain.Theme = this.vS2015DarkTheme1;
             // 
-            // msiShowVariableInput
+            // msiShowStatus
             // 
-            this.msiShowVariableInput.Name = "msiShowVariableInput";
-            this.msiShowVariableInput.Size = new System.Drawing.Size(180, 22);
-            this.msiShowVariableInput.Text = "Variable Input List";
-            this.msiShowVariableInput.Click += new System.EventHandler(this.MsiShowVariableInput_Click);
-            // 
-            // buildBToolStripMenuItem
-            // 
-            this.buildBToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.msiRun});
-            this.buildBToolStripMenuItem.Name = "buildBToolStripMenuItem";
-            this.buildBToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.buildBToolStripMenuItem.Text = "Build(&B)";
-            // 
-            // msiRun
-            // 
-            this.msiRun.Name = "msiRun";
-            this.msiRun.Size = new System.Drawing.Size(180, 22);
-            this.msiRun.Text = "Run(&R)";
-            this.msiRun.Click += new System.EventHandler(this.MsiRun_Click);
+            this.msiShowStatus.Name = "msiShowStatus";
+            this.msiShowStatus.Size = new System.Drawing.Size(180, 22);
+            this.msiShowStatus.Text = "Status Output";
+            this.msiShowStatus.Click += new System.EventHandler(this.MsiShowStatus_Click);
             // 
             // MainForm
             // 
@@ -182,5 +191,6 @@
         private System.Windows.Forms.ToolStripMenuItem msiShowVariableInput;
         private System.Windows.Forms.ToolStripMenuItem buildBToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem msiRun;
+        private System.Windows.Forms.ToolStripMenuItem msiShowStatus;
     }
 }

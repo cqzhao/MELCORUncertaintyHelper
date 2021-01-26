@@ -33,6 +33,9 @@ namespace MELCORUncertaintyHelper.Service
         // Time Records Section Marker
         private static string trMarker = ".TR/";
 
+        private string[] inputs;
+        private int[] totalIdxes;
+
         public PTFFileReadService(PTFFile[] files)
         {
             this.files = files;
@@ -42,19 +45,24 @@ namespace MELCORUncertaintyHelper.Service
         {
             for (var i = 0; i < this.files.Length; i++)
             {
-                var thread = new Thread(() => this.ReadFile(i));
+                /*var thread = new Thread(() => this.ReadFile(i));
                 thread.Start();
-                thread.Join();
+                thread.Join();*/
+                this.ReadFile(i);
             }
         }
 
         private void ReadFile(int nth)
         {
-            using (var fileStream = new FileStream(this.files[nth].path, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (var fileStream = new FileStream(this.files[nth].fullPath, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
                 this.ReadTitleSection(fileStream, this.files[nth].name);
                 this.ReadPackageSection(fileStream, this.files[nth].name);
                 this.ReadSPecialSection(fileStream, this.files[nth].name);
+                var inputService = InputVariableReadService.GetInputReadService;
+                inputService.MakeIndexes(this.packageNames, this.packageVariableCnt, this.controlVolumes);
+                this.inputs = (string[])inputService.GetInputs();
+                this.totalIdxes = (int[])inputService.GetTotalIdxes();
             }
         }
 
@@ -212,6 +220,7 @@ namespace MELCORUncertaintyHelper.Service
                         break;
                     }
                     this.controlVolumes = controlVolumes.ToArray();
+                    this.packageVariableCnt[this.packageVariableCnt.Length - 1] = this.controlVolumes.Length + 1;
                 }
             }
             catch (Exception ex)
@@ -288,7 +297,26 @@ namespace MELCORUncertaintyHelper.Service
         {
             var isVisited = false;
             var leftDelimiter = lastLeftDelimiter;
-            var rightDelimiter = 0;
+            int rightDelimiter;
+            int lineDataLen;
+
+            var dataIdx = new int[this.inputs.Length + 1];
+            var pointing = new int[this.inputs.Length + 1];
+
+            dataIdx[0] = 0;
+            for (var i = 0; i < this.totalIdxes.Length; i++)
+            {
+                dataIdx[i + 1] = this.totalIdxes[i] + 4;
+            }
+            Array.Sort(dataIdx);
+
+            pointing[0] = 0;
+            for (var i = 0; i < this.totalIdxes.Length; i++)
+            {
+                pointing[i + 1] = Array.IndexOf(dataIdx, this.totalIdxes[i] + 4);
+            }
+
+            var lineData = new List<double>();
 
             try
             {
@@ -311,7 +339,44 @@ namespace MELCORUncertaintyHelper.Service
                         {
                             if (this.sptrStr.Equals(trMarker))
                             {
+                                lineData.Clear();
+                                lineDataLen = this.totalVariableCnt + 4;
+                                if (lineDataLen != (leftDelimiter / 4))
+                                {
+                                    // Number of data does not match
+                                }
 
+                                var time = binaryReader.ReadSingle();
+                                lineData.Add(time);
+
+                                for (var i = 0; i < this.inputs.Length; i++)
+                                {
+                                    if (dataIdx[i + 1] != dataIdx[i])
+                                    {
+                                        var intervalSkip = new byte[(dataIdx[i + 1] - dataIdx[i] - 1) * 4];
+                                        binaryReader.Read(intervalSkip, 0, (dataIdx[i + 1] - dataIdx[i] - 1) * 4);
+                                        var data = binaryReader.ReadSingle();
+                                        lineData.Add(data);
+                                    }
+                                    else
+                                    {
+                                        lineData.Add(0.0);
+                                    }
+                                }
+
+                                var finalSkip = new byte[(lineDataLen - dataIdx[this.inputs.Length] - 1) * 4];
+                                binaryReader.Read(finalSkip, 0, (lineDataLen - dataIdx[this.inputs.Length] - 1) * 4);
+
+                                for (var i = 0; i < pointing.Length; i++)
+                                {
+                                    
+                                }
+
+                            }
+                            else
+                            {
+                                var str = new char[4];
+                                binaryReader.Read(str, 0, 4);
                             }
                         }
 

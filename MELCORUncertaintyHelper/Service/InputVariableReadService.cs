@@ -13,6 +13,8 @@ namespace MELCORUncertaintyHelper.Service
         private string[] inputs;
         private string[] inputPackageNames;
         private int[] inputControlVolumes;
+        private int[] idxes;
+        private int[] totalIdxes;
 
         private InputVariableReadService()
         {
@@ -30,6 +32,10 @@ namespace MELCORUncertaintyHelper.Service
         }
 
         public Object GetInputs() => this.inputs.Clone();
+
+        public Object GetIdxes() => this.idxes.Clone();
+
+        public Object GetTotalIdxes() => this.totalIdxes.Clone();
 
         public void InputManage()
         {
@@ -95,6 +101,49 @@ namespace MELCORUncertaintyHelper.Service
 
             this.inputPackageNames = packageNames.ToArray();
             this.inputControlVolumes = controlVolumes.ToArray();
+        }
+
+        public void MakeIndexes(string[] packageNames, int[] packageVariableCnt, int[] controlVolumes)
+        {
+            var idxes = new List<int>();
+            var totalIdxes = new List<int>();
+
+            int frontIdx;
+            int rearIdx;
+            int totalIdx;
+
+            for (var i = 0; i < this.inputs.Length; i++)
+            {
+                frontIdx = Array.IndexOf(packageNames, this.inputPackageNames[i]);
+                rearIdx = Array.LastIndexOf(packageNames, this.inputPackageNames[i]);
+                if (frontIdx == -1)
+                {
+                    frontIdx = Array.IndexOf(packageNames, this.inputs[i]);
+                    if (frontIdx == -1)
+                    {
+                        totalIdx = packageVariableCnt[frontIdx] - 1;
+                    }
+                    else
+                    {
+                        totalIdx = -1;
+                    }
+                }
+                else if (frontIdx == rearIdx)
+                {
+                    totalIdx = Array.IndexOf(controlVolumes, this.inputControlVolumes[i],
+                        packageVariableCnt[frontIdx] - 1, packageVariableCnt[frontIdx + 1] - packageVariableCnt[frontIdx]);
+                }
+                else
+                {
+                    totalIdx = Array.IndexOf(controlVolumes, this.inputControlVolumes[i], frontIdx, rearIdx);
+                }
+
+                idxes.Add(frontIdx);
+                totalIdxes.Add(totalIdx);
+            }
+
+            this.idxes = idxes.ToArray();
+            this.totalIdxes = totalIdxes.ToArray();
         }
     }
 }

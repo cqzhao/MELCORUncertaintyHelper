@@ -1,6 +1,6 @@
 ﻿namespace MELCORUncertaintyHelper.View
 {
-    partial class VariableResultForm
+    partial class ExtractedVariableForm
     {
         /// <summary>
         /// Required designer variable.
@@ -33,45 +33,33 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.dgvResults = new System.Windows.Forms.DataGridView();
-            this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).BeginInit();
+            this.dgvVariables = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvVariables)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
             // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(800, 25);
             this.toolStrip1.TabIndex = 1;
+            this.toolStrip1.Text = "toolStrip1";
             // 
-            // toolStripButton1
+            // dgvVariables
             // 
-            this.toolStripButton1.Image = global::MELCORUncertaintyHelper.Properties.Resources.file_csv;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(52, 22);
-            this.toolStripButton1.Text = "Save";
-            this.toolStripButton1.Visible = false;
-            // 
-            // dgvResults
-            // 
-            this.dgvResults.AllowUserToAddRows = false;
-            this.dgvResults.AllowUserToDeleteRows = false;
-            this.dgvResults.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            this.dgvResults.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomCenter;
+            this.dgvVariables.AllowUserToAddRows = false;
+            this.dgvVariables.AllowUserToDeleteRows = false;
+            this.dgvVariables.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvVariables.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 10F);
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvResults.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvVariables.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvVariables.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.75F);
@@ -79,12 +67,11 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvResults.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvResults.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvResults.GridColor = System.Drawing.Color.Black;
-            this.dgvResults.Location = new System.Drawing.Point(0, 25);
-            this.dgvResults.Name = "dgvResults";
-            this.dgvResults.ReadOnly = true;
+            this.dgvVariables.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvVariables.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvVariables.GridColor = System.Drawing.Color.Black;
+            this.dgvVariables.Location = new System.Drawing.Point(0, 25);
+            this.dgvVariables.Name = "dgvVariables";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.75F);
@@ -92,30 +79,27 @@
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvResults.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvVariables.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvVariables.RowHeadersVisible = false;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.dgvResults.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvResults.RowTemplate.Height = 23;
-            this.dgvResults.Size = new System.Drawing.Size(800, 425);
-            this.dgvResults.TabIndex = 2;
-            this.dgvResults.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DgvResults_CellPainting);
-            this.dgvResults.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DgvResults_ColumnWidthChanged);
-            this.dgvResults.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DgvResults_Scroll);
-            this.dgvResults.Paint += new System.Windows.Forms.PaintEventHandler(this.DgvResults_Paint);
+            this.dgvVariables.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgvVariables.RowTemplate.Height = 23;
+            this.dgvVariables.Size = new System.Drawing.Size(800, 425);
+            this.dgvVariables.TabIndex = 2;
+            this.dgvVariables.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DdgvVariables_CellDoubleClick);
             // 
-            // VariableResultForm
+            // ExtractedVariableForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.dgvResults);
+            this.Controls.Add(this.dgvVariables);
             this.Controls.Add(this.toolStrip1);
-            this.Name = "VariableResultForm";
-            this.Load += new System.EventHandler(this.VariableResultForm_Load);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).EndInit();
+            this.Name = "ExtractedVariableForm";
+            this.TabText = "Extracted Variable";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ExtractedVariableForm_FormClosing);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvVariables)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -124,7 +108,6 @@
         #endregion
 
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.DataGridView dgvResults;
+        private System.Windows.Forms.DataGridView dgvVariables;
     }
 }

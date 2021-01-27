@@ -85,6 +85,12 @@
     <Compile Include="View\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\ExtractedVariableForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ExtractedVariableForm.Designer.cs">
+      <DependentUpon>ExtractedVariableForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\StatusOutputForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ExtractedVariableForm.resx">
+      <DependentUpon>ExtractedVariableForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\StatusOutputForm.resx">
       <DependentUpon>StatusOutputForm.cs</DependentUpon>

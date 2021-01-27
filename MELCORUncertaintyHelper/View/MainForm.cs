@@ -1,4 +1,5 @@
 ﻿using MELCORUncertaintyHelper.Manager;
+using MELCORUncertaintyHelper.Model;
 using MELCORUncertaintyHelper.Service;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace MELCORUncertaintyHelper.View
         private FileExplorerForm frmFileExplorer;
         private VariableInputForm frmVariableInput;
         private StatusOutputForm frmStatusOutput;
+        private ExtractedVariableForm frmExtractedVariable;
 
         public MainForm()
         {
@@ -26,6 +28,7 @@ namespace MELCORUncertaintyHelper.View
             this.frmFileExplorer = new FileExplorerForm();
             this.frmVariableInput = VariableInputForm.GetFrmVariableInput;
             this.frmStatusOutput = StatusOutputForm.GetFrmStatus;
+            this.frmExtractedVariable = new ExtractedVariableForm(this);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -33,6 +36,7 @@ namespace MELCORUncertaintyHelper.View
             this.frmFileExplorer.Show(this.dockPnlMain, DockState.DockLeft);
             this.frmVariableInput.Show(this.dockPnlMain, DockState.DockLeftAutoHide);
             this.frmStatusOutput.Show(this.dockPnlMain, DockState.DockBottom);
+            this.frmExtractedVariable.Show(this.dockPnlMain, DockState.DockRight);
 
             this.dockPnlMain.UpdateDockWindowZOrder(DockStyle.Left, true);
         }
@@ -83,10 +87,51 @@ namespace MELCORUncertaintyHelper.View
             this.frmStatusOutput.Show(this.dockPnlMain, DockState.DockBottom);
         }
 
+        private void MsiShowExtracted_Click(object sender, EventArgs e)
+        {
+            this.frmExtractedVariable.Show(this.dockPnlMain, DockState.DockRight);
+        }
+
         private async void MsiRun_Click(object sender, EventArgs e)
         {
             var manager = new ExtractManager();
             await manager.Run();
+
+            this.PrintExtractedVariables();
+        }
+
+        private void PrintExtractedVariables()
+        {
+            var variables = new List<string>();
+            var extractData = (ExtractData[])ExtractDataManager.GetDataManager.GetExtractDatas();
+            for (var i = 0; i < extractData.Length; i++)
+            {
+                for (var j = 0; j < extractData[i].timeRecordDatas.Length; j++)
+                {
+                    var name = extractData[i].timeRecordDatas[j].variableName;
+                    if (!variables.Contains(name))
+                    {
+                        variables.Add(name);
+                    }
+                }
+            }
+
+            if (variables.Count <= 0)
+            {
+                MessageBox.Show("There is no data what you want to find", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            this.frmExtractedVariable.AddVariables(variables.ToArray());
+        }
+
+        public void ShowResult(string target)
+        {
+            var frmResult = new VariableResultForm
+            {
+                TabText = target
+            };
+            frmResult.Show(this.dockPnlMain, DockState.Document);
+            frmResult.PrintResult(target);
         }
     }
 }

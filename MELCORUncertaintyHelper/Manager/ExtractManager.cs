@@ -20,21 +20,27 @@ namespace MELCORUncertaintyHelper.Manager
 
         }
 
-        public void Run()
+        public async Task Run()
         {
-            this.ptfOpenSerivce = PTFFileOpenService.GetOpenService;
-            var ptfFiles = (PTFFile[])this.ptfOpenSerivce.GetFiles();
-            if (ptfFiles == null || ptfFiles.Length <= 0)
+            await Task.Run(() =>
             {
-                MessageBox.Show("There is no PTF file", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
+                this.ptfOpenSerivce = PTFFileOpenService.GetOpenService;
+                var ptfFiles = (PTFFile[])this.ptfOpenSerivce.GetFiles();
+                if (ptfFiles == null || ptfFiles.Length <= 0)
+                {
+                    MessageBox.Show("There is no PTF file", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
 
-            this.inputReadService = InputVariableReadService.GetInputReadService;
-            this.inputReadService.InputManage();
+                this.inputReadService = InputVariableReadService.GetInputReadService;
+                this.inputReadService.InputManage();
 
-            this.ptfReadService = new PTFFileReadService(ptfFiles);
-            this.ptfReadService.Read();
+                for (var i = 0; i < ptfFiles.Length; i++)
+                {
+                    this.ptfReadService = new PTFFileReadService(ptfFiles[i]);
+                    this.ptfReadService.Read();
+                }
+            });
         }
     }
 }

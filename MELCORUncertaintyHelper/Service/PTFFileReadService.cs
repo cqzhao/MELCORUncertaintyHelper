@@ -1,6 +1,5 @@
 ﻿using MELCORUncertaintyHelper.Manager;
 using MELCORUncertaintyHelper.Model;
-using MELCORUncertaintyHelper.View;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,7 +12,7 @@ namespace MELCORUncertaintyHelper.Service
 {
     public class PTFFileReadService
     {
-        private PTFFile[] files;
+        private PTFFile file;
         // PTF File에 존재하는 Package 총 개수
         private int totalPackageCnt;
         // 전체 Package에 존재하는 변수 및 Control Volume의 총 개수
@@ -38,49 +37,30 @@ namespace MELCORUncertaintyHelper.Service
         private string[] inputs;
         private int[] totalIdxes;
 
-        private StatusOutputForm frmStatus;
-
-        public PTFFileReadService(PTFFile[] files)
+        public PTFFileReadService(PTFFile file)
         {
-            this.files = files;
-            this.frmStatus = StatusOutputForm.GetFrmStatus;
+            this.file = file;
         }
 
         public void Read()
         {
-            for (var i = 0; i < this.files.Length; i++)
-            {
-                /*var thread = new Thread(() => this.ReadFile(i));
-                thread.Start();
-                thread.Join();*/
-                var str = new StringBuilder();
-                str.AppendLine("==========================================================================================");
-                str.Append("Start Read PTF File : ");
-                str.AppendLine(this.files[i].name);
-                this.frmStatus.PrintStatus(str);
-                this.ReadFile(i);
-                str.Clear();
-                str.Append("Complete Read PTF File : ");
-                str.AppendLine(this.files[i].name);
-                str.AppendLine("==========================================================================================");
-                this.frmStatus.PrintStatus(str);
-            }
+            this.ReadFile();
         }
 
-        private void ReadFile(int nth)
+        private void ReadFile()
         {
-            using (var fileStream = new FileStream(this.files[nth].fullPath, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (var fileStream = new FileStream(this.file.fullPath, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
-                this.ReadTitleSection(fileStream, this.files[nth].name);
-                this.ReadPackageSection(fileStream, this.files[nth].name);
-                var lastLeftDelimiter = this.ReadSPecialSection(fileStream, this.files[nth].name);
+                this.ReadTitleSection(fileStream, this.file.name);
+                this.ReadPackageSection(fileStream, this.file.name);
+                var lastLeftDelimiter = this.ReadSPecialSection(fileStream, this.file.name);
                 var inputService = InputVariableReadService.GetInputReadService;
                 inputService.MakeIndexes(this.packageNames, this.packageVariableCnt, this.controlVolumes);
                 this.inputs = (string[])inputService.GetInputs();
                 this.totalIdxes = (int[])inputService.GetTotalIdxes();
-                var timeRecordDatas = (TimeRecordData[])this.ReadTimeRecordsSection(fileStream, this.files[nth].name, lastLeftDelimiter);
+                var timeRecordDatas = (TimeRecordData[])this.ReadTimeRecordsSection(fileStream, this.file.name, lastLeftDelimiter);
                 var dataManager = ExtractDataManager.GetDataManager;
-                dataManager.AddData(this.files[nth].name, this.inputs, timeRecordDatas);
+                dataManager.AddData(this.file.name, this.inputs, timeRecordDatas);
             }
         }
 

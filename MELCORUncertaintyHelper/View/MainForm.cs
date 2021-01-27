@@ -33,7 +33,7 @@ namespace MELCORUncertaintyHelper.View
             this.frmFileExplorer.Show(this.dockPnlMain, DockState.DockLeft);
             this.frmVariableInput.Show(this.dockPnlMain, DockState.DockLeftAutoHide);
             this.frmStatusOutput.Show(this.dockPnlMain, DockState.DockBottom);
-            
+
             this.dockPnlMain.UpdateDockWindowZOrder(DockStyle.Left, true);
         }
 
@@ -83,10 +83,10 @@ namespace MELCORUncertaintyHelper.View
             this.frmStatusOutput.Show(this.dockPnlMain, DockState.DockBottom);
         }
 
-        private void MsiRun_Click(object sender, EventArgs e)
+        private async void MsiRun_Click(object sender, EventArgs e)
         {
             var manager = new ExtractManager();
-            manager.Run();
+            await manager.Run();
         }
     }
 }

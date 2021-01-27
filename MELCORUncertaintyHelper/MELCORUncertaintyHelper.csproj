@@ -97,6 +97,12 @@
     <Compile Include="View\VariableInputForm.Designer.cs">
       <DependentUpon>VariableInputForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\VariableResultForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\VariableResultForm.Designer.cs">
+      <DependentUpon>VariableResultForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -105,6 +111,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="View\FileExplorerForm.resx">
       <DependentUpon>FileExplorerForm.cs</DependentUpon>
@@ -117,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\VariableInputForm.resx">
       <DependentUpon>VariableInputForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\VariableResultForm.resx">
+      <DependentUpon>VariableResultForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -133,6 +143,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <None Include="Images\file_csv.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>if not exist "$(TargetDir)\lib" mkdir "$(TargetDir)\lib"

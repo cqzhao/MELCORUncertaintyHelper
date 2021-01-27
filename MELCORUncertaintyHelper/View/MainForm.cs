@@ -126,12 +126,19 @@ namespace MELCORUncertaintyHelper.View
 
         public void ShowResult(string target)
         {
-            var frmResult = new VariableResultForm
+            var frmDgvResult = new VariableResultDgvForm
             {
                 TabText = target
             };
-            frmResult.Show(this.dockPnlMain, DockState.Document);
-            frmResult.PrintResult(target);
+            frmDgvResult.Show(this.dockPnlMain, DockState.Document);
+            frmDgvResult.PrintResult(target);
+
+            var frmGphResult = new VariableResultGphForm
+            {
+                TabText = target
+            };
+            frmGphResult.Show(this.dockPnlMain, DockState.Document);
+            frmGphResult.PrintResult(target);
         }
     }
 }

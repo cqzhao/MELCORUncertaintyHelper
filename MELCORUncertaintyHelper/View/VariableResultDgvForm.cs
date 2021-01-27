@@ -13,11 +13,11 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace MELCORUncertaintyHelper.View
 {
-    public partial class VariableResultForm : DockContent
+    public partial class VariableResultDgvForm : DockContent
     {
         private ExtractData[] data;
 
-        public VariableResultForm()
+        public VariableResultDgvForm()
         {
             InitializeComponent();
 

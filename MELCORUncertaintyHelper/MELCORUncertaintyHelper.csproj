@@ -43,6 +43,12 @@
     <Reference Include="MetroFramework.Fonts, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
       <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
     </Reference>
+    <Reference Include="OxyPlot, Version=2.0.0.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.Core.2.0.0\lib\net45\OxyPlot.dll</HintPath>
+    </Reference>
+    <Reference Include="OxyPlot.WindowsForms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=245eacd6b5d2d338, processorArchitecture=MSIL">
+      <HintPath>..\packages\OxyPlot.WindowsForms.2.0.0\lib\net45\OxyPlot.WindowsForms.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -103,11 +109,17 @@
     <Compile Include="View\VariableInputForm.Designer.cs">
       <DependentUpon>VariableInputForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\VariableResultForm.cs">
+    <Compile Include="View\VariableResultDgvForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\VariableResultForm.Designer.cs">
-      <DependentUpon>VariableResultForm.cs</DependentUpon>
+    <Compile Include="View\VariableResultDgvForm.Designer.cs">
+      <DependentUpon>VariableResultDgvForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\VariableResultGphForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\VariableResultGphForm.Designer.cs">
+      <DependentUpon>VariableResultGphForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -134,8 +146,11 @@
     <EmbeddedResource Include="View\VariableInputForm.resx">
       <DependentUpon>VariableInputForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\VariableResultForm.resx">
-      <DependentUpon>VariableResultForm.cs</DependentUpon>
+    <EmbeddedResource Include="View\VariableResultDgvForm.resx">
+      <DependentUpon>VariableResultDgvForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\VariableResultGphForm.resx">
+      <DependentUpon>VariableResultGphForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

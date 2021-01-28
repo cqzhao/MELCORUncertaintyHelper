@@ -1,5 +1,6 @@
 ﻿using MELCORUncertaintyHelper.Model;
 using MELCORUncertaintyHelper.Service;
+using MELCORUncertaintyHelper.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,10 +40,20 @@ namespace MELCORUncertaintyHelper.Manager
                 // 이를 임시적으로 해결하기 위한 방안
                 ExtractDataManager.GetDataManager.InitializeData();
 
+                var frmStatus = StatusOutputForm.GetFrmStatus;
+                frmStatus.Show();
                 for (var i = 0; i < ptfFiles.Length; i++)
                 {
                     this.ptfReadService = new PTFFileReadService(ptfFiles[i]);
                     this.ptfReadService.Read();
+                    var str = new StringBuilder();
+                    str.Append("[");
+                    str.Append(i + 1);
+                    str.Append("] ");
+                    str.Append(DateTime.Now.ToString("[yyyy-MM-dd-HH:mm:ss]   "));
+                    str.Append("Completed Read ");
+                    str.AppendLine(ptfFiles[i].fullPath);
+                    frmStatus.PrintStatus(str);
                 }
             });
         }

@@ -36,7 +36,7 @@ namespace MELCORUncertaintyHelper.View
 
         public void PrintStatus(StringBuilder msg)
         {
-            this.txtStatus.Text += msg.ToString();
+            this.txtStatus.AppendText(msg.ToString());
         }
     }
 }

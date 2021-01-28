@@ -42,6 +42,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.dockPnlMain = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             this.vS2015DarkTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2015DarkTheme();
+            this.msiShowStatus = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -93,7 +94,8 @@
             this.viewVToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.msiShowInputFileList,
             this.msiShowVariableInput,
-            this.msiShowExtracted});
+            this.msiShowExtracted,
+            this.msiShowStatus});
             this.viewVToolStripMenuItem.Name = "viewVToolStripMenuItem";
             this.viewVToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.viewVToolStripMenuItem.Text = "View(&V)";
@@ -154,6 +156,13 @@
             this.dockPnlMain.TabIndex = 2;
             this.dockPnlMain.Theme = this.vS2015DarkTheme1;
             // 
+            // msiShowStatus
+            // 
+            this.msiShowStatus.Name = "msiShowStatus";
+            this.msiShowStatus.Size = new System.Drawing.Size(180, 22);
+            this.msiShowStatus.Text = "Status Output";
+            this.msiShowStatus.Click += new System.EventHandler(this.MsiShowStatus_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -192,5 +201,6 @@
         private System.Windows.Forms.ToolStripMenuItem buildBToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem msiRun;
         private System.Windows.Forms.ToolStripMenuItem msiShowExtracted;
+        private System.Windows.Forms.ToolStripMenuItem msiShowStatus;
     }
 }

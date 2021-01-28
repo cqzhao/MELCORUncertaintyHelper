@@ -33,7 +33,7 @@ namespace MELCORUncertaintyHelper.Service
             msg.Append(this.exception.ToString());
 
             var fileName = new StringBuilder();
-            fileName.Append(DateTime.Now.ToString("yyyyMMddHHmms"));
+            fileName.Append(DateTime.Now.ToString("yyyyMMddHHmmss"));
             fileName.Append("_Log.txt");
 
             var filePath = Path.Combine(Environment.CurrentDirectory, "log", fileName.ToString());

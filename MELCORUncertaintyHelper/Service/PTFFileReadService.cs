@@ -54,10 +54,18 @@ namespace MELCORUncertaintyHelper.Service
                 this.ReadTitleSection(fileStream, this.file.name);
                 this.ReadPackageSection(fileStream, this.file.name);
                 var lastLeftDelimiter = this.ReadSPecialSection(fileStream, this.file.name);
-                var inputService = InputVariableReadService.GetInputReadService;
-                inputService.MakeIndexes(this.packageNames, this.packageVariableCnt, this.controlVolumes);
-                this.inputs = (string[])inputService.GetInputs();
-                this.totalIdxes = (int[])inputService.GetTotalIdxes();
+                try
+                {
+                    var inputService = InputVariableReadService.GetInputReadService;
+                    inputService.MakeIndexes(this.packageNames, this.packageVariableCnt, this.controlVolumes);
+                    this.inputs = (string[])inputService.GetInputs();
+                    this.totalIdxes = (int[])inputService.GetTotalIdxes();
+                }
+                catch (Exception ex)
+                {
+                    var logWrite = new LogFileWriteService(ex);
+                    logWrite.MakeLogFile();
+                }
                 var timeRecordDatas = (TimeRecordData[])this.ReadTimeRecordsSection(fileStream, this.file.name, lastLeftDelimiter);
                 var dataManager = ExtractDataManager.GetDataManager;
                 dataManager.AddData(this.file.name, this.inputs, timeRecordDatas);

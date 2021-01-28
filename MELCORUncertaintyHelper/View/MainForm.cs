@@ -103,17 +103,26 @@ namespace MELCORUncertaintyHelper.View
         private void PrintExtractedVariables()
         {
             var variables = new List<string>();
-            var extractData = (ExtractData[])ExtractDataManager.GetDataManager.GetExtractDatas();
-            for (var i = 0; i < extractData.Length; i++)
+            try
             {
-                for (var j = 0; j < extractData[i].timeRecordDatas.Length; j++)
+                var extractData = (ExtractData[])ExtractDataManager.GetDataManager.GetExtractDatas();
+                for (var i = 0; i < extractData.Length; i++)
                 {
-                    var name = extractData[i].timeRecordDatas[j].variableName;
-                    if (!variables.Contains(name))
+                    for (var j = 0; j < extractData[i].timeRecordDatas.Length; j++)
                     {
-                        variables.Add(name);
+                        var name = extractData[i].timeRecordDatas[j].variableName;
+                        if (!variables.Contains(name))
+                        {
+                            variables.Add(name);
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                var logWrite = new LogFileWriteService(ex);
+                logWrite.MakeLogFile();
+                return;
             }
 
             if (variables.Count <= 0)

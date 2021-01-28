@@ -37,113 +37,149 @@ namespace MELCORUncertaintyHelper.Service
 
         public Object GetTotalIdxes() => this.totalIdxes.Clone();
 
-        public void InputManage()
+        public bool InputManage()
         {
-            this.ReadInput();
-            if (this.inputs.Length <= 0)
+            try
             {
-                MessageBox.Show("There is no search word", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                this.ReadInput();
+                if (this.inputs.Length < 0 || this.inputs == null)
+                {
+                    MessageBox.Show("There is no search word", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return false;
+                }
+                this.InputPostProcess();
             }
-            this.InputPostProcess();
+            catch (Exception ex)
+            {
+                var logWrite = new LogFileWriteService(ex);
+                logWrite.MakeLogFile();
+                return false;
+            }
+
+            return true;
         }
 
         private void ReadInput()
         {
-            var dgvInputs = VariableInputForm.GetFrmVariableInput.GetDgvVariable();
-
-            var colIdx = 0;
-            for (var i = 0; i < dgvInputs.ColumnCount; i++)
+            try
             {
-                if (dgvInputs.Columns[i].Name.Equals("Variable Name"))
-                {
-                    colIdx = i;
-                }
-            }
+                var dgvInputs = VariableInputForm.GetFrmVariableInput.GetDgvVariable();
 
-            var inputs = new List<string>();
-            for (var i = 0; i < dgvInputs.RowCount - 1; i++)
+                var colIdx = 0;
+                for (var i = 0; i < dgvInputs.ColumnCount; i++)
+                {
+                    if (dgvInputs.Columns[i].Name.Equals("Variable Name"))
+                    {
+                        colIdx = i;
+                    }
+                }
+
+                var inputs = new List<string>();
+                for (var i = 0; i < dgvInputs.RowCount - 1; i++)
+                {
+                    var input = dgvInputs[colIdx, i].Value.ToString();
+                    if (!string.IsNullOrEmpty(input))
+                    {
+                        inputs.Add(input);
+                    }
+                }
+
+                this.inputs = inputs.ToArray();
+            }
+            catch (Exception ex)
             {
-                var input = dgvInputs[colIdx, i].Value.ToString();
-                if (!string.IsNullOrEmpty(input))
-                {
-                    inputs.Add(input);
-                }
+                var logWrite = new LogFileWriteService(ex);
+                logWrite.MakeLogFile();
+                return;
             }
-
-            this.inputs = inputs.ToArray();
         }
 
         private void InputPostProcess()
         {
-            var packageNames = new List<string>();
-            var controlVolumes = new List<int>();
-
-            for (var i = 0; i < this.inputs.Length; i++)
+            try
             {
-                string name;
-                int node;
+                var packageNames = new List<string>();
+                var controlVolumes = new List<int>();
 
-                if (this.inputs[i].Contains("."))
+                for (var i = 0; i < this.inputs.Length; i++)
                 {
-                    name = this.inputs[i].Substring(0, this.inputs[i].LastIndexOf("."));
-                    node = Convert.ToInt32(this.inputs[i].Substring(this.inputs[i].LastIndexOf(".") + 1));
-                }
-                else
-                {
-                    name = this.inputs[i];
-                    node = 0;
+                    string name;
+                    int node;
+
+                    if (this.inputs[i].Contains("."))
+                    {
+                        name = this.inputs[i].Substring(0, this.inputs[i].LastIndexOf("."));
+                        node = Convert.ToInt32(this.inputs[i].Substring(this.inputs[i].LastIndexOf(".") + 1));
+                    }
+                    else
+                    {
+                        name = this.inputs[i];
+                        node = 0;
+                    }
+
+                    packageNames.Add(name);
+                    controlVolumes.Add(node);
                 }
 
-                packageNames.Add(name);
-                controlVolumes.Add(node);
+                this.inputPackageNames = packageNames.ToArray();
+                this.inputControlVolumes = controlVolumes.ToArray();
             }
-
-            this.inputPackageNames = packageNames.ToArray();
-            this.inputControlVolumes = controlVolumes.ToArray();
+            catch (Exception ex)
+            {
+                var logWrite = new LogFileWriteService(ex);
+                logWrite.MakeLogFile();
+            }
         }
 
         public void MakeIndexes(string[] packageNames, int[] packageVariableCnt, int[] controlVolumes)
         {
-            var idxes = new List<int>();
-            var totalIdxes = new List<int>();
-
-            int frontIdx;
-            int rearIdx;
-            int totalIdx;
-
-            for (var i = 0; i < this.inputs.Length; i++)
+            try
             {
-                frontIdx = Array.IndexOf(packageNames, this.inputPackageNames[i]);
-                rearIdx = Array.LastIndexOf(packageNames, this.inputPackageNames[i]);
-                if (frontIdx == -1)
+                var idxes = new List<int>();
+                var totalIdxes = new List<int>();
+
+                int frontIdx;
+                int rearIdx;
+                int totalIdx;
+
+                for (var i = 0; i < this.inputs.Length; i++)
                 {
-                    frontIdx = Array.IndexOf(packageNames, this.inputs[i]);
+                    frontIdx = Array.IndexOf(packageNames, this.inputPackageNames[i]);
+                    rearIdx = Array.LastIndexOf(packageNames, this.inputPackageNames[i]);
                     if (frontIdx == -1)
                     {
-                        totalIdx = packageVariableCnt[frontIdx] - 1;
+                        frontIdx = Array.IndexOf(packageNames, this.inputs[i]);
+                        if (frontIdx == -1)
+                        {
+                            totalIdx = packageVariableCnt[frontIdx] - 1;
+                        }
+                        else
+                        {
+                            totalIdx = -1;
+                        }
+                    }
+                    else if (frontIdx == rearIdx)
+                    {
+                        totalIdx = Array.IndexOf(controlVolumes, this.inputControlVolumes[i],
+                            packageVariableCnt[frontIdx] - 1, packageVariableCnt[frontIdx + 1] - packageVariableCnt[frontIdx]);
                     }
                     else
                     {
-                        totalIdx = -1;
+                        totalIdx = Array.IndexOf(controlVolumes, this.inputControlVolumes[i], frontIdx, rearIdx);
                     }
-                }
-                else if (frontIdx == rearIdx)
-                {
-                    totalIdx = Array.IndexOf(controlVolumes, this.inputControlVolumes[i],
-                        packageVariableCnt[frontIdx] - 1, packageVariableCnt[frontIdx + 1] - packageVariableCnt[frontIdx]);
-                }
-                else
-                {
-                    totalIdx = Array.IndexOf(controlVolumes, this.inputControlVolumes[i], frontIdx, rearIdx);
+
+                    idxes.Add(frontIdx);
+                    totalIdxes.Add(totalIdx);
                 }
 
-                idxes.Add(frontIdx);
-                totalIdxes.Add(totalIdx);
+                this.idxes = idxes.ToArray();
+                this.totalIdxes = totalIdxes.ToArray();
             }
-
-            this.idxes = idxes.ToArray();
-            this.totalIdxes = totalIdxes.ToArray();
+            catch (Exception ex)
+            {
+                var logWrite = new LogFileWriteService(ex);
+                logWrite.MakeLogFile();
+            }
         }
     }
 }

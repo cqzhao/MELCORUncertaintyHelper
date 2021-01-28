@@ -82,5 +82,39 @@ namespace MELCORUncertaintyHelper.View
             var target = this.dgvVariables[e.ColumnIndex, e.RowIndex].Value.ToString();
             this.frmMain.ShowResult(target);
         }
+
+        private void TsBtnCheckAll_Click(object sender, EventArgs e)
+        {
+            if (this.dgvVariables.Rows.Count <= 0)
+            {
+                return;
+            }
+
+            for (var i = 0; i < this.dgvVariables.Rows.Count; i++)
+            {
+                var isChecked = Convert.ToBoolean(this.dgvVariables[0, i].Value);
+                if (!isChecked)
+                {
+                    this.dgvVariables[0, i].Value = true;
+                }
+            }
+        }
+
+        private void TsBtnUncheckAll_Click(object sender, EventArgs e)
+        {
+            if (this.dgvVariables.Rows.Count <= 0)
+            {
+                return;
+            }
+
+            for (var i = 0; i < this.dgvVariables.Rows.Count; i++)
+            {
+                var isChecked = Convert.ToBoolean(this.dgvVariables[0, i].Value);
+                if (isChecked)
+                {
+                    this.dgvVariables[0, i].Value = false;
+                }
+            }
+        }
     }
 }

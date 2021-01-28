@@ -47,5 +47,11 @@ namespace MELCORUncertaintyHelper.Manager
 
             this.extractDatas = datas.ToArray();
         }
+
+        public void InitializeData()
+        {
+            var datas = new List<ExtractData>();
+            this.extractDatas = datas.ToArray();
+        }
     }
 }

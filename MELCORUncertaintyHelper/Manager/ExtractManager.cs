@@ -35,6 +35,10 @@ namespace MELCORUncertaintyHelper.Manager
                 this.inputReadService = InputVariableReadService.GetInputReadService;
                 this.inputReadService.InputManage();
 
+                // 현재 Run()을 실행하면 데이터가 중복으로 생성되는 경우가 발생
+                // 이를 임시적으로 해결하기 위한 방안
+                ExtractDataManager.GetDataManager.InitializeData();
+
                 for (var i = 0; i < ptfFiles.Length; i++)
                 {
                     this.ptfReadService = new PTFFileReadService(ptfFiles[i]);

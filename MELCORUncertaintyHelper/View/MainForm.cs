@@ -18,7 +18,6 @@ namespace MELCORUncertaintyHelper.View
     {
         private FileExplorerForm frmFileExplorer;
         private VariableInputForm frmVariableInput;
-        private StatusOutputForm frmStatusOutput;
         private ExtractedVariableForm frmExtractedVariable;
 
         public MainForm()
@@ -27,7 +26,6 @@ namespace MELCORUncertaintyHelper.View
 
             this.frmFileExplorer = new FileExplorerForm();
             this.frmVariableInput = VariableInputForm.GetFrmVariableInput;
-            this.frmStatusOutput = StatusOutputForm.GetFrmStatus;
             this.frmExtractedVariable = new ExtractedVariableForm(this);
         }
 
@@ -35,7 +33,6 @@ namespace MELCORUncertaintyHelper.View
         {
             this.frmFileExplorer.Show(this.dockPnlMain, DockState.DockLeft);
             this.frmVariableInput.Show(this.dockPnlMain, DockState.DockLeftAutoHide);
-            this.frmStatusOutput.Show(this.dockPnlMain, DockState.DockBottom);
             this.frmExtractedVariable.Show(this.dockPnlMain, DockState.DockRight);
 
             this.dockPnlMain.UpdateDockWindowZOrder(DockStyle.Left, true);
@@ -84,7 +81,7 @@ namespace MELCORUncertaintyHelper.View
 
         private void MsiShowStatus_Click(object sender, EventArgs e)
         {
-            this.frmStatusOutput.Show(this.dockPnlMain, DockState.DockBottom);
+
         }
 
         private void MsiShowExtracted_Click(object sender, EventArgs e)

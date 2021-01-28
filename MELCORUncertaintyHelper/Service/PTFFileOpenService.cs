@@ -45,6 +45,16 @@ namespace MELCORUncertaintyHelper.Service
             var files = new List<PTFFile>();
             try
             {
+                /*
+                 * 기존에 불러온 파일이 존재한다면
+                 * 기존에 존재하던 파일에
+                 * 추가적으로 불러올 파일도 같이 저장하기 위하여
+                 */
+                if (this.files != null && this.files.Length > 0)
+                {
+                    files = this.files.ToList();
+                }
+
                 for (var i = 0; i < inputFiles.Length; i++)
                 {
                     var file = this.DivideFilePath(inputFiles[i]);

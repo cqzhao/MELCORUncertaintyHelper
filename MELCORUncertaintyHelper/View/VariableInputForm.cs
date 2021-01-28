@@ -58,6 +58,7 @@ namespace MELCORUncertaintyHelper.View
             for (var i = 0; i < this.colNames.Length; i++)
             {
                 this.dgvVariable.Columns[i].Name = this.colNames[i];
+                this.dgvVariable.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
                 if (this.colNames[i].Equals("No"))
                 {
                     this.dgvVariable.Columns[i].ReadOnly = true;

@@ -36,7 +36,6 @@
             this.viewVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msiShowInputFileList = new System.Windows.Forms.ToolStripMenuItem();
             this.msiShowVariableInput = new System.Windows.Forms.ToolStripMenuItem();
-            this.msiShowStatus = new System.Windows.Forms.ToolStripMenuItem();
             this.msiShowExtracted = new System.Windows.Forms.ToolStripMenuItem();
             this.buildBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msiRun = new System.Windows.Forms.ToolStripMenuItem();
@@ -94,7 +93,6 @@
             this.viewVToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.msiShowInputFileList,
             this.msiShowVariableInput,
-            this.msiShowStatus,
             this.msiShowExtracted});
             this.viewVToolStripMenuItem.Name = "viewVToolStripMenuItem";
             this.viewVToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
@@ -113,13 +111,6 @@
             this.msiShowVariableInput.Size = new System.Drawing.Size(180, 22);
             this.msiShowVariableInput.Text = "Variable Input List";
             this.msiShowVariableInput.Click += new System.EventHandler(this.MsiShowVariableInput_Click);
-            // 
-            // msiShowStatus
-            // 
-            this.msiShowStatus.Name = "msiShowStatus";
-            this.msiShowStatus.Size = new System.Drawing.Size(180, 22);
-            this.msiShowStatus.Text = "Status Output";
-            this.msiShowStatus.Visible = false;
             // 
             // msiShowExtracted
             // 
@@ -200,7 +191,6 @@
         private System.Windows.Forms.ToolStripMenuItem msiShowVariableInput;
         private System.Windows.Forms.ToolStripMenuItem buildBToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem msiRun;
-        private System.Windows.Forms.ToolStripMenuItem msiShowStatus;
         private System.Windows.Forms.ToolStripMenuItem msiShowExtracted;
     }
 }

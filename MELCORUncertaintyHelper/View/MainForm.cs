@@ -79,11 +79,6 @@ namespace MELCORUncertaintyHelper.View
             this.frmVariableInput.Show(this.dockPnlMain, DockState.DockLeft);
         }
 
-        private void MsiShowStatus_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void MsiShowExtracted_Click(object sender, EventArgs e)
         {
             this.frmExtractedVariable.Show(this.dockPnlMain, DockState.DockRight);

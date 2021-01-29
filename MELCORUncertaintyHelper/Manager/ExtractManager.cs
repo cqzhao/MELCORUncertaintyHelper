@@ -24,7 +24,7 @@ namespace MELCORUncertaintyHelper.Manager
 
         public async Task Run()
         {
-            await Task.Run(async () =>
+            await Task.Run(() =>
             {
                 this.ptfOpenSerivce = PTFFileOpenService.GetOpenService;
                 var ptfFiles = (PTFFile[])this.ptfOpenSerivce.GetFiles();
@@ -52,9 +52,9 @@ namespace MELCORUncertaintyHelper.Manager
                     this.ptfReadService = new PTFFileReadService(ptfFiles[i]);
                     this.ptfReadService.Read();
                     var str = new StringBuilder();
-                    str.Append("[");
+                    /*str.Append("[");
                     str.Append(i + 1);
-                    str.Append("] ");
+                    str.Append("] ");*/
                     str.Append(DateTime.Now.ToString("[yyyy-MM-dd-HH:mm:ss]   "));
                     str.Append("Completed Read ");
                     str.AppendLine(ptfFiles[i].fullPath);

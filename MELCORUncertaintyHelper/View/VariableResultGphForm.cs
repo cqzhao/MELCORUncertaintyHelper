@@ -31,7 +31,7 @@ namespace MELCORUncertaintyHelper.View
 
         private void VariableResultGphForm_Load(object sender, EventArgs e)
         {
-            var axesX = new LinearAxis()
+            /*var axesX = new LinearAxis()
             {
                 Position = AxisPosition.Bottom,
                 AxislineStyle = LineStyle.Solid,
@@ -50,7 +50,7 @@ namespace MELCORUncertaintyHelper.View
             };
 
             this.plotModel.Axes.Add(axesX);
-            this.plotModel.Axes.Add(axesY);
+            this.plotModel.Axes.Add(axesY);*/
 
             this.gphResults.Model = this.plotModel;
         }

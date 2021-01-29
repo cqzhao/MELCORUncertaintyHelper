@@ -34,7 +34,7 @@ namespace MELCORUncertaintyHelper.View
         private void MainForm_Load(object sender, EventArgs e)
         {
             this.frmFileExplorer.Show(this.dockPnlMain, DockState.DockLeft);
-            this.frmVariableInput.Show(this.dockPnlMain, DockState.DockLeftAutoHide);
+            this.frmVariableInput.Show(this.frmFileExplorer.Pane, DockAlignment.Bottom, 0.5);
             this.frmExtractedVariable.Show(this.dockPnlMain, DockState.DockRight);
             this.frmStatus.Show(this.dockPnlMain, DockState.DockBottom);
 
@@ -79,7 +79,7 @@ namespace MELCORUncertaintyHelper.View
 
         private void MsiShowVariableInput_Click(object sender, EventArgs e)
         {
-            this.frmVariableInput.Show(this.dockPnlMain, DockState.DockLeft);
+            this.frmVariableInput.Show(this.frmFileExplorer.Pane, DockAlignment.Bottom, 0.5);
         }
 
         private void MsiShowExtracted_Click(object sender, EventArgs e)

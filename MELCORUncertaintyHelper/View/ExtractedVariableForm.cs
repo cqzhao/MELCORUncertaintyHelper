@@ -90,6 +90,8 @@ namespace MELCORUncertaintyHelper.View
                 return;
             }
 
+            this.MoveSelectedCell();
+
             for (var i = 0; i < this.dgvVariables.Rows.Count; i++)
             {
                 var isChecked = Convert.ToBoolean(this.dgvVariables[0, i].Value);
@@ -107,6 +109,8 @@ namespace MELCORUncertaintyHelper.View
                 return;
             }
 
+            this.MoveSelectedCell();
+
             for (var i = 0; i < this.dgvVariables.Rows.Count; i++)
             {
                 var isChecked = Convert.ToBoolean(this.dgvVariables[0, i].Value);
@@ -115,6 +119,11 @@ namespace MELCORUncertaintyHelper.View
                     this.dgvVariables[0, i].Value = false;
                 }
             }
+        }
+
+        private void MoveSelectedCell()
+        {
+            this.dgvVariables.CurrentCell = this.dgvVariables.Rows[0].Cells[1];
         }
     }
 }

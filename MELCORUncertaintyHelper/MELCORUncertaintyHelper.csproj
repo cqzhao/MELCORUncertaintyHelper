@@ -166,9 +166,14 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Images\graph.ico" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Images\file_csv.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\table.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

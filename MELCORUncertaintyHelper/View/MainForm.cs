@@ -20,6 +20,7 @@ namespace MELCORUncertaintyHelper.View
         private VariableInputForm frmVariableInput;
         private ExtractedVariableForm frmExtractedVariable;
         private StatusOutputForm frmStatus;
+        private TimeInputForm frmTimeInput;
 
         public MainForm()
         {
@@ -29,6 +30,7 @@ namespace MELCORUncertaintyHelper.View
             this.frmVariableInput = VariableInputForm.GetFrmVariableInput;
             this.frmExtractedVariable = new ExtractedVariableForm(this);
             this.frmStatus = StatusOutputForm.GetFrmStatus;
+            this.frmTimeInput = TimeInputForm.GetFrmTimeInupt;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -37,6 +39,7 @@ namespace MELCORUncertaintyHelper.View
             this.frmVariableInput.Show(this.frmFileExplorer.Pane, DockAlignment.Bottom, 0.5);
             this.frmExtractedVariable.Show(this.dockPnlMain, DockState.DockRight);
             this.frmStatus.Show(this.dockPnlMain, DockState.DockBottom);
+            this.frmTimeInput.Show(this.dockPnlMain, DockState.DockLeftAutoHide);
 
             this.dockPnlMain.UpdateDockWindowZOrder(DockStyle.Left, true);
         }
@@ -90,6 +93,11 @@ namespace MELCORUncertaintyHelper.View
         private void MsiShowStatus_Click(object sender, EventArgs e)
         {
             this.frmStatus.Show(this.dockPnlMain, DockState.DockBottom);
+        }
+
+        private void MsiShowTimeInput_Click(object sender, EventArgs e)
+        {
+            this.frmTimeInput.Show(this.frmVariableInput.Pane, DockAlignment.Bottom, 0.5);
         }
 
         private async void MsiRun_Click(object sender, EventArgs e)

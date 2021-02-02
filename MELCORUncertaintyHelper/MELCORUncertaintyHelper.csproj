@@ -72,9 +72,11 @@
     <Compile Include="Manager\ExtractManager.cs" />
     <Compile Include="Model\ExtractData.cs" />
     <Compile Include="Model\PTFFile.cs" />
+    <Compile Include="Model\TimeInputData.cs" />
     <Compile Include="Model\TimeRecordData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\InputTimeReadService.cs" />
     <Compile Include="Service\InputVariableReadService.cs" />
     <Compile Include="Service\LogFileWriteService.cs" />
     <Compile Include="Service\PTFFileOpenService.cs" />
@@ -102,6 +104,12 @@
     </Compile>
     <Compile Include="View\StatusOutputForm.Designer.cs">
       <DependentUpon>StatusOutputForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\TimeInputForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\TimeInputForm.Designer.cs">
+      <DependentUpon>TimeInputForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\VariableInputForm.cs">
       <SubType>Form</SubType>
@@ -142,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\StatusOutputForm.resx">
       <DependentUpon>StatusOutputForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\TimeInputForm.resx">
+      <DependentUpon>TimeInputForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\VariableInputForm.resx">
       <DependentUpon>VariableInputForm.cs</DependentUpon>

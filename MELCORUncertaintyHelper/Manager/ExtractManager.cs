@@ -16,6 +16,7 @@ namespace MELCORUncertaintyHelper.Manager
         private PTFFileOpenService ptfOpenSerivce;
         private InputVariableReadService inputReadService;
         private PTFFileReadService ptfReadService;
+        private InputTimeReadService InputTimeReadService;
 
         public ExtractManager()
         {
@@ -47,7 +48,7 @@ namespace MELCORUncertaintyHelper.Manager
 
                 var frmStatus = StatusOutputForm.GetFrmStatus;
 
-                /*for (var i = 0; i < ptfFiles.Length; i++)
+                for (var i = 0; i < ptfFiles.Length; i++)
                 {
                     this.ptfReadService = new PTFFileReadService(ptfFiles[i]);
                     this.ptfReadService.Read();
@@ -59,20 +60,20 @@ namespace MELCORUncertaintyHelper.Manager
                     str.Append("Completed Read ");
                     str.AppendLine(ptfFiles[i].fullPath);
                     frmStatus.PrintStatus(str);
-                }*/
-                Parallel.ForEach(ptfFiles, item =>
+                }
+                /*Parallel.ForEach(ptfFiles, item =>
                 {
                     this.ptfReadService = new PTFFileReadService(item);
                     this.ptfReadService.Read();
                     var str = new StringBuilder();
-                    /*str.Append("[");
+                    str.Append("[");
                     str.Append(i + 1);
-                    str.Append("] ");*/
+                    str.Append("] ");
                     str.Append(DateTime.Now.ToString("[yyyy-MM-dd-HH:mm:ss]   "));
                     str.Append("Completed Read ");
                     str.AppendLine(item.fullPath);
                     frmStatus.PrintStatus(str);
-                });
+                });*/
             });
         }
     }

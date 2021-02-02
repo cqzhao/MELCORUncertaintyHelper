@@ -1,9 +1,11 @@
 ﻿using MELCORUncertaintyHelper.Model;
+using MELCORUncertaintyHelper.Service;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,9 +16,13 @@ namespace MELCORUncertaintyHelper.View
 {
     public partial class FileExplorerForm : DockContent
     {
+        private PTFFileOpenService openService;
+
         public FileExplorerForm()
         {
             InitializeComponent();
+
+            this.openService = PTFFileOpenService.GetOpenService;
         }
 
         private void FileExplorerForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -45,6 +51,22 @@ namespace MELCORUncertaintyHelper.View
         public void DeleteAllFiles()
         {
             this.tvwFiles.Nodes.Clear();
+        }
+
+        private void TvwFiles_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+        }
+
+        private void TvwFiles_DragDrop(object sender, DragEventArgs e)
+        {
+            var files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            Array.Sort(files);
+            this.openService.OpenFiles(files);
+            this.OpenFiles(this.openService.GetFiles());
         }
     }
 }

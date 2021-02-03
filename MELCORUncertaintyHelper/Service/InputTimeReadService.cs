@@ -1,4 +1,5 @@
 ﻿using MELCORUncertaintyHelper.Model;
+using MELCORUncertaintyHelper.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace MELCORUncertaintyHelper.Service
     public class InputTimeReadService
     {
         private TimeInputData[] timeInputData;
+        private double[] times;
 
         private InputTimeReadService()
         {
@@ -39,7 +41,26 @@ namespace MELCORUncertaintyHelper.Service
             }
         }
 
-        public void ExtractInput(DataGridView dgvTime)
+        public Object GetTimes()
+        {
+            if (this.times == null || this.times.Length < 0)
+            {
+                return null;
+            }
+            else
+            {
+                return this.times.Clone();
+            }
+        }
+
+        public void ExtractTime()
+        {
+            var frmTimeInput = TimeInputForm.GetFrmTimeInupt;
+            this.ExtractInput(frmTimeInput.GetDgvTime());
+            this.SetInterpolationTime();
+        }
+
+        private void ExtractInput(DataGridView dgvTime)
         {
             var times = new List<TimeInputData>();
 
@@ -69,6 +90,34 @@ namespace MELCORUncertaintyHelper.Service
 
             times.Sort((x1, x2) => x1.timeSection.CompareTo(x2.timeSection));
             this.timeInputData = times.ToArray();
+        }
+
+        private void SetInterpolationTime()
+        {
+            var times = new List<double>();
+            try
+            {
+                for (var i = 0; i < this.timeInputData.Length - 1; i++)
+                {
+                    for (var j = this.timeInputData[i].timeSection; j < this.timeInputData[i + 1].timeSection; j += this.timeInputData[i].timeStep)
+                    {
+                        times.Add(j);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var logWrite = new LogFileWriteService(ex);
+                logWrite.MakeLogFile();
+            }
+
+            if (times.Count < 0)
+            {
+                this.times = times.ToArray();
+                return;
+            }
+
+            this.times = times.ToArray();
         }
     }
 }

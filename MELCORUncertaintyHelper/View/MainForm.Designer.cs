@@ -38,12 +38,12 @@
             this.msiShowVariableInput = new System.Windows.Forms.ToolStripMenuItem();
             this.msiShowExtracted = new System.Windows.Forms.ToolStripMenuItem();
             this.msiShowStatus = new System.Windows.Forms.ToolStripMenuItem();
+            this.msiShowTimeInput = new System.Windows.Forms.ToolStripMenuItem();
             this.buildBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msiRun = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.dockPnlMain = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             this.vS2015DarkTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2015DarkTheme();
-            this.msiShowTimeInput = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,7 +56,7 @@
             this.buildBToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1008, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1264, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -105,30 +105,37 @@
             // msiShowInputFileList
             // 
             this.msiShowInputFileList.Name = "msiShowInputFileList";
-            this.msiShowInputFileList.Size = new System.Drawing.Size(180, 22);
+            this.msiShowInputFileList.Size = new System.Drawing.Size(171, 22);
             this.msiShowInputFileList.Text = "Input File List";
             this.msiShowInputFileList.Click += new System.EventHandler(this.MsiShowInputFileList_Click);
             // 
             // msiShowVariableInput
             // 
             this.msiShowVariableInput.Name = "msiShowVariableInput";
-            this.msiShowVariableInput.Size = new System.Drawing.Size(180, 22);
+            this.msiShowVariableInput.Size = new System.Drawing.Size(171, 22);
             this.msiShowVariableInput.Text = "Variable Input List";
             this.msiShowVariableInput.Click += new System.EventHandler(this.MsiShowVariableInput_Click);
             // 
             // msiShowExtracted
             // 
             this.msiShowExtracted.Name = "msiShowExtracted";
-            this.msiShowExtracted.Size = new System.Drawing.Size(180, 22);
+            this.msiShowExtracted.Size = new System.Drawing.Size(171, 22);
             this.msiShowExtracted.Text = "Extracted Variable";
             this.msiShowExtracted.Click += new System.EventHandler(this.MsiShowExtracted_Click);
             // 
             // msiShowStatus
             // 
             this.msiShowStatus.Name = "msiShowStatus";
-            this.msiShowStatus.Size = new System.Drawing.Size(180, 22);
+            this.msiShowStatus.Size = new System.Drawing.Size(171, 22);
             this.msiShowStatus.Text = "Status Output";
             this.msiShowStatus.Click += new System.EventHandler(this.MsiShowStatus_Click);
+            // 
+            // msiShowTimeInput
+            // 
+            this.msiShowTimeInput.Name = "msiShowTimeInput";
+            this.msiShowTimeInput.Size = new System.Drawing.Size(171, 22);
+            this.msiShowTimeInput.Text = "Time Input";
+            this.msiShowTimeInput.Click += new System.EventHandler(this.MsiShowTimeInput_Click);
             // 
             // buildBToolStripMenuItem
             // 
@@ -147,9 +154,9 @@
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 539);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 659);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1008, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1264, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -161,22 +168,15 @@
             this.dockPnlMain.Name = "dockPnlMain";
             this.dockPnlMain.Padding = new System.Windows.Forms.Padding(6);
             this.dockPnlMain.ShowAutoHideContentOnHover = false;
-            this.dockPnlMain.Size = new System.Drawing.Size(1008, 515);
+            this.dockPnlMain.Size = new System.Drawing.Size(1264, 635);
             this.dockPnlMain.TabIndex = 2;
             this.dockPnlMain.Theme = this.vS2015DarkTheme1;
-            // 
-            // msiShowTimeInput
-            // 
-            this.msiShowTimeInput.Name = "msiShowTimeInput";
-            this.msiShowTimeInput.Size = new System.Drawing.Size(180, 22);
-            this.msiShowTimeInput.Text = "Time Input";
-            this.msiShowTimeInput.Click += new System.EventHandler(this.MsiShowTimeInput_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1008, 561);
+            this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.dockPnlMain);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);

@@ -16,7 +16,8 @@ namespace MELCORUncertaintyHelper.Manager
         private PTFFileOpenService ptfOpenSerivce;
         private InputVariableReadService inputReadService;
         private PTFFileReadService ptfReadService;
-        private InputTimeReadService InputTimeReadService;
+        private InputTimeReadService inputTimeReadService;
+        private RefineDataProcessService refineProcessService;
 
         public ExtractManager()
         {
@@ -46,20 +47,20 @@ namespace MELCORUncertaintyHelper.Manager
                 // 이를 임시적으로 해결하기 위한 방안
                 ExtractDataManager.GetDataManager.InitializeData();
 
-                var frmStatus = StatusOutputForm.GetFrmStatus;
+                //var frmStatus = StatusOutputForm.GetFrmStatus;
 
                 for (var i = 0; i < ptfFiles.Length; i++)
                 {
                     this.ptfReadService = new PTFFileReadService(ptfFiles[i]);
                     this.ptfReadService.Read();
                     var str = new StringBuilder();
-                    str.Append("[");
+                    /*str.Append("[");
                     str.Append(i + 1);
                     str.Append("] ");
                     str.Append(DateTime.Now.ToString("[yyyy-MM-dd-HH:mm:ss]   "));
-                    str.Append("Completed Read ");
+                    str.Append("Completed Read ");*/
                     str.AppendLine(ptfFiles[i].fullPath);
-                    frmStatus.PrintStatus(str);
+                    //frmStatus.PrintStatus(str);
                 }
                 /*Parallel.ForEach(ptfFiles, item =>
                 {
@@ -74,6 +75,12 @@ namespace MELCORUncertaintyHelper.Manager
                     str.AppendLine(item.fullPath);
                     frmStatus.PrintStatus(str);
                 });*/
+
+                this.inputTimeReadService = InputTimeReadService.GetInputTimeReadService;
+                this.inputTimeReadService.ExtractTime();
+
+                this.refineProcessService = new RefineDataProcessService();
+                this.refineProcessService.Refine();
             });
         }
     }

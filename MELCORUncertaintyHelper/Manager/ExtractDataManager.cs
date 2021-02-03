@@ -26,7 +26,17 @@ namespace MELCORUncertaintyHelper.Manager
             }
         }
 
-        public Object GetExtractDatas() => this.extractDatas.Clone();
+        public Object GetExtractDatas()
+        {
+            if (this.extractDatas == null || this.extractDatas.Length < 0)
+            {
+                return null;
+            }
+            else
+            {
+                return this.extractDatas.Clone();
+            }
+        }
 
         public void AddData(string fileName, string[] inputVariables, TimeRecordData[] timeRecordDatas)
         {

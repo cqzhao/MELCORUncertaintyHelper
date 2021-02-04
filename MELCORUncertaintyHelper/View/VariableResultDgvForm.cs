@@ -16,20 +16,22 @@ namespace MELCORUncertaintyHelper.View
     public partial class VariableResultDgvForm : DockContent
     {
         private ExtractData[] data;
+        private RefineData[] refineDatas;
 
         public VariableResultDgvForm()
         {
             InitializeComponent();
 
             this.data = (ExtractData[])ExtractDataManager.GetDataManager.GetExtractDatas();
+            this.refineDatas = (RefineData[])RefineDataManager.GetRefineDataManager.GetRefineDatas();
         }
 
         private void VariableResultForm_Load(object sender, EventArgs e)
         {
-            for (var i = 0; i < this.data.Length; i++)
+            for (var i = 0; i < this.refineDatas.Length; i++)
             {
-                this.dgvResults.Columns.Add(this.data[i].fileName, "Time");
-                this.dgvResults.Columns.Add(this.data[i].fileName, "Value");
+                this.dgvResults.Columns.Add(this.refineDatas[i].fileName, "Time");
+                this.dgvResults.Columns.Add(this.refineDatas[i].fileName, "Value");
             }
             for (var i = 0; i < this.dgvResults.Columns.Count; i++)
             {
@@ -55,9 +57,9 @@ namespace MELCORUncertaintyHelper.View
         private void DgvResults_Paint(object sender, PaintEventArgs e)
         {
             var files = new List<string>();
-            for (var i = 0; i < this.data.Length; i++)
+            for (var i = 0; i < this.refineDatas.Length; i++)
             {
-                files.Add(this.data[i].fileName);
+                files.Add(this.refineDatas[i].fileName);
             }
             for (var i = 0; i < files.Count * 2; i += 2)
             {
@@ -69,9 +71,11 @@ namespace MELCORUncertaintyHelper.View
                 rectangle.Width = rectangle.Width + width - 2;
                 rectangle.Height = rectangle.Height / 2 - 2;
                 e.Graphics.FillRectangle(new SolidBrush(this.dgvResults.ColumnHeadersDefaultCellStyle.BackColor), rectangle);
-                var strFormat = new StringFormat();
-                strFormat.Alignment = StringAlignment.Center;
-                strFormat.LineAlignment = StringAlignment.Center;
+                var strFormat = new StringFormat
+                {
+                    Alignment = StringAlignment.Center,
+                    LineAlignment = StringAlignment.Center
+                };
                 e.Graphics.DrawString(files[i / 2], this.dgvResults.ColumnHeadersDefaultCellStyle.Font,
                     new SolidBrush(this.dgvResults.ColumnHeadersDefaultCellStyle.ForeColor), rectangle, strFormat);
             }
@@ -97,22 +101,22 @@ namespace MELCORUncertaintyHelper.View
             {
                 this.dgvResults.Rows.Add();
                 var values = new List<string>();
-                for (var j = 0; j < this.data.Length; j++)
+                for (var j = 0; j < this.refineDatas.Length; j++)
                 {
                     int idx = 0;
-                    for (var k = 0; k < this.data[j].timeRecordDatas.Length; k++)
+                    for (var k = 0; k < this.refineDatas[j].timeRecordDatas.Length; k++)
                     {
-                        var variable = this.data[j].timeRecordDatas[k].variableName;
+                        var variable = this.refineDatas[j].timeRecordDatas[k].variableName;
                         if (variable.Equals(target))
                         {
                             idx = k;
                             break;
                         }
                     }
-                    if (this.data[j].timeRecordDatas[idx].time.Length > i)
+                    if (this.refineDatas[j].timeRecordDatas[idx].time.Length > i)
                     {
-                        values.Add(this.data[j].timeRecordDatas[idx].time[i].ToString());
-                        values.Add(this.data[j].timeRecordDatas[idx].value[i].ToString());
+                        values.Add(this.refineDatas[j].timeRecordDatas[idx].time[i].ToString());
+                        values.Add(this.refineDatas[j].timeRecordDatas[idx].value[i].ToString());
                     }
                     else
                     {
@@ -130,13 +134,13 @@ namespace MELCORUncertaintyHelper.View
         private int FindMaxTimeLength(string target)
         {
             var max = Int32.MinValue;
-            for (var i = 0; i < this.data.Length; i++)
+            for (var i = 0; i < this.refineDatas.Length; i++)
             {
-                for (var j = 0; j < this.data[i].timeRecordDatas.Length; j++)
+                for (var j = 0; j < this.refineDatas[i].timeRecordDatas.Length; j++)
                 {
-                    if (this.data[i].timeRecordDatas[j].variableName.Equals(target))
+                    if (this.refineDatas[i].timeRecordDatas[j].variableName.Equals(target))
                     {
-                        var tmp = this.data[i].timeRecordDatas[j].time.Length;
+                        var tmp = this.refineDatas[i].timeRecordDatas[j].time.Length;
                         if (tmp > max)
                         {
                             max = tmp;

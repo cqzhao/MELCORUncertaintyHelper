@@ -19,6 +19,7 @@ namespace MELCORUncertaintyHelper.View
     public partial class VariableResultGphForm : DockContent
     {
         private ExtractData[] data;
+        private RefineData[] refineDatas;
         private PlotModel plotModel;
 
         public VariableResultGphForm()
@@ -26,56 +27,32 @@ namespace MELCORUncertaintyHelper.View
             InitializeComponent();
 
             this.data = (ExtractData[])ExtractDataManager.GetDataManager.GetExtractDatas();
+            this.refineDatas = (RefineData[])RefineDataManager.GetRefineDataManager.GetRefineDatas();
             this.plotModel = new PlotModel();
-        }
-
-        private void VariableResultGphForm_Load(object sender, EventArgs e)
-        {
-            /*var axesX = new LinearAxis()
-            {
-                Position = AxisPosition.Bottom,
-                AxislineStyle = LineStyle.Solid,
-                MajorGridlineStyle = LineStyle.Dash,
-                MinorGridlineStyle = LineStyle.Dot,
-                PositionAtZeroCrossing = true,
-            };
-
-            var axesY = new LinearAxis()
-            {
-                Position = AxisPosition.Bottom,
-                AxislineStyle = LineStyle.Solid,
-                MajorGridlineStyle = LineStyle.Dash,
-                MinorGridlineStyle = LineStyle.Dot,
-                PositionAtZeroCrossing = true,
-            };
-
-            this.plotModel.Axes.Add(axesX);
-            this.plotModel.Axes.Add(axesY);*/
-
             this.gphResults.Model = this.plotModel;
         }
 
         public void PrintResult(string target)
         {
-            for (var i = 0; i < this.data.Length; i++)
+            for (var i = 0; i < this.refineDatas.Length; i++)
             {
                 var targetIdx = 0;
-                for (var j = 0; j < this.data[i].timeRecordDatas.Length; j++)
+                for (var j = 0; j < this.refineDatas[i].timeRecordDatas.Length; j++)
                 {
-                    if (this.data[i].timeRecordDatas[j].variableName.Equals(target))
+                    if (this.refineDatas[i].timeRecordDatas[j].variableName.Equals(target))
                     {
                         targetIdx = j;
                     }
                 }
-                var dataLength = this.data[i].timeRecordDatas[targetIdx].time.Length;
+                var dataLength = this.refineDatas[i].timeRecordDatas[targetIdx].time.Length;
                 var series = new LineSeries()
                 {
-                    Title = this.data[i].fileName,
+                    Title = this.refineDatas[i].fileName,
                 };
                 for (var j = 0; j < dataLength; j++)
                 {
-                    var x = this.data[i].timeRecordDatas[targetIdx].time[j];
-                    var y = this.data[i].timeRecordDatas[targetIdx].value[j];
+                    var x = this.refineDatas[i].timeRecordDatas[targetIdx].time[j];
+                    var y = this.refineDatas[i].timeRecordDatas[targetIdx].value[j];
                     series.Points.Add(new DataPoint(x, y));
                 }
                 this.plotModel.Series.Add(series);

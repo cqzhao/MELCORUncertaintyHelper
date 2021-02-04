@@ -113,12 +113,12 @@ namespace MELCORUncertaintyHelper.View
             var variables = new List<string>();
             try
             {
-                var extractData = (ExtractData[])ExtractDataManager.GetDataManager.GetExtractDatas();
-                for (var i = 0; i < extractData.Length; i++)
+                var refineData = (RefineData[])RefineDataManager.GetRefineDataManager.GetRefineDatas();
+                for (var i = 0; i < refineData.Length; i++)
                 {
-                    for (var j = 0; j < extractData[i].timeRecordDatas.Length; j++)
+                    for (var j = 0; j < refineData[i].timeRecordDatas.Length; j++)
                     {
-                        var name = extractData[i].timeRecordDatas[j].variableName;
+                        var name = refineData[i].timeRecordDatas[j].variableName;
                         if (!variables.Contains(name))
                         {
                             variables.Add(name);

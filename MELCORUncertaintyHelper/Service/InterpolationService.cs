@@ -32,20 +32,42 @@ namespace MELCORUncertaintyHelper.Service
                     this.refineDatas[i].timeRecordDatas[j].value = new double[this.refineDatas[i].timeRecordDatas[j].time.Length];
                     for (var k = 0; k < this.refineDatas[i].timeRecordDatas[j].time.Length; k++)
                     {
-                        if (k == 0)
+                        var p = this.refineDatas[i].timeRecordDatas[j].time[k];
+                        var subList = new List<double>();
+                        if (Math.Abs(k - this.extractDatas[i].timeRecordDatas[j].time.Length) < 100 || k < 100)
                         {
-                            this.refineDatas[i].timeRecordDatas[j].value[k] = this.extractDatas[i].timeRecordDatas[j].value[k];
+                            if (k < 100)
+                            {
+                                for (var l = 0; l < k + 100; l++)
+                                {
+                                    subList.Add(this.extractDatas[i].timeRecordDatas[j].time[l]);
+                                }
+                            }
+                            else
+                            {
+                                for (var l = k - 99; l < this.extractDatas[i].timeRecordDatas[j].time.Length; l++)
+                                {
+                                    subList.Add(this.extractDatas[i].timeRecordDatas[j].time[l]);
+                                }
+                            }
                         }
                         else
                         {
-                            var x = this.extractDatas[i].timeRecordDatas[j].time[k];
-                            var y = this.extractDatas[i].timeRecordDatas[j].value[k];
-                            var xPrime = this.extractDatas[i].timeRecordDatas[j].time[k + 1];
-                            var yPrime = this.extractDatas[i].timeRecordDatas[j].value[k + 1];
-                            var p = this.refineDatas[i].timeRecordDatas[j].time[k];
-                            var q = this.Calculation(x, y, xPrime, yPrime, p);
-                            this.refineDatas[i].timeRecordDatas[j].value[k] = q;
+                            for (var l = k - 49; l < k + 50; l++)
+                            {
+                                subList.Add(this.extractDatas[i].timeRecordDatas[j].time[l]);
+                            }
                         }
+
+                        var nearTimes = this.FindNearTime(p, subList);
+                        var xIdx = Array.FindIndex(this.extractDatas[i].timeRecordDatas[j].time, target => target == nearTimes[0]);
+                        var xPrimeIdx = Array.FindIndex(this.extractDatas[i].timeRecordDatas[j].time, target => target == nearTimes[1]);
+                        var x = this.extractDatas[i].timeRecordDatas[j].time[xIdx];
+                        var y = this.extractDatas[i].timeRecordDatas[j].value[xIdx];
+                        var xPrime = this.extractDatas[i].timeRecordDatas[j].time[xPrimeIdx];
+                        var yPrime = this.extractDatas[i].timeRecordDatas[j].value[xPrimeIdx];
+                        var q = this.Calculation(x, y, xPrime, yPrime, p);
+                        this.refineDatas[i].timeRecordDatas[j].value[k] = q;
                     }
                 }
             }
@@ -71,6 +93,40 @@ namespace MELCORUncertaintyHelper.Service
         private double Calculation(double x, double y, double xPrime, double yPrime, double p)
         {
             return (yPrime - y) * (p - x) / (xPrime - x) + y;
+        }
+
+        private double[] FindNearTime(double target, List<double> time)
+        {
+            var min = Double.MaxValue;
+            double nearTime = 0.0;
+            int idx = 0;
+            var nearTimes = new List<double>();
+
+            for (var i = 0; i < time.Count; i++)
+            {
+                var abs = Math.Abs(time[i] - target);
+                if (abs < min)
+                {
+                    min = abs;
+                    idx = i;
+                    nearTime = time[i];
+                }
+            }
+            nearTimes.Add(nearTime);
+            time.RemoveAt(idx);
+            min = Double.MaxValue;
+            for (var i = 0; i < time.Count; i++)
+            {
+                var abs = Math.Abs(time[i] - target);
+                if (abs < min)
+                {
+                    min = abs;
+                    nearTime = time[i];
+                }
+            }
+            nearTimes.Add(nearTime);
+
+            return nearTimes.ToArray();
         }
     }
 }

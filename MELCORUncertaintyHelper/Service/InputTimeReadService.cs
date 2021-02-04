@@ -97,11 +97,18 @@ namespace MELCORUncertaintyHelper.Service
             var times = new List<double>();
             try
             {
-                for (var i = 0; i < this.timeInputData.Length - 1; i++)
+                for (var i = 0; i < this.timeInputData.Length; i++)
                 {
-                    for (var j = this.timeInputData[i].timeSection; j < this.timeInputData[i + 1].timeSection; j += this.timeInputData[i].timeStep)
+                    if (i < this.timeInputData.Length - 1)
                     {
-                        times.Add(j);
+                        for (var j = this.timeInputData[i].timeSection; j < this.timeInputData[i + 1].timeSection; j += this.timeInputData[i].timeStep)
+                        {
+                            times.Add(j);
+                        }
+                    }
+                    else
+                    {
+                        times.Add(this.timeInputData[i].timeSection);
                     }
                 }
             }

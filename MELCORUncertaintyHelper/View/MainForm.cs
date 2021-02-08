@@ -102,10 +102,19 @@ namespace MELCORUncertaintyHelper.View
 
         private async void MsiRun_Click(object sender, EventArgs e)
         {
+            var str = new StringBuilder();
+            str.Append(DateTime.Now.ToString("[yyyy-MM-dd-HH:mm:ss]   "));
+            str.AppendLine("Running is started");
+            this.frmStatus.PrintStatus(str);
             var manager = new ExtractManager();
             await manager.Run();
 
             this.PrintExtractedVariables();
+
+            str.Clear();
+            str.Append(DateTime.Now.ToString("[yyyy-MM-dd-HH:mm:ss]   "));
+            str.AppendLine("Running is completed");
+            this.frmStatus.PrintStatus(str);
         }
 
         private void PrintExtractedVariables()

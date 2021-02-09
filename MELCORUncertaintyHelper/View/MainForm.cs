@@ -36,10 +36,10 @@ namespace MELCORUncertaintyHelper.View
         private void MainForm_Load(object sender, EventArgs e)
         {
             this.frmFileExplorer.Show(this.dockPnlMain, DockState.DockLeft);
-            this.frmVariableInput.Show(this.frmFileExplorer.Pane, DockAlignment.Bottom, 0.5);
+            this.frmVariableInput.Show(this.frmFileExplorer.Pane, DockAlignment.Bottom, 0.6);
             this.frmExtractedVariable.Show(this.dockPnlMain, DockState.DockRight);
             this.frmStatus.Show(this.dockPnlMain, DockState.DockBottom);
-            this.frmTimeInput.Show(this.dockPnlMain, DockState.DockLeftAutoHide);
+            this.frmTimeInput.Show(this.frmVariableInput.Pane, DockAlignment.Bottom, 0.5);
 
             this.dockPnlMain.UpdateDockWindowZOrder(DockStyle.Left, true);
         }

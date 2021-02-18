@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MELCORUncertaintyHelper.Service;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -124,6 +125,34 @@ namespace MELCORUncertaintyHelper.View
         private void MoveSelectedCell()
         {
             this.dgvVariables.CurrentCell = this.dgvVariables.Rows[0].Cells[1];
+        }
+
+        private async void TsBtnSave_Click(object sender, EventArgs e)
+        {
+            if (this.dgvVariables.Rows.Count <= 0)
+            {
+                return;
+            }
+
+            var variables = this.GetVariables().ToArray();
+            var csvWriteService = new CSVWriteService(variables);
+            await csvWriteService.WriteFile();
+        }
+
+        private List<string> GetVariables()
+        {
+            var variables = new List<string>();
+
+            for (var i = 0; i < this.dgvVariables.Rows.Count; i++)
+            {
+                if (this.dgvVariables[1, i].Value != null)
+                {
+                    var variable = this.dgvVariables[1, i].Value.ToString();
+                    variables.Add(variable);
+                }
+            }
+
+            return variables;
         }
     }
 }

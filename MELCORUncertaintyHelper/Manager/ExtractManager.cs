@@ -18,6 +18,7 @@ namespace MELCORUncertaintyHelper.Manager
         private PTFFileReadService ptfReadService;
         private InputTimeReadService inputTimeReadService;
         private RefineDataProcessService refineProcessService;
+        private DistributionService distributionService;
 
         public ExtractManager()
         {
@@ -48,19 +49,20 @@ namespace MELCORUncertaintyHelper.Manager
                 ExtractDataManager.GetDataManager.InitializeData();
 
                 var frmStatus = StatusOutputForm.GetFrmStatus;
+                var msg = new StringBuilder();
 
                 for (var i = 0; i < ptfFiles.Length; i++)
                 {
                     this.ptfReadService = new PTFFileReadService(ptfFiles[i]);
                     this.ptfReadService.Read();
-                    var str = new StringBuilder();
+                    msg = new StringBuilder();
                     /*str.Append("[");
                     str.Append(i + 1);
                     str.Append("] ");*/
-                    str.Append(DateTime.Now.ToString("[yyyy-MM-dd-HH:mm:ss]   "));
-                    str.Append("Completed Read ");
-                    str.AppendLine(ptfFiles[i].fullPath);
-                    frmStatus.PrintStatus(str);
+                    /*msg.Append(DateTime.Now.ToString("[yyyy-MM-dd-HH:mm:ss]   "));
+                    msg.Append("Completed Read ");
+                    msg.AppendLine(ptfFiles[i].fullPath);
+                    frmStatus.PrintStatus(msg);*/
                 }
                 /*Parallel.ForEach(ptfFiles, item =>
                 {
@@ -76,11 +78,24 @@ namespace MELCORUncertaintyHelper.Manager
                     frmStatus.PrintStatus(str);
                 });*/
 
+                /*msg = new StringBuilder();
+                msg.Append(DateTime.Now.ToString("[yyyy-MM-dd-HH:mm:ss]   "));
+                msg.AppendLine("Interpolation Process is started");
+                frmStatus.PrintStatus(msg);*/
+
                 this.inputTimeReadService = InputTimeReadService.GetInputTimeReadService;
                 this.inputTimeReadService.ExtractTime();
 
                 this.refineProcessService = new RefineDataProcessService();
                 this.refineProcessService.Refine();
+
+                /*msg = new StringBuilder();
+                msg.Append(DateTime.Now.ToString("[yyyy-MM-dd-HH:mm:ss]   "));
+                msg.AppendLine("Interpolation Process is completed");
+                frmStatus.PrintStatus(msg);*/
+
+                this.distributionService = new DistributionService();
+                this.distributionService.MakeDistribution();
             });
         }
     }

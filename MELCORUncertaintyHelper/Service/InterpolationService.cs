@@ -35,32 +35,6 @@ namespace MELCORUncertaintyHelper.Service
                         var p = this.refineDatas[i].timeRecordDatas[j].time[k];
                         var subList = new List<double>();
                         subList = this.extractDatas[i].timeRecordDatas[j].time.ToList();
-                        /*var tmp = Math.Abs(this.refineDatas[i].timeRecordDatas[j].time.Length - this.extractDatas[i].timeRecordDatas[j].time.Length);
-                        if (Math.Abs(k - this.extractDatas[i].timeRecordDatas[j].time.Length) <= tmp || k < 100)
-                        {
-                            if (k < 100)
-                            {
-                                for (var l = 0; l < k + 100; l++)
-                                {
-                                    subList.Add(this.extractDatas[i].timeRecordDatas[j].time[l]);
-                                }
-                            }
-                            else
-                            {
-                                for (var l = k - 99; l < this.extractDatas[i].timeRecordDatas[j].time.Length; l++)
-                                {
-                                    subList.Add(this.extractDatas[i].timeRecordDatas[j].time[l]);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            for (var l = k - 49; l < k + 50; l++)
-                            {
-                                subList.Add(this.extractDatas[i].timeRecordDatas[j].time[l]);
-                            }
-                        }*/
-
                         var nearTimes = this.FindNearTime(p, subList);
                         var xIdx = Array.FindIndex(this.extractDatas[i].timeRecordDatas[j].time, target => target == nearTimes[0]);
                         var xPrimeIdx = Array.FindIndex(this.extractDatas[i].timeRecordDatas[j].time, target => target == nearTimes[1]);

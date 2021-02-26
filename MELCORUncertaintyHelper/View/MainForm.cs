@@ -165,6 +165,13 @@ namespace MELCORUncertaintyHelper.View
             };
             frmGphResult.Show(this.dockPnlMain, DockState.Document);
             frmGphResult.PrintResult(target);
+
+            var frmDgvResult2 = new ResultWithDistributionForm
+            {
+                TabText = target + " Table"
+            };
+            frmDgvResult2.Show(this.dockPnlMain, DockState.Document);
+            frmDgvResult2.PrintResult(target);
         }
     }
 }

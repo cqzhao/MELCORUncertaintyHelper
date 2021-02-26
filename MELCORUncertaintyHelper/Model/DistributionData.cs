@@ -6,27 +6,21 @@ using System.Threading.Tasks;
 
 namespace MELCORUncertaintyHelper.Model
 {
-    public class RefineData
+    public class DistributionData
     {
-        public string fileName
+        public string variableName
         {
             set;
             get;
         }
 
-        public string[] inputVariables
+        public double[] time
         {
             set;
             get;
         }
 
-        public TimeRecordData[] timeRecordDatas
-        {
-            set;
-            get;
-        }
-
-        public DistributionData[] distributionDatas
+        public Distribution[] normalDistributions
         {
             set;
             get;

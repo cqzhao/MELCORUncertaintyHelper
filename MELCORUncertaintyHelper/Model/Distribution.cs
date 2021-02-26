@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MathNet.Numerics.Statistics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,27 +7,33 @@ using System.Threading.Tasks;
 
 namespace MELCORUncertaintyHelper.Model
 {
-    public class RefineData
+    public class Distribution
     {
-        public string fileName
+        public double fivePercentage
         {
             set;
             get;
         }
 
-        public string[] inputVariables
+        public double fiftyPercentage
         {
             set;
             get;
         }
 
-        public TimeRecordData[] timeRecordDatas
+        public double ninetyFivePercentage
         {
             set;
             get;
         }
 
-        public DistributionData[] distributionDatas
+        public double mean
+        {
+            set;
+            get;
+        }
+
+        public Histogram histogram
         {
             set;
             get;

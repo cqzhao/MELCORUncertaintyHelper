@@ -27,7 +27,14 @@ namespace MELCORUncertaintyHelper.View
 
             this.refineDatas = (RefineData[])RefineDataManager.GetRefineDataManager.GetRefineDatas();
             this.distributionDatas = (DistributionData[])DistributionDataManager.GetDistributionDataManager.GetDistributionDatas();
-            this.plotModel = new PlotModel();
+            this.plotModel = new PlotModel()
+            {
+                LegendBorder = OxyColors.Black,
+                LegendBackground = OxyColor.FromAColor(32, OxyColors.Black),
+                LegendPosition = LegendPosition.TopCenter,
+                LegendPlacement = LegendPlacement.Outside,
+                LegendOrientation = LegendOrientation.Horizontal,
+            };
             this.gphResults.Model = this.plotModel;
         }
 
@@ -47,6 +54,7 @@ namespace MELCORUncertaintyHelper.View
                 var series = new LineSeries()
                 {
                     Title = this.refineDatas[i].fileName,
+                    Color = OxyColors.DimGray,
                 };
                 for (var j = 0; j < dataLength; j++)
                 {

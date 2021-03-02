@@ -18,7 +18,6 @@ namespace MELCORUncertaintyHelper.View
 {
     public partial class VariableResultGphForm : DockContent
     {
-        private ExtractData[] data;
         private RefineData[] refineDatas;
         private PlotModel plotModel;
 
@@ -26,7 +25,6 @@ namespace MELCORUncertaintyHelper.View
         {
             InitializeComponent();
 
-            this.data = (ExtractData[])ExtractDataManager.GetDataManager.GetExtractDatas();
             this.refineDatas = (RefineData[])RefineDataManager.GetRefineDataManager.GetRefineDatas();
             this.plotModel = new PlotModel();
             this.gphResults.Model = this.plotModel;

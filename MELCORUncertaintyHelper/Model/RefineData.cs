@@ -25,11 +25,5 @@ namespace MELCORUncertaintyHelper.Model
             set;
             get;
         }
-
-        public DistributionData[] distributionDatas
-        {
-            set;
-            get;
-        }
     }
 }

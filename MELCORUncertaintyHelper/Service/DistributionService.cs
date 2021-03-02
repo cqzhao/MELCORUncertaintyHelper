@@ -1,4 +1,5 @@
-﻿using MathNet.Numerics.Distributions;
+﻿using Accord.Statistics.Distributions.Univariate;
+using MathNet.Numerics.Distributions;
 using MathNet.Numerics.Statistics;
 using MELCORUncertaintyHelper.Manager;
 using MELCORUncertaintyHelper.Model;
@@ -13,67 +14,103 @@ namespace MELCORUncertaintyHelper.Service
     public class DistributionService
     {
         private RefineData[] refineDatas;
-        private RefineDataManager refineDataManager;
+        private DistributionData[] distributionDatas;
 
         public DistributionService()
         {
-
+            this.refineDatas = (RefineData[])RefineDataManager.GetRefineDataManager.GetRefineDatas();
         }
 
-        public void MakeDistribution()
+        public void Run()
         {
-            this.refineDatas = (RefineData[])RefineDataManager.GetRefineDataManager.GetRefineDatas();
-            var fileLength = this.refineDatas.Length;
-            var recordDataLength = this.refineDatas[0].timeRecordDatas.Length;
+            this.InitializeDistribution();
+            this.MakeDistribution();
+            DistributionDataManager.GetDistributionDataManager.SetDistributionsDatas(this.distributionDatas.Clone());
+        }
 
-            this.refineDatas[0].distributionDatas = new DistributionData[this.refineDatas[0].timeRecordDatas.Length];
-            for (var j = 0; j < recordDataLength; j++)
+        private void InitializeDistribution()
+        {
+            this.distributionDatas = new DistributionData[this.refineDatas[0].inputVariables.Length];
+            for (var i = 0; i < this.refineDatas[0].timeRecordDatas.Length; i++)
             {
+                var distributionLength = this.refineDatas[0].timeRecordDatas[i].time.Length;
                 var distributionData = new DistributionData
                 {
-                    variableName = this.refineDatas[0].timeRecordDatas[j].variableName,
-                    time = this.refineDatas[0].timeRecordDatas[j].time,
-                    normalDistributions = new Distribution[this.refineDatas[0].timeRecordDatas[j].time.Length],
+                    variableName = this.refineDatas[0].timeRecordDatas[i].variableName,
+                    time = this.refineDatas[0].timeRecordDatas[i].time,
+                    normalDistributions = new Distribution[distributionLength],
+                    lognormalDistributions = new Distribution[distributionLength],
                 };
-                this.refineDatas[0].distributionDatas[j] = distributionData;
+                this.distributionDatas[i] = distributionData;
             }
+        }
 
+        private void MakeDistribution()
+        {
+            var fileLength = this.refineDatas.Length;
+            var recordDataLength = this.refineDatas[0].timeRecordDatas.Length;
             for (var i = 0; i < recordDataLength; i++)
             {
                 var timeLength = this.refineDatas[0].timeRecordDatas[i].time.Length;
                 for (var j = 0; j < timeLength; j++)
                 {
-                    var values = new List<double>();
+                    var observations = new List<double>();
                     for (var k = 0; k < fileLength; k++)
                     {
                         var value = this.refineDatas[k].timeRecordDatas[i].value[j];
-                        values.Add(value);
+                        observations.Add(value);
                     }
-                    var normalDistribution = this.CalcNormalDistribution(values.ToArray());
-                    this.refineDatas[0].distributionDatas[i].normalDistributions[j] = normalDistribution;
+
+                    var normalDistribution = this.CalcNormalDistribution(observations.ToArray());
+                    var lognormalDistribution = this.CalcLognormalDistribution(observations.ToArray());
+
+                    this.distributionDatas[i].normalDistributions[j] = normalDistribution;
+                    this.distributionDatas[i].lognormalDistributions[j] = lognormalDistribution;
+                }
+            }
+        }
+
+        private Distribution CalcNormalDistribution(double[] observations)
+        {
+            var normal = new NormalDistribution();
+            double mean;
+            double stdDeviation;
+
+            var sameCnt = 0;
+            for (var i = 0; i < observations.Length; i++)
+            {
+                if (observations[i] == observations[i])
+                {
+                    sameCnt += 1;
                 }
             }
 
-            this.refineDataManager = RefineDataManager.GetRefineDataManager;
-            this.refineDataManager.SetRefineDatas(this.refineDatas.Clone());
-        }
+            if (sameCnt == observations.Length)
+            {
+                mean = Statistics.Mean(observations);
+                stdDeviation = Statistics.StandardDeviation(observations);
+            }
+            else
+            {
+                normal.Fit(observations);
+                mean = normal.Mean;
+                stdDeviation = normal.StandardDeviation;
+            }
 
-        private Distribution CalcNormalDistribution(double[] inputs)
-        {
-            var mean = Statistics.Mean(inputs);
+            /*var mean = Statistics.Mean(inputs);
             var stdDeviation = Statistics.StandardDeviation(inputs);
 
-            /*var values = new double[1000000];
+            var values = new double[1000000];
             var normal = new Normal(mean, stdDeviation);
             normal.Samples(values);
 
             var histogram = new Histogram(values, 100);*/
 
-            var fivePer = 1.64 * stdDeviation + mean;
+            var fivePer = 1.645 * stdDeviation + mean;
             //var tenPer = 1.28 * stdDeviation + mean;
             var fiftyPer = 0 * stdDeviation + mean;
             //var ninetyPer = -1.28 * stdDeviation + mean;
-            var ninetyFivePer = -1.64 * stdDeviation + mean;
+            var ninetyFivePer = -1.645 * stdDeviation + mean;
 
             var distribution = new Distribution
             {
@@ -81,7 +118,30 @@ namespace MELCORUncertaintyHelper.Service
                 fiftyPercentage = fiftyPer,
                 ninetyFivePercentage = ninetyFivePer,
                 mean = mean,
-                //histogram = histogram,
+            };
+
+            return distribution;
+        }
+
+        private Distribution CalcLognormalDistribution(double[] observations)
+        {
+            var lognormal = new LognormalDistribution();
+            lognormal.Fit(observations);
+
+            var mu = lognormal.Location;
+            var sigma = lognormal.Shape;
+
+            var fivePer = Math.Exp(mu) / Math.Exp(1.645 * sigma);
+            var fiftyPer = Math.Exp(mu);
+            var ninetyFivePer = Math.Exp(mu) * Math.Exp(1.645 * sigma);
+            var mean = lognormal.Mean;
+
+            var distribution = new Distribution()
+            {
+                fivePercentage = fivePer,
+                fiftyPercentage = fiftyPer,
+                ninetyFivePercentage = ninetyFivePer,
+                mean = mean,
             };
 
             return distribution;

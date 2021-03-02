@@ -15,15 +15,17 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace MELCORUncertaintyHelper.View
 {
-    public partial class ResultWithDistributionForm : DockContent
+    public partial class ResultWithDistributionDgvForm : DockContent
     {
         private RefineData[] refineDatas;
+        private DistributionData[] distributionDatas;
 
-        public ResultWithDistributionForm()
+        public ResultWithDistributionDgvForm()
         {
             InitializeComponent();
 
             this.refineDatas = (RefineData[])RefineDataManager.GetRefineDataManager.GetRefineDatas();
+            this.distributionDatas = (DistributionData[])DistributionDataManager.GetDistributionDataManager.GetDistributionDatas();
         }
 
         private void ResultWithDistributionForm_Load(object sender, EventArgs e)
@@ -39,12 +41,16 @@ namespace MELCORUncertaintyHelper.View
                 "Normal 5%",
                 "Normal 50%",
                 "Normal 95%",
-                "Normal Mean"
+                "Normal Mean",
+                "LogNormal 5%",
+                "LogNormal 50%",
+                "LogNormal 95%",
+                "LogNormal Mean",
             };
 
             for (var i = 0; i < str.Count; i++)
             {
-                this.dgvResults.Columns.Add("Normal Distribution", str[i]);
+                this.dgvResults.Columns.Add("Distribution", str[i]);
             }
 
             var columnLength = this.dgvResults.Columns.Count;
@@ -61,14 +67,13 @@ namespace MELCORUncertaintyHelper.View
             {
                 this.dgvResults.Rows.Add();
                 var values = new List<string>();
-                var inputs = new double[this.refineDatas.Length];
                 for (var j = 0; j < this.refineDatas.Length; j++)
                 {
                     int idx = 0;
                     for (var k = 0; k < this.refineDatas[j].timeRecordDatas.Length; k++)
                     {
-                        var variable = this.refineDatas[j].timeRecordDatas[k].variableName;
-                        if (variable.Equals(target))
+                        var variableName = this.refineDatas[j].timeRecordDatas[k].variableName;
+                        if (variableName.Equals(target))
                         {
                             idx = k;
                             break;
@@ -79,25 +84,29 @@ namespace MELCORUncertaintyHelper.View
                         values.Add(this.refineDatas[j].timeRecordDatas[idx].time[i].ToString());
                     }
                     values.Add(this.refineDatas[j].timeRecordDatas[idx].value[i].ToString());
-                    inputs[j] = this.refineDatas[j].timeRecordDatas[idx].value[i];
-                    /*if (this.refineDatas[j].timeRecordDatas[idx].time.Length > i)
-                    {
-                        values.Add(this.refineDatas[j].timeRecordDatas[idx].value[i].ToString());
-                    }
-                    else
-                    {
-                        values.Add(null);
-                    }*/
                 }
-                var distribution = this.CalcNormalDistribution(inputs);
+
+                for (var j = 0; j < this.distributionDatas.Length; j++)
+                {
+                    var variableName = this.distributionDatas[j].variableName;
+                    if (variableName.Equals(target))
+                    {
+                        values.Add(this.distributionDatas[j].normalDistributions[i].fivePercentage.ToString());
+                        values.Add(this.distributionDatas[j].normalDistributions[i].fiftyPercentage.ToString());
+                        values.Add(this.distributionDatas[j].normalDistributions[i].ninetyFivePercentage.ToString());
+                        values.Add(this.distributionDatas[j].normalDistributions[i].mean.ToString());
+
+                        values.Add(this.distributionDatas[j].lognormalDistributions[i].fivePercentage.ToString());
+                        values.Add(this.distributionDatas[j].lognormalDistributions[i].fiftyPercentage.ToString());
+                        values.Add(this.distributionDatas[j].lognormalDistributions[i].ninetyFivePercentage.ToString());
+                        values.Add(this.distributionDatas[j].lognormalDistributions[i].mean.ToString());
+                    }
+                }
+
                 for (var j = 0; j < values.Count; j++)
                 {
                     this.dgvResults[j, i].Value = values[j];
                 }
-                this.dgvResults[values.Count, i].Value = distribution.fivePercentage;
-                this.dgvResults[values.Count + 1, i].Value = distribution.fiftyPercentage;
-                this.dgvResults[values.Count + 2, i].Value = distribution.ninetyFivePercentage;
-                this.dgvResults[values.Count + 3, i].Value = distribution.mean;
             }
         }
 
@@ -119,35 +128,6 @@ namespace MELCORUncertaintyHelper.View
                 }
             }
             return max;
-        }
-
-        private Distribution CalcNormalDistribution(double[] inputs)
-        {
-            var mean = Statistics.Mean(inputs);
-            var stdDeviation = Statistics.StandardDeviation(inputs);
-
-            /*var values = new double[100000];
-            var normal = new Normal(mean, stdDeviation);
-            normal.Samples(values);
-
-            var histogram = new Histogram(values, 100);*/
-
-            var fivePer = 1.64 * stdDeviation + mean;
-            //var tenPer = 1.28 * stdDeviation + mean;
-            var fiftyPer = 0 * stdDeviation + mean;
-            //var ninetyPer = -1.28 * stdDeviation + mean;
-            var ninetyFivePer = -1.64 * stdDeviation + mean;
-
-            var distribution = new Distribution
-            {
-                fivePercentage = fivePer,
-                fiftyPercentage = fiftyPer,
-                ninetyFivePercentage = ninetyFivePer,
-                mean = mean,
-                //histogram = histogram,
-            };
-
-            return distribution;
         }
     }
 }

@@ -25,5 +25,11 @@ namespace MELCORUncertaintyHelper.Model
             set;
             get;
         }
+
+        public Distribution[] lognormalDistributions
+        {
+            set;
+            get;
+        }
     }
 }

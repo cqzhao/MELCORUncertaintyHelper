@@ -131,10 +131,39 @@ namespace MELCORUncertaintyHelper.Service
             var mu = lognormal.Location;
             var sigma = lognormal.Shape;
 
-            var fivePer = Math.Exp(mu) / Math.Exp(1.645 * sigma);
-            var fiftyPer = Math.Exp(mu);
-            var ninetyFivePer = Math.Exp(mu) * Math.Exp(1.645 * sigma);
-            var mean = lognormal.Mean;
+            double fivePer;
+            double fiftyPer;
+            double ninetyFivePer;
+            double mean;
+
+            if (Double.IsNaN(Math.Exp(mu) / Math.Exp(1.645 * sigma)))
+            {
+                fivePer = 0;
+            }
+            else
+            {
+                fivePer = Math.Exp(mu) / Math.Exp(1.645 * sigma);
+            }
+
+            fiftyPer = Math.Exp(mu);
+
+            if (Double.IsNaN(Math.Exp(mu) * Math.Exp(1.645 * sigma)))
+            {
+                ninetyFivePer = 0;
+            }
+            else
+            {
+                ninetyFivePer = Math.Exp(mu) * Math.Exp(1.645 * sigma);
+            }
+
+            if (Double.IsNaN(lognormal.Mean))
+            {
+                mean = 0;
+            }
+            else
+            {
+                mean = lognormal.Mean;
+            }
 
             var distribution = new Distribution()
             {

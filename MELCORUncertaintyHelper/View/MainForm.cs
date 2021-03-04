@@ -175,10 +175,17 @@ namespace MELCORUncertaintyHelper.View
 
             var frmGphResult2 = new ResultWithDistributionGphForm
             {
-                TabText = target + " Graph"
+                TabText = target + " Graph with Normal"
             };
             frmGphResult2.Show(this.dockPnlMain, DockState.Document);
             frmGphResult2.PrintResult(target);
+
+            var frmGphResult3 = new ResultWithDistributionGphForm2
+            {
+                TabText = target + " Graph with LogNormal"
+            };
+            frmGphResult3.Show(this.dockPnlMain, DockState.Document);
+            frmGphResult3.PrintResult(target);
         }
     }
 }

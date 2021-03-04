@@ -106,11 +106,11 @@ namespace MELCORUncertaintyHelper.Service
 
             var histogram = new Histogram(values, 100);*/
 
-            var fivePer = 1.645 * stdDeviation + mean;
-            //var tenPer = 1.28 * stdDeviation + mean;
+            var fivePer = -1.645 * stdDeviation + mean;
+            //var tenPer = -1.28 * stdDeviation + mean;
             var fiftyPer = 0 * stdDeviation + mean;
-            //var ninetyPer = -1.28 * stdDeviation + mean;
-            var ninetyFivePer = -1.645 * stdDeviation + mean;
+            //var ninetyPer = 1.28 * stdDeviation + mean;
+            var ninetyFivePer = 1.645 * stdDeviation + mean;
 
             var distribution = new Distribution
             {

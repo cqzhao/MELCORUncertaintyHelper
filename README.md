@@ -1,1 +1,1 @@
-# MELCOR Uncertainty Helper
+# Code Of MELcor uncertainty analysis, COMEL

@@ -26,7 +26,14 @@ namespace MELCORUncertaintyHelper.View
             InitializeComponent();
 
             this.refineDatas = (RefineData[])RefineDataManager.GetRefineDataManager.GetRefineDatas();
-            this.plotModel = new PlotModel();
+            this.plotModel = new PlotModel()
+            {
+                LegendBorder = OxyColors.Black,
+                LegendBackground = OxyColor.FromAColor(32, OxyColors.Black),
+                LegendPosition = LegendPosition.TopCenter,
+                LegendPlacement = LegendPlacement.Outside,
+                LegendOrientation = LegendOrientation.Horizontal,
+            };
             this.gphResults.Model = this.plotModel;
         }
 

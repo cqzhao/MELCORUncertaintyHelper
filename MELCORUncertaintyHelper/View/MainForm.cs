@@ -152,12 +152,12 @@ namespace MELCORUncertaintyHelper.View
 
         public void ShowResult(string target)
         {
-            var frmDgvResult = new VariableResultDgvForm
+            /*var frmDgvResult = new VariableResultDgvForm
             {
                 TabText = target + " Table"
             };
             frmDgvResult.Show(this.dockPnlMain, DockState.Document);
-            frmDgvResult.PrintResult(target);
+            frmDgvResult.PrintResult(target);*/
 
             var frmGphResult = new VariableResultGphForm
             {
@@ -186,6 +186,13 @@ namespace MELCORUncertaintyHelper.View
             };
             frmGphResult3.Show(this.dockPnlMain, DockState.Document);
             frmGphResult3.PrintResult(target);
+
+            var frmGphResult4 = new ResultWithDistributionGphForm3
+            {
+                TabText = target + " Graph with Moment"
+            };
+            frmGphResult4.Show(this.dockPnlMain, DockState.Document);
+            frmGphResult4.PrintResult(target);
         }
     }
 }

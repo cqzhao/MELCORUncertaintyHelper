@@ -40,6 +40,7 @@ namespace MELCORUncertaintyHelper.Service
                     time = this.refineDatas[0].timeRecordDatas[i].time,
                     normalDistributions = new Distribution[distributionLength],
                     lognormalDistributions = new Distribution[distributionLength],
+                    momentDistributions = new Distribution[distributionLength],
                 };
                 this.distributionDatas[i] = distributionData;
             }
@@ -63,9 +64,11 @@ namespace MELCORUncertaintyHelper.Service
 
                     var normalDistribution = this.CalcNormalDistribution(observations.ToArray());
                     var lognormalDistribution = this.CalcLognormalDistribution(observations.ToArray());
+                    var momentDistribution = this.CalcMomentDistribution(observations.ToArray());
 
                     this.distributionDatas[i].normalDistributions[j] = normalDistribution;
                     this.distributionDatas[i].lognormalDistributions[j] = lognormalDistribution;
+                    this.distributionDatas[i].momentDistributions[j] = momentDistribution;
                 }
             }
         }
@@ -171,6 +174,19 @@ namespace MELCORUncertaintyHelper.Service
                 fiftyPercentage = fiftyPer,
                 ninetyFivePercentage = ninetyFivePer,
                 mean = mean,
+            };
+
+            return distribution;
+        }
+
+        private Distribution CalcMomentDistribution(double[] observations)
+        {
+            var distribution = new Distribution()
+            {
+                fivePercentage = Statistics.Percentile(observations, 5),
+                fiftyPercentage = Statistics.Percentile(observations, 50),
+                ninetyFivePercentage = Statistics.Percentile(observations, 95),
+                mean = observations.Average(),
             };
 
             return distribution;

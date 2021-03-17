@@ -73,36 +73,23 @@ namespace MELCORUncertaintyHelper.View
                     var normalFiveSeries = new LineSeries()
                     {
                         Title = "Normal 5%",
+                        Color = OxyColors.Green,
                     };
                     var normalFiftySeries = new LineSeries()
                     {
                         Title = "Normal 50%",
+                        Color = OxyColors.Blue,
                     };
                     var normalNinetyFiveSeries = new LineSeries()
                     {
                         Title = "Normal 95%",
+                        Color = OxyColors.Red,
                     };
                     var normalMeanSeries = new LineSeries()
                     {
                         Title = "Normal Mean",
+                        Color = OxyColors.Black,
                     };
-
-                    /*var lognormalFiveSeries = new LineSeries()
-                    {
-                        Title = "LogNormal 5%",
-                    };
-                    var lognormalFiftySeries = new LineSeries()
-                    {
-                        Title = "LogNormal 50%",
-                    };
-                    var lognormalNinetyFiveSeries = new LineSeries()
-                    {
-                        Title = "LogNormal 95%",
-                    };
-                    var lognormalMeanSeries = new LineSeries()
-                    {
-                        Title = "LogNormal Mean",
-                    };*/
 
                     var dataLength = this.distributionDatas[i].time.Length;
                     for (var j = 0; j < dataLength; j++)
@@ -113,31 +100,16 @@ namespace MELCORUncertaintyHelper.View
                         var normalNinetyFive = this.distributionDatas[i].normalDistributions[j].ninetyFivePercentage;
                         var normalMean = this.distributionDatas[i].normalDistributions[j].mean;
 
-                        /*var lognormalFive = this.distributionDatas[i].lognormalDistributions[j].fivePercentage;
-                        var lognormalFifty = this.distributionDatas[i].lognormalDistributions[j].fiftyPercentage;
-                        var lognormalNinetyFive = this.distributionDatas[i].lognormalDistributions[j].ninetyFivePercentage;
-                        var lognormalMean = this.distributionDatas[i].lognormalDistributions[j].mean;*/
-
                         normalFiveSeries.Points.Add(new DataPoint(x, normalFive));
                         normalFiftySeries.Points.Add(new DataPoint(x, normalFifty));
                         normalNinetyFiveSeries.Points.Add(new DataPoint(x, normalNinetyFive));
                         normalMeanSeries.Points.Add(new DataPoint(x, normalMean));
-
-                        /*lognormalFiveSeries.Points.Add(new DataPoint(x, lognormalFive));
-                        lognormalFiftySeries.Points.Add(new DataPoint(x, lognormalFifty));
-                        lognormalNinetyFiveSeries.Points.Add(new DataPoint(x, lognormalNinetyFive));
-                        lognormalMeanSeries.Points.Add(new DataPoint(x, lognormalMean));*/
                     }
 
                     this.plotModel.Series.Add(normalFiveSeries);
                     this.plotModel.Series.Add(normalFiftySeries);
                     this.plotModel.Series.Add(normalNinetyFiveSeries);
                     this.plotModel.Series.Add(normalMeanSeries);
-
-                    /*this.plotModel.Series.Add(lognormalFiveSeries);
-                    this.plotModel.Series.Add(lognormalFiftySeries);
-                    this.plotModel.Series.Add(lognormalNinetyFiveSeries);
-                    this.plotModel.Series.Add(lognormalMeanSeries);*/
                 }
             }
         }

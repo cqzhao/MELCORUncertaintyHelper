@@ -46,6 +46,10 @@ namespace MELCORUncertaintyHelper.View
                 "LogNormal 50%",
                 "LogNormal 95%",
                 "LogNormal Mean",
+                "Moment 5%",
+                "Moment 50%",
+                "Moment 95%",
+                "Moment Mean",
             };
 
             for (var i = 0; i < str.Count; i++)
@@ -100,6 +104,11 @@ namespace MELCORUncertaintyHelper.View
                         values.Add(this.distributionDatas[j].lognormalDistributions[i].fiftyPercentage.ToString());
                         values.Add(this.distributionDatas[j].lognormalDistributions[i].ninetyFivePercentage.ToString());
                         values.Add(this.distributionDatas[j].lognormalDistributions[i].mean.ToString());
+
+                        values.Add(this.distributionDatas[j].momentDistributions[i].fivePercentage.ToString());
+                        values.Add(this.distributionDatas[j].momentDistributions[i].fiftyPercentage.ToString());
+                        values.Add(this.distributionDatas[j].momentDistributions[i].ninetyFivePercentage.ToString());
+                        values.Add(this.distributionDatas[j].momentDistributions[i].mean.ToString());
                     }
                 }
 

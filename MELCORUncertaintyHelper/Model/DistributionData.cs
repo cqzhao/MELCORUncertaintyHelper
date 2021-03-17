@@ -31,5 +31,11 @@ namespace MELCORUncertaintyHelper.Model
             set;
             get;
         }
+
+        public Distribution[] momentDistributions
+        {
+            set;
+            get;
+        }
     }
 }

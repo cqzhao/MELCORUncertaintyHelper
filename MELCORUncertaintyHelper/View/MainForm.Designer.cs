@@ -71,7 +71,7 @@
             // msiOpen
             // 
             this.msiOpen.Name = "msiOpen";
-            this.msiOpen.Size = new System.Drawing.Size(120, 22);
+            this.msiOpen.Size = new System.Drawing.Size(180, 22);
             this.msiOpen.Text = "Open(&O)";
             this.msiOpen.Click += new System.EventHandler(this.MsiOpen_Click);
             // 
@@ -105,35 +105,35 @@
             // msiShowInputFileList
             // 
             this.msiShowInputFileList.Name = "msiShowInputFileList";
-            this.msiShowInputFileList.Size = new System.Drawing.Size(171, 22);
+            this.msiShowInputFileList.Size = new System.Drawing.Size(180, 22);
             this.msiShowInputFileList.Text = "Input File List";
             this.msiShowInputFileList.Click += new System.EventHandler(this.MsiShowInputFileList_Click);
             // 
             // msiShowVariableInput
             // 
             this.msiShowVariableInput.Name = "msiShowVariableInput";
-            this.msiShowVariableInput.Size = new System.Drawing.Size(171, 22);
+            this.msiShowVariableInput.Size = new System.Drawing.Size(180, 22);
             this.msiShowVariableInput.Text = "Variable Input List";
             this.msiShowVariableInput.Click += new System.EventHandler(this.MsiShowVariableInput_Click);
             // 
             // msiShowExtracted
             // 
             this.msiShowExtracted.Name = "msiShowExtracted";
-            this.msiShowExtracted.Size = new System.Drawing.Size(171, 22);
+            this.msiShowExtracted.Size = new System.Drawing.Size(180, 22);
             this.msiShowExtracted.Text = "Extracted Variable";
             this.msiShowExtracted.Click += new System.EventHandler(this.MsiShowExtracted_Click);
             // 
             // msiShowStatus
             // 
             this.msiShowStatus.Name = "msiShowStatus";
-            this.msiShowStatus.Size = new System.Drawing.Size(171, 22);
+            this.msiShowStatus.Size = new System.Drawing.Size(180, 22);
             this.msiShowStatus.Text = "Status Output";
             this.msiShowStatus.Click += new System.EventHandler(this.MsiShowStatus_Click);
             // 
             // msiShowTimeInput
             // 
             this.msiShowTimeInput.Name = "msiShowTimeInput";
-            this.msiShowTimeInput.Size = new System.Drawing.Size(171, 22);
+            this.msiShowTimeInput.Size = new System.Drawing.Size(180, 22);
             this.msiShowTimeInput.Text = "Time Input";
             this.msiShowTimeInput.Click += new System.EventHandler(this.MsiShowTimeInput_Click);
             // 
@@ -148,7 +148,7 @@
             // msiRun
             // 
             this.msiRun.Name = "msiRun";
-            this.msiRun.Size = new System.Drawing.Size(110, 22);
+            this.msiRun.Size = new System.Drawing.Size(180, 22);
             this.msiRun.Text = "Run(&R)";
             this.msiRun.Click += new System.EventHandler(this.MsiRun_Click);
             // 

@@ -100,15 +100,6 @@ namespace MELCORUncertaintyHelper.Service
                 stdDeviation = normal.StandardDeviation;
             }
 
-            /*var mean = Statistics.Mean(inputs);
-            var stdDeviation = Statistics.StandardDeviation(inputs);
-
-            var values = new double[1000000];
-            var normal = new Normal(mean, stdDeviation);
-            normal.Samples(values);
-
-            var histogram = new Histogram(values, 100);*/
-
             var fivePer = -1.645 * stdDeviation + mean;
             //var tenPer = -1.28 * stdDeviation + mean;
             var fiftyPer = 0 * stdDeviation + mean;
@@ -128,16 +119,23 @@ namespace MELCORUncertaintyHelper.Service
 
         private Distribution CalcLognormalDistribution(double[] observations)
         {
-            var lognormal = new LognormalDistribution();
+            /*var lognormal = new LognormalDistribution();
             lognormal.Fit(observations);
 
             var mu = lognormal.Location;
-            var sigma = lognormal.Shape;
+            var sigma = lognormal.Shape;*/
+
+            var mean = Statistics.Mean(observations);
+            var stddev = Statistics.StandardDeviation(observations);
+            /*var mu = 2 * Math.Log(mean) - Math.Log(stddev * stddev + mean * mean) / 2;
+            var sigma = -2 * Math.Log(mean) + Math.Log(stddev * stddev + mean * mean);*/
+            var mu = Math.Log((mean * mean) / Math.Sqrt(stddev * stddev + mean * mean));
+            var sigma = Math.Sqrt(Math.Log(1 + (stddev * stddev) / (mean * mean)));
 
             double fivePer;
             double fiftyPer;
             double ninetyFivePer;
-            double mean;
+            //double mean;
 
             if (Double.IsNaN(Math.Exp(mu) / Math.Exp(1.645 * sigma)))
             {
@@ -148,7 +146,14 @@ namespace MELCORUncertaintyHelper.Service
                 fivePer = Math.Exp(mu) / Math.Exp(1.645 * sigma);
             }
 
-            fiftyPer = Math.Exp(mu);
+            if (Double.IsNaN(Math.Exp(mu)))
+            {
+                fiftyPer = 0;
+            }
+            else
+            {
+                fiftyPer = Math.Exp(mu);
+            }
 
             if (Double.IsNaN(Math.Exp(mu) * Math.Exp(1.645 * sigma)))
             {
@@ -159,14 +164,14 @@ namespace MELCORUncertaintyHelper.Service
                 ninetyFivePer = Math.Exp(mu) * Math.Exp(1.645 * sigma);
             }
 
-            if (Double.IsNaN(lognormal.Mean))
+            /*if (Double.IsNaN(lognormal.Mean))
             {
                 mean = 0;
             }
             else
             {
                 mean = lognormal.Mean;
-            }
+            }*/
 
             var distribution = new Distribution()
             {

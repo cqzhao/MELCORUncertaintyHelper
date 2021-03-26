@@ -33,7 +33,7 @@ namespace MELCORUncertaintyHelper.Model
             get;
         }
 
-        public Histogram histogram
+        public double errorFactor
         {
             set;
             get;

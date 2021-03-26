@@ -127,15 +127,13 @@ namespace MELCORUncertaintyHelper.Service
 
             var mean = Statistics.Mean(observations);
             var stddev = Statistics.StandardDeviation(observations);
-            /*var mu = 2 * Math.Log(mean) - Math.Log(stddev * stddev + mean * mean) / 2;
-            var sigma = -2 * Math.Log(mean) + Math.Log(stddev * stddev + mean * mean);*/
             var mu = Math.Log((mean * mean) / Math.Sqrt(stddev * stddev + mean * mean));
             var sigma = Math.Sqrt(Math.Log(1 + (stddev * stddev) / (mean * mean)));
 
             double fivePer;
             double fiftyPer;
             double ninetyFivePer;
-            //double mean;
+            double errorFactor;
 
             if (Double.IsNaN(Math.Exp(mu) / Math.Exp(1.645 * sigma)))
             {
@@ -164,14 +162,14 @@ namespace MELCORUncertaintyHelper.Service
                 ninetyFivePer = Math.Exp(mu) * Math.Exp(1.645 * sigma);
             }
 
-            /*if (Double.IsNaN(lognormal.Mean))
+            if (Double.IsNaN(ninetyFivePer / fiftyPer))
             {
-                mean = 0;
+                errorFactor = 0;
             }
             else
             {
-                mean = lognormal.Mean;
-            }*/
+                errorFactor = ninetyFivePer / fiftyPer;
+            }
 
             var distribution = new Distribution()
             {
@@ -179,6 +177,7 @@ namespace MELCORUncertaintyHelper.Service
                 fiftyPercentage = fiftyPer,
                 ninetyFivePercentage = ninetyFivePer,
                 mean = mean,
+                errorFactor = errorFactor,
             };
 
             return distribution;

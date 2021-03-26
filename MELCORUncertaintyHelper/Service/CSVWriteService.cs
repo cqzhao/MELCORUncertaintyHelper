@@ -14,11 +14,13 @@ namespace MELCORUncertaintyHelper.Service
     {
         private RefineData[] refineData;
         private string[] variables;
+        private DistributionData[] distributionDatas;
 
         public CSVWriteService(string[] variables)
         {
             this.refineData = (RefineData[])RefineDataManager.GetRefineDataManager.GetRefineDatas();
             this.variables = variables;
+            this.distributionDatas = (DistributionData[])DistributionDataManager.GetDistributionDataManager.GetDistributionDatas();
         }
 
         public async Task WriteFile()
@@ -40,18 +42,16 @@ namespace MELCORUncertaintyHelper.Service
                                 if (this.refineData[j].timeRecordDatas[k].variableName.Equals(this.variables[i]))
                                 {
                                     str.Append(this.refineData[j].fileName);
+                                    str.Append(",");
                                     break;
                                 }
                             }
-                            if (j < this.refineData.Length - 1)
-                            {
-                                str.Append(",");
-                            }
-                            else
-                            {
-                                str.AppendLine();
-                            }
                         }
+                        str.Append("LogNormal 5%,");
+                        str.Append("LogNormal 50%,");
+                        str.Append("LogNormal 95%,");
+                        str.Append("LogNormal mean,");
+                        str.AppendLine("Error Factor");
 
                         var rowSize = this.FindMaxTimeLength(this.variables[i]);
                         for (var j = 0; j < rowSize; j++)
@@ -68,16 +68,27 @@ namespace MELCORUncertaintyHelper.Service
                                             str.Append(",");
                                         }
                                         str.Append(this.refineData[k].timeRecordDatas[l].value[j]);
+                                        str.Append(",");
                                         break;
                                     }
                                 }
-                                if (k < this.refineData.Length - 1)
+                            }
+
+                            for (var k = 0; k < this.distributionDatas.Length; k++)
+                            {
+                                var variableName = this.distributionDatas[k].variableName;
+                                if (variableName.Equals(this.variables[i]))
                                 {
+                                    str.Append(this.distributionDatas[k].lognormalDistributions[j].fivePercentage);
                                     str.Append(",");
-                                }
-                                else
-                                {
-                                    str.AppendLine();
+                                    str.Append(this.distributionDatas[k].lognormalDistributions[j].fiftyPercentage);
+                                    str.Append(",");
+                                    str.Append(this.distributionDatas[k].lognormalDistributions[j].ninetyFivePercentage);
+                                    str.Append(",");
+                                    str.Append(this.distributionDatas[k].lognormalDistributions[j].mean);
+                                    str.Append(",");
+                                    str.AppendLine(this.distributionDatas[k].lognormalDistributions[j].errorFactor.ToString());
+                                    break;
                                 }
                             }
                         }

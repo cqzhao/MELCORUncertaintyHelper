@@ -15,13 +15,13 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace MELCORUncertaintyHelper.View
 {
-    public partial class ResultWithDistributionGphForm3 : DockContent
+    public partial class MomentEstimationGphForm : DockContent
     {
         private RefineData[] refineDatas;
         private DistributionData[] distributionDatas;
         private PlotModel plotModel;
 
-        public ResultWithDistributionGphForm3()
+        public MomentEstimationGphForm()
         {
             InitializeComponent();
 

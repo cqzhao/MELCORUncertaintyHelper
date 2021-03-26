@@ -1,6 +1,6 @@
 ﻿namespace MELCORUncertaintyHelper.View
 {
-    partial class ResultWithDistributionGphForm3
+    partial class MomentEstimationGphForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ResultWithDistributionGphForm3));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MomentEstimationGphForm));
             this.gphResults = new OxyPlot.WindowsForms.PlotView();
             this.SuspendLayout();
             // 

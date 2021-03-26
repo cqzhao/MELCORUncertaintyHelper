@@ -15,13 +15,13 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace MELCORUncertaintyHelper.View
 {
-    public partial class ResultWithDistributionGphForm2 : DockContent
+    public partial class NormalDistributionGphForm : DockContent
     {
         private RefineData[] refineDatas;
         private DistributionData[] distributionDatas;
         private PlotModel plotModel;
 
-        public ResultWithDistributionGphForm2()
+        public NormalDistributionGphForm()
         {
             InitializeComponent();
 
@@ -70,24 +70,24 @@ namespace MELCORUncertaintyHelper.View
                 var variableName = this.distributionDatas[i].variableName;
                 if (variableName.Equals(target))
                 {
-                    var lognormalFiveSeries = new LineSeries()
+                    var normalFiveSeries = new LineSeries()
                     {
-                        Title = "LogNormal 5%",
+                        Title = "Normal 5%",
                         Color = OxyColors.Green,
                     };
-                    var lognormalFiftySeries = new LineSeries()
+                    var normalFiftySeries = new LineSeries()
                     {
-                        Title = "LogNormal 50%",
+                        Title = "Normal 50%",
                         Color = OxyColors.Blue,
                     };
-                    var lognormalNinetyFiveSeries = new LineSeries()
+                    var normalNinetyFiveSeries = new LineSeries()
                     {
-                        Title = "LogNormal 95%",
+                        Title = "Normal 95%",
                         Color = OxyColors.Red,
                     };
-                    var lognormalMeanSeries = new LineSeries()
+                    var normalMeanSeries = new LineSeries()
                     {
-                        Title = "LogNormal Mean",
+                        Title = "Normal Mean",
                         Color = OxyColors.Black,
                     };
 
@@ -95,22 +95,21 @@ namespace MELCORUncertaintyHelper.View
                     for (var j = 0; j < dataLength; j++)
                     {
                         var x = this.distributionDatas[i].time[j];
+                        var normalFive = this.distributionDatas[i].normalDistributions[j].fivePercentage;
+                        var normalFifty = this.distributionDatas[i].normalDistributions[j].fiftyPercentage;
+                        var normalNinetyFive = this.distributionDatas[i].normalDistributions[j].ninetyFivePercentage;
+                        var normalMean = this.distributionDatas[i].normalDistributions[j].mean;
 
-                        var lognormalFive = this.distributionDatas[i].lognormalDistributions[j].fivePercentage;
-                        var lognormalFifty = this.distributionDatas[i].lognormalDistributions[j].fiftyPercentage;
-                        var lognormalNinetyFive = this.distributionDatas[i].lognormalDistributions[j].ninetyFivePercentage;
-                        var lognormalMean = this.distributionDatas[i].lognormalDistributions[j].mean;
-
-                        lognormalFiveSeries.Points.Add(new DataPoint(x, lognormalFive));
-                        lognormalFiftySeries.Points.Add(new DataPoint(x, lognormalFifty));
-                        lognormalNinetyFiveSeries.Points.Add(new DataPoint(x, lognormalNinetyFive));
-                        lognormalMeanSeries.Points.Add(new DataPoint(x, lognormalMean));
+                        normalFiveSeries.Points.Add(new DataPoint(x, normalFive));
+                        normalFiftySeries.Points.Add(new DataPoint(x, normalFifty));
+                        normalNinetyFiveSeries.Points.Add(new DataPoint(x, normalNinetyFive));
+                        normalMeanSeries.Points.Add(new DataPoint(x, normalMean));
                     }
 
-                    this.plotModel.Series.Add(lognormalFiveSeries);
-                    this.plotModel.Series.Add(lognormalFiftySeries);
-                    this.plotModel.Series.Add(lognormalNinetyFiveSeries);
-                    this.plotModel.Series.Add(lognormalMeanSeries);
+                    this.plotModel.Series.Add(normalFiveSeries);
+                    this.plotModel.Series.Add(normalFiftySeries);
+                    this.plotModel.Series.Add(normalNinetyFiveSeries);
+                    this.plotModel.Series.Add(normalMeanSeries);
                 }
             }
         }

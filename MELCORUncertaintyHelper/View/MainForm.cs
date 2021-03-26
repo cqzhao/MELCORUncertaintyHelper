@@ -159,40 +159,40 @@ namespace MELCORUncertaintyHelper.View
             frmDgvResult.Show(this.dockPnlMain, DockState.Document);
             frmDgvResult.PrintResult(target);*/
 
-            var frmGphResult = new VariableResultGphForm
-            {
-                TabText = target + " Graph"
-            };
-            frmGphResult.Show(this.dockPnlMain, DockState.Document);
-            frmGphResult.PrintResult(target);
-
-            var frmDgvResult2 = new ResultWithDistributionDgvForm
+            var frmDistributionDgv = new DistributionDgvForm
             {
                 TabText = target + " Table"
             };
-            frmDgvResult2.Show(this.dockPnlMain, DockState.Document);
-            frmDgvResult2.PrintResult(target);
+            frmDistributionDgv.Show(this.dockPnlMain, DockState.Document);
+            frmDistributionDgv.PrintResult(target);
 
-            var frmGphResult2 = new ResultWithDistributionGphForm
+            var frmPlainGph = new VariableResultGphForm
             {
-                TabText = target + " Graph with Normal"
+                TabText = target + " Graph"
             };
-            frmGphResult2.Show(this.dockPnlMain, DockState.Document);
-            frmGphResult2.PrintResult(target);
+            frmPlainGph.Show(this.dockPnlMain, DockState.Document);
+            frmPlainGph.PrintResult(target);
 
-            var frmGphResult3 = new ResultWithDistributionGphForm2
+            /*var frmNormalGph = new NormalDistributionGphForm
             {
-                TabText = target + " Graph with LogNormal"
+                TabText = target + " Normal Distribution Graph"
             };
-            frmGphResult3.Show(this.dockPnlMain, DockState.Document);
-            frmGphResult3.PrintResult(target);
+            frmNormalGph.Show(this.dockPnlMain, DockState.Document);
+            frmNormalGph.PrintResult(target);*/
 
-            var frmGphResult4 = new ResultWithDistributionGphForm3
+            var frmLogNormalGph = new LogNormalDistributionGphForm
             {
-                TabText = target + " Graph with Moment"
+                TabText = target + " Log-Normal Distribution Graph"
             };
-            frmGphResult4.Show(this.dockPnlMain, DockState.Document);
-            frmGphResult4.PrintResult(target);
+            frmLogNormalGph.Show(this.dockPnlMain, DockState.Document);
+            frmLogNormalGph.PrintResult(target);
+
+            /*var frmMomentGph = new MomentEstimationGphForm
+            {
+                TabText = target + " Method of Moments Graph"
+            };
+            frmMomentGph.Show(this.dockPnlMain, DockState.Document);
+            frmMomentGph.PrintResult(target);*/
         }
     }
 }

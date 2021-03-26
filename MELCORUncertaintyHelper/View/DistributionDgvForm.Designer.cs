@@ -1,6 +1,6 @@
 ﻿namespace MELCORUncertaintyHelper.View
 {
-    partial class ResultWithDistributionDgvForm
+    partial class DistributionDgvForm
     {
         /// <summary>
         /// Required designer variable.
@@ -32,7 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ResultWithDistributionDgvForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DistributionDgvForm));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsBtnSave = new System.Windows.Forms.ToolStripButton();
             this.dgvResults = new System.Windows.Forms.DataGridView();

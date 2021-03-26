@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StatusOutputForm));
             this.txtStatus = new MetroFramework.Controls.MetroTextBox();
             this.SuspendLayout();
             // 
@@ -73,6 +74,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.txtStatus);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "StatusOutputForm";
             this.TabText = "Status";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.StatusOutputForm_FormClosing);

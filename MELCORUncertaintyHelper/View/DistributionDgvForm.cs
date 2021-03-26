@@ -38,18 +38,18 @@ namespace MELCORUncertaintyHelper.View
 
             var str = new List<string>
             {
-                "Normal 5%",
+                /*"Normal 5%",
                 "Normal 50%",
                 "Normal 95%",
-                "Normal Mean",
+                "Normal Mean",*/
                 "LogNormal 5%",
                 "LogNormal 50%",
                 "LogNormal 95%",
                 "LogNormal Mean",
-                "Moment 5%",
+                /*"Moment 5%",
                 "Moment 50%",
                 "Moment 95%",
-                "Moment Mean",
+                "Moment Mean",*/
             };
 
             for (var i = 0; i < str.Count; i++)
@@ -95,20 +95,20 @@ namespace MELCORUncertaintyHelper.View
                     var variableName = this.distributionDatas[j].variableName;
                     if (variableName.Equals(target))
                     {
-                        values.Add(this.distributionDatas[j].normalDistributions[i].fivePercentage.ToString());
+                        /*values.Add(this.distributionDatas[j].normalDistributions[i].fivePercentage.ToString());
                         values.Add(this.distributionDatas[j].normalDistributions[i].fiftyPercentage.ToString());
                         values.Add(this.distributionDatas[j].normalDistributions[i].ninetyFivePercentage.ToString());
-                        values.Add(this.distributionDatas[j].normalDistributions[i].mean.ToString());
+                        values.Add(this.distributionDatas[j].normalDistributions[i].mean.ToString());*/
 
                         values.Add(this.distributionDatas[j].lognormalDistributions[i].fivePercentage.ToString());
                         values.Add(this.distributionDatas[j].lognormalDistributions[i].fiftyPercentage.ToString());
                         values.Add(this.distributionDatas[j].lognormalDistributions[i].ninetyFivePercentage.ToString());
                         values.Add(this.distributionDatas[j].lognormalDistributions[i].mean.ToString());
 
-                        values.Add(this.distributionDatas[j].momentDistributions[i].fivePercentage.ToString());
+                        /*values.Add(this.distributionDatas[j].momentDistributions[i].fivePercentage.ToString());
                         values.Add(this.distributionDatas[j].momentDistributions[i].fiftyPercentage.ToString());
                         values.Add(this.distributionDatas[j].momentDistributions[i].ninetyFivePercentage.ToString());
-                        values.Add(this.distributionDatas[j].momentDistributions[i].mean.ToString());
+                        values.Add(this.distributionDatas[j].momentDistributions[i].mean.ToString());*/
                     }
                 }
 

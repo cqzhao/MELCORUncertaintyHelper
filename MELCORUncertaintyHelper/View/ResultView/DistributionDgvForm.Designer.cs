@@ -1,4 +1,4 @@
-﻿namespace MELCORUncertaintyHelper.View
+﻿namespace MELCORUncertaintyHelper.View.ResultView
 {
     partial class DistributionDgvForm
     {
@@ -33,32 +33,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DistributionDgvForm));
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.tsBtnSave = new System.Windows.Forms.ToolStripButton();
             this.dgvResults = new System.Windows.Forms.DataGridView();
-            this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).BeginInit();
             this.SuspendLayout();
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsBtnSave});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(800, 25);
-            this.toolStrip1.TabIndex = 2;
-            // 
-            // tsBtnSave
-            // 
-            this.tsBtnSave.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsBtnSave.ForeColor = System.Drawing.Color.Black;
-            this.tsBtnSave.Image = global::MELCORUncertaintyHelper.Properties.Resources.file_csv;
-            this.tsBtnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsBtnSave.Name = "tsBtnSave";
-            this.tsBtnSave.Size = new System.Drawing.Size(55, 22);
-            this.tsBtnSave.Text = "Save";
-            this.tsBtnSave.Visible = false;
             // 
             // dgvResults
             // 
@@ -85,7 +62,7 @@
             this.dgvResults.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvResults.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvResults.GridColor = System.Drawing.Color.Black;
-            this.dgvResults.Location = new System.Drawing.Point(0, 25);
+            this.dgvResults.Location = new System.Drawing.Point(0, 0);
             this.dgvResults.Name = "dgvResults";
             this.dgvResults.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -100,31 +77,24 @@
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.dgvResults.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvResults.RowTemplate.Height = 23;
-            this.dgvResults.Size = new System.Drawing.Size(800, 425);
+            this.dgvResults.Size = new System.Drawing.Size(800, 450);
             this.dgvResults.TabIndex = 3;
             // 
-            // ResultWithDistributionDgvForm
+            // DistributionDgvForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.dgvResults);
-            this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "ResultWithDistributionDgvForm";
+            this.Name = "DistributionDgvForm";
             this.Load += new System.EventHandler(this.ResultWithDistributionForm_Load);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton tsBtnSave;
         private System.Windows.Forms.DataGridView dgvResults;
     }
 }

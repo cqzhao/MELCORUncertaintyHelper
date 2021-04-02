@@ -1,4 +1,4 @@
-﻿namespace MELCORUncertaintyHelper.View
+﻿namespace MELCORUncertaintyHelper.View.ResultView
 {
     partial class NormalDistributionGphForm
     {

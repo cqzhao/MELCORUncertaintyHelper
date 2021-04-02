@@ -145,29 +145,41 @@
     <Compile Include="View\ExtractedVariableForm.Designer.cs">
       <DependentUpon>ExtractedVariableForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\DistributionDgvForm.cs">
+    <Compile Include="View\ResultView\DistributionDgvForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\DistributionDgvForm.Designer.cs">
+    <Compile Include="View\ResultView\DistributionDgvForm.Designer.cs">
       <DependentUpon>DistributionDgvForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\NormalDistributionGphForm.cs">
+    <Compile Include="View\ResultView\LogNormalDistributionGphForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\NormalDistributionGphForm.Designer.cs">
-      <DependentUpon>NormalDistributionGphForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\LogNormalDistributionGphForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\LogNormalDistributionGphForm.Designer.cs">
+    <Compile Include="View\ResultView\LogNormalDistributionGphForm.Designer.cs">
       <DependentUpon>LogNormalDistributionGphForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\MomentEstimationGphForm.cs">
+    <Compile Include="View\ResultView\MomentEstimationGphForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\MomentEstimationGphForm.Designer.cs">
+    <Compile Include="View\ResultView\MomentEstimationGphForm.Designer.cs">
       <DependentUpon>MomentEstimationGphForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ResultView\NormalDistributionGphForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ResultView\NormalDistributionGphForm.Designer.cs">
+      <DependentUpon>NormalDistributionGphForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ResultView\VariableResultDgvForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ResultView\VariableResultDgvForm.Designer.cs">
+      <DependentUpon>VariableResultDgvForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ResultView\VariableResultGphForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ResultView\VariableResultGphForm.Designer.cs">
+      <DependentUpon>VariableResultGphForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\StatusOutputForm.cs">
       <SubType>Form</SubType>
@@ -186,18 +198,6 @@
     </Compile>
     <Compile Include="View\VariableInputForm.Designer.cs">
       <DependentUpon>VariableInputForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\VariableResultDgvForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\VariableResultDgvForm.Designer.cs">
-      <DependentUpon>VariableResultDgvForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\VariableResultGphForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\VariableResultGphForm.Designer.cs">
-      <DependentUpon>VariableResultGphForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -218,17 +218,23 @@
     <EmbeddedResource Include="View\ExtractedVariableForm.resx">
       <DependentUpon>ExtractedVariableForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\DistributionDgvForm.resx">
+    <EmbeddedResource Include="View\ResultView\DistributionDgvForm.resx">
       <DependentUpon>DistributionDgvForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\NormalDistributionGphForm.resx">
-      <DependentUpon>NormalDistributionGphForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\LogNormalDistributionGphForm.resx">
+    <EmbeddedResource Include="View\ResultView\LogNormalDistributionGphForm.resx">
       <DependentUpon>LogNormalDistributionGphForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\MomentEstimationGphForm.resx">
+    <EmbeddedResource Include="View\ResultView\MomentEstimationGphForm.resx">
       <DependentUpon>MomentEstimationGphForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ResultView\NormalDistributionGphForm.resx">
+      <DependentUpon>NormalDistributionGphForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ResultView\VariableResultDgvForm.resx">
+      <DependentUpon>VariableResultDgvForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ResultView\VariableResultGphForm.resx">
+      <DependentUpon>VariableResultGphForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\StatusOutputForm.resx">
       <DependentUpon>StatusOutputForm.cs</DependentUpon>
@@ -238,12 +244,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\VariableInputForm.resx">
       <DependentUpon>VariableInputForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\VariableResultDgvForm.resx">
-      <DependentUpon>VariableResultDgvForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\VariableResultGphForm.resx">
-      <DependentUpon>VariableResultGphForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
-namespace MELCORUncertaintyHelper.View
+namespace MELCORUncertaintyHelper.View.ResultView
 {
     public partial class VariableResultGphForm : DockContent
     {

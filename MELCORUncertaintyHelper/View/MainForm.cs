@@ -1,6 +1,7 @@
 ﻿using MELCORUncertaintyHelper.Manager;
 using MELCORUncertaintyHelper.Model;
 using MELCORUncertaintyHelper.Service;
+using MELCORUncertaintyHelper.View.ResultView;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

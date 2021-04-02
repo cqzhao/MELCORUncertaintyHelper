@@ -56,27 +56,11 @@ namespace MELCORUncertaintyHelper.Manager
                     this.ptfReadService = new PTFFileReadService(ptfFiles[i]);
                     this.ptfReadService.Read();
                     msg = new StringBuilder();
-                    /*str.Append("[");
-                    str.Append(i + 1);
-                    str.Append("] ");*/
                     msg.Append(DateTime.Now.ToString("[yyyy-MM-dd-HH:mm:ss]   "));
                     msg.Append("Completed Read ");
                     msg.AppendLine(ptfFiles[i].fullPath);
                     frmStatus.PrintStatus(msg);
                 }
-                /*Parallel.ForEach(ptfFiles, item =>
-                {
-                    this.ptfReadService = new PTFFileReadService(item);
-                    this.ptfReadService.Read();
-                    var str = new StringBuilder();
-                    str.Append("[");
-                    str.Append(i + 1);
-                    str.Append("] ");
-                    str.Append(DateTime.Now.ToString("[yyyy-MM-dd-HH:mm:ss]   "));
-                    str.Append("Completed Read ");
-                    str.AppendLine(item.fullPath);
-                    frmStatus.PrintStatus(str);
-                });*/
 
                 msg = new StringBuilder();
                 msg.Append(DateTime.Now.ToString("[yyyy-MM-dd-HH:mm:ss]   "));

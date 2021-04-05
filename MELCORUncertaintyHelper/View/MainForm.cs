@@ -103,6 +103,13 @@ namespace MELCORUncertaintyHelper.View
 
         private async void MsiRun_Click(object sender, EventArgs e)
         {
+            var frmServiceCheck = new ServiceCheckForm();
+            frmServiceCheck.ShowDialog();
+            if (frmServiceCheck.isClicked == false)
+            {
+                return;
+            }
+
             var str = new StringBuilder();
             str.Append(DateTime.Now.ToString("[yyyy-MM-dd-HH:mm:ss]   "));
             str.AppendLine("Running is started");

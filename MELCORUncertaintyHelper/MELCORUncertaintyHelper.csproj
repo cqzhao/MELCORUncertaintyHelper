@@ -181,6 +181,12 @@
     <Compile Include="View\ResultView\VariableResultGphForm.Designer.cs">
       <DependentUpon>VariableResultGphForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\ServiceCheckForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ServiceCheckForm.Designer.cs">
+      <DependentUpon>ServiceCheckForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\StatusOutputForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -235,6 +241,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\ResultView\VariableResultGphForm.resx">
       <DependentUpon>VariableResultGphForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ServiceCheckForm.resx">
+      <DependentUpon>ServiceCheckForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\StatusOutputForm.resx">
       <DependentUpon>StatusOutputForm.cs</DependentUpon>

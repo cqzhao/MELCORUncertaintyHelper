@@ -18,13 +18,16 @@ namespace MELCORUncertaintyHelper.View.ResultView
 {
     public partial class VariableResultGphForm : DockContent
     {
+        private ExtractData[] extractDatas;
         private RefineData[] refineDatas;
         private PlotModel plotModel;
+        private bool isCheckedInterpolation;
 
-        public VariableResultGphForm()
+        public VariableResultGphForm(bool isCheckedInterpolation)
         {
             InitializeComponent();
 
+            this.extractDatas = (ExtractData[])ExtractDataManager.GetDataManager.GetExtractDatas();
             this.refineDatas = (RefineData[])RefineDataManager.GetRefineDataManager.GetRefineDatas();
             this.plotModel = new PlotModel()
             {
@@ -35,32 +38,62 @@ namespace MELCORUncertaintyHelper.View.ResultView
                 LegendOrientation = LegendOrientation.Horizontal,
             };
             this.gphResults.Model = this.plotModel;
+            this.isCheckedInterpolation = isCheckedInterpolation;
         }
 
         public void PrintResult(string target)
         {
-            for (var i = 0; i < this.refineDatas.Length; i++)
+            if (this.isCheckedInterpolation == true)
             {
-                var targetIdx = 0;
-                for (var j = 0; j < this.refineDatas[i].timeRecordDatas.Length; j++)
+                for (var i = 0; i < this.refineDatas.Length; i++)
                 {
-                    if (this.refineDatas[i].timeRecordDatas[j].variableName.Equals(target))
+                    var targetIdx = 0;
+                    for (var j = 0; j < this.refineDatas[i].timeRecordDatas.Length; j++)
                     {
-                        targetIdx = j;
+                        if (this.refineDatas[i].timeRecordDatas[j].variableName.Equals(target))
+                        {
+                            targetIdx = j;
+                        }
                     }
+                    var dataLength = this.refineDatas[i].timeRecordDatas[targetIdx].time.Length;
+                    var series = new LineSeries()
+                    {
+                        Title = this.refineDatas[i].fileName,
+                    };
+                    for (var j = 0; j < dataLength; j++)
+                    {
+                        var x = this.refineDatas[i].timeRecordDatas[targetIdx].time[j];
+                        var y = this.refineDatas[i].timeRecordDatas[targetIdx].value[j];
+                        series.Points.Add(new DataPoint(x, y));
+                    }
+                    this.plotModel.Series.Add(series);
                 }
-                var dataLength = this.refineDatas[i].timeRecordDatas[targetIdx].time.Length;
-                var series = new LineSeries()
+            }
+            else
+            {
+                for (var i = 0; i < this.extractDatas.Length; i++)
                 {
-                    Title = this.refineDatas[i].fileName,
-                };
-                for (var j = 0; j < dataLength; j++)
-                {
-                    var x = this.refineDatas[i].timeRecordDatas[targetIdx].time[j];
-                    var y = this.refineDatas[i].timeRecordDatas[targetIdx].value[j];
-                    series.Points.Add(new DataPoint(x, y));
+                    var targetIdx = 0;
+                    for (var j = 0; j < this.extractDatas[i].timeRecordDatas.Length; j++)
+                    {
+                        if (this.extractDatas[i].timeRecordDatas[j].variableName.Equals(target))
+                        {
+                            targetIdx = j;
+                        }
+                    }
+                    var dataLength = this.extractDatas[i].timeRecordDatas[targetIdx].time.Length;
+                    var series = new LineSeries()
+                    {
+                        Title = this.extractDatas[i].fileName,
+                    };
+                    for (var j = 0; j < dataLength; j++)
+                    {
+                        var x = this.extractDatas[i].timeRecordDatas[targetIdx].time[j];
+                        var y = this.extractDatas[i].timeRecordDatas[targetIdx].value[j];
+                        series.Points.Add(new DataPoint(x, y));
+                    }
+                    this.plotModel.Series.Add(series);
                 }
-                this.plotModel.Series.Add(series);
             }
         }
     }

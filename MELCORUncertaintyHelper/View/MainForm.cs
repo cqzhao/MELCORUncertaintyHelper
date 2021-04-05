@@ -22,6 +22,8 @@ namespace MELCORUncertaintyHelper.View
         private ExtractedVariableForm frmExtractedVariable;
         private StatusOutputForm frmStatus;
         private TimeInputForm frmTimeInput;
+        private bool isCheckedInterpolation;
+        private bool isCheckedStatistics;
 
         public MainForm()
         {
@@ -32,6 +34,9 @@ namespace MELCORUncertaintyHelper.View
             this.frmExtractedVariable = new ExtractedVariableForm(this);
             this.frmStatus = StatusOutputForm.GetFrmStatus;
             this.frmTimeInput = TimeInputForm.GetFrmTimeInupt;
+
+            this.isCheckedInterpolation = false;
+            this.isCheckedStatistics = false;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -110,11 +115,14 @@ namespace MELCORUncertaintyHelper.View
                 return;
             }
 
+            this.isCheckedInterpolation = frmServiceCheck.isCheckedInterpolation;
+            this.isCheckedStatistics = frmServiceCheck.isCheckedStatistics;
+
             var str = new StringBuilder();
             str.Append(DateTime.Now.ToString("[yyyy-MM-dd-HH:mm:ss]   "));
             str.AppendLine("Running is started");
             this.frmStatus.PrintStatus(str);
-            var manager = new ExtractManager();
+            var manager = new ExtractManager(this.isCheckedInterpolation, this.isCheckedStatistics);
             await manager.Run();
 
             this.PrintExtractedVariables();
@@ -130,15 +138,33 @@ namespace MELCORUncertaintyHelper.View
             var variables = new List<string>();
             try
             {
-                var refineData = (RefineData[])RefineDataManager.GetRefineDataManager.GetRefineDatas();
-                for (var i = 0; i < refineData.Length; i++)
+                if (this.isCheckedInterpolation == true)
                 {
-                    for (var j = 0; j < refineData[i].timeRecordDatas.Length; j++)
+                    var refineData = (RefineData[])RefineDataManager.GetRefineDataManager.GetRefineDatas();
+                    for (var i = 0; i < refineData.Length; i++)
                     {
-                        var name = refineData[i].timeRecordDatas[j].variableName;
-                        if (!variables.Contains(name))
+                        for (var j = 0; j < refineData[i].timeRecordDatas.Length; j++)
                         {
-                            variables.Add(name);
+                            var name = refineData[i].timeRecordDatas[j].variableName;
+                            if (!variables.Contains(name))
+                            {
+                                variables.Add(name);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    var extractData = (ExtractData[])ExtractDataManager.GetDataManager.GetExtractDatas();
+                    for (var i = 0; i < extractData.Length; i++)
+                    {
+                        for (var j = 0; j < extractData[i].timeRecordDatas.Length; j++)
+                        {
+                            var name = extractData[i].timeRecordDatas[j].variableName;
+                            if (!variables.Contains(name))
+                            {
+                                variables.Add(name);
+                            }
                         }
                     }
                 }
@@ -160,47 +186,64 @@ namespace MELCORUncertaintyHelper.View
 
         public void ShowResult(string target)
         {
-            /*var frmDgvResult = new VariableResultDgvForm
-            {
-                TabText = target + " Table"
-            };
-            frmDgvResult.Show(this.dockPnlMain, DockState.Document);
-            frmDgvResult.PrintResult(target);*/
-
-            var frmDistributionDgv = new DistributionDgvForm
-            {
-                TabText = target + " Table"
-            };
-            frmDistributionDgv.Show(this.dockPnlMain, DockState.Document);
-            frmDistributionDgv.PrintResult(target);
-
-            var frmPlainGph = new VariableResultGphForm
+            var frmPlainGph = new VariableResultGphForm(this.isCheckedInterpolation)
             {
                 TabText = target + " Graph"
             };
             frmPlainGph.Show(this.dockPnlMain, DockState.Document);
             frmPlainGph.PrintResult(target);
 
-            /*var frmNormalGph = new NormalDistributionGphForm
+            if (this.isCheckedStatistics == true)
             {
-                TabText = target + " Normal Distribution Graph"
-            };
-            frmNormalGph.Show(this.dockPnlMain, DockState.Document);
-            frmNormalGph.PrintResult(target);*/
+                /*var frmNormalGph = new NormalDistributionGphForm
+                {
+                    TabText = target + " Normal Distribution Graph"
+                };
+                frmNormalGph.Show(this.dockPnlMain, DockState.Document);
+                frmNormalGph.PrintResult(target);*/
 
-            var frmLogNormalGph = new LogNormalDistributionGphForm
-            {
-                TabText = target + " Log-Normal Distribution Graph"
-            };
-            frmLogNormalGph.Show(this.dockPnlMain, DockState.Document);
-            frmLogNormalGph.PrintResult(target);
+                var frmLogNormalGph = new LogNormalDistributionGphForm
+                {
+                    TabText = target + " Log-Normal Distribution Graph"
+                };
+                frmLogNormalGph.Show(this.dockPnlMain, DockState.Document);
+                frmLogNormalGph.PrintResult(target);
 
-            /*var frmMomentGph = new MomentEstimationGphForm
+                /*var frmMomentGph = new MomentEstimationGphForm
+                {
+                    TabText = target + " Method of Moments Graph"
+                };
+                frmMomentGph.Show(this.dockPnlMain, DockState.Document);
+                frmMomentGph.PrintResult(target);*/
+
+                var frmDistributionDgv = new DistributionDgvForm(this.isCheckedStatistics)
+                {
+                    TabText = target + " Table"
+                };
+                frmDistributionDgv.Show(this.dockPnlMain, DockState.Document);
+                frmDistributionDgv.PrintResult(target);
+            }
+            else
             {
-                TabText = target + " Method of Moments Graph"
-            };
-            frmMomentGph.Show(this.dockPnlMain, DockState.Document);
-            frmMomentGph.PrintResult(target);*/
+                if (this.isCheckedInterpolation == true)
+                {
+                    var frmDistributionDgv = new DistributionDgvForm(this.isCheckedStatistics)
+                    {
+                        TabText = target + " Table"
+                    };
+                    frmDistributionDgv.Show(this.dockPnlMain, DockState.Document);
+                    frmDistributionDgv.PrintResult(target);
+                }
+                else
+                {
+                    var frmDgvResult = new VariableResultDgvForm(this.isCheckedInterpolation)
+                    {
+                        TabText = target + " Table"
+                    };
+                    frmDgvResult.Show(this.dockPnlMain, DockState.Document);
+                    frmDgvResult.PrintResult(target);
+                }
+            }
         }
     }
 }

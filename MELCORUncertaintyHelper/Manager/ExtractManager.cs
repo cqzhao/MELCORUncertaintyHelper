@@ -19,10 +19,13 @@ namespace MELCORUncertaintyHelper.Manager
         private InputTimeReadService inputTimeReadService;
         private RefineDataProcessService refineProcessService;
         private DistributionService distributionService;
+        private bool isCheckedInterpolation;
+        private bool isCheckedStatistics;
 
-        public ExtractManager()
+        public ExtractManager(bool isCheckedInterpolation, bool isCheckedStatistics)
         {
-
+            this.isCheckedInterpolation = isCheckedInterpolation;
+            this.isCheckedStatistics = isCheckedStatistics;
         }
 
         public async Task Run()
@@ -62,34 +65,40 @@ namespace MELCORUncertaintyHelper.Manager
                     frmStatus.PrintStatus(msg);
                 }
 
-                msg = new StringBuilder();
-                msg.Append(DateTime.Now.ToString("[yyyy-MM-dd-HH:mm:ss]   "));
-                msg.AppendLine("Interpolation Process is started");
-                frmStatus.PrintStatus(msg);
+                if (this.isCheckedInterpolation == true)
+                {
+                    msg = new StringBuilder();
+                    msg.Append(DateTime.Now.ToString("[yyyy-MM-dd-HH:mm:ss]   "));
+                    msg.AppendLine("Interpolation Process is started");
+                    frmStatus.PrintStatus(msg);
 
-                this.inputTimeReadService = InputTimeReadService.GetInputTimeReadService;
-                this.inputTimeReadService.ExtractTime();
+                    this.inputTimeReadService = InputTimeReadService.GetInputTimeReadService;
+                    this.inputTimeReadService.ExtractTime();
 
-                this.refineProcessService = new RefineDataProcessService();
-                this.refineProcessService.Refine();
+                    this.refineProcessService = new RefineDataProcessService();
+                    this.refineProcessService.Refine();
 
-                msg = new StringBuilder();
-                msg.Append(DateTime.Now.ToString("[yyyy-MM-dd-HH:mm:ss]   "));
-                msg.AppendLine("Interpolation Process is completed");
-                frmStatus.PrintStatus(msg);
+                    msg = new StringBuilder();
+                    msg.Append(DateTime.Now.ToString("[yyyy-MM-dd-HH:mm:ss]   "));
+                    msg.AppendLine("Interpolation Process is completed");
+                    frmStatus.PrintStatus(msg);
+                }
 
-                msg = new StringBuilder();
-                msg.Append(DateTime.Now.ToString("[yyyy-MM-dd-HH:mm:ss]   "));
-                msg.AppendLine("Distribution Process is started");
-                frmStatus.PrintStatus(msg);
+                if (this.isCheckedStatistics == true)
+                {
+                    msg = new StringBuilder();
+                    msg.Append(DateTime.Now.ToString("[yyyy-MM-dd-HH:mm:ss]   "));
+                    msg.AppendLine("Distribution Process is started");
+                    frmStatus.PrintStatus(msg);
 
-                this.distributionService = new DistributionService();
-                this.distributionService.Run();
+                    this.distributionService = new DistributionService();
+                    this.distributionService.Run();
 
-                msg = new StringBuilder();
-                msg.Append(DateTime.Now.ToString("[yyyy-MM-dd-HH:mm:ss]   "));
-                msg.AppendLine("Distribution Process is completed");
-                frmStatus.PrintStatus(msg);
+                    msg = new StringBuilder();
+                    msg.Append(DateTime.Now.ToString("[yyyy-MM-dd-HH:mm:ss]   "));
+                    msg.AppendLine("Distribution Process is completed");
+                    frmStatus.PrintStatus(msg);
+                }
             });
         }
     }

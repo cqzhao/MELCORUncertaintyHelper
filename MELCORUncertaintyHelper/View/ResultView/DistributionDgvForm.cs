@@ -19,13 +19,15 @@ namespace MELCORUncertaintyHelper.View.ResultView
     {
         private RefineData[] refineDatas;
         private DistributionData[] distributionDatas;
+        private bool isCheckedStatistics;
 
-        public DistributionDgvForm()
+        public DistributionDgvForm(bool isCheckedStatistics)
         {
             InitializeComponent();
 
             this.refineDatas = (RefineData[])RefineDataManager.GetRefineDataManager.GetRefineDatas();
             this.distributionDatas = (DistributionData[])DistributionDataManager.GetDistributionDataManager.GetDistributionDatas();
+            this.isCheckedStatistics = isCheckedStatistics;
         }
 
         private void ResultWithDistributionForm_Load(object sender, EventArgs e)
@@ -36,26 +38,29 @@ namespace MELCORUncertaintyHelper.View.ResultView
                 this.dgvResults.Columns.Add(this.refineDatas[i].fileName, this.refineDatas[i].fileName);
             }
 
-            var str = new List<string>
+            if (this.isCheckedStatistics == true)
             {
-                /*"Normal 5%",
-                "Normal 50%",
-                "Normal 95%",
-                "Normal Mean",*/
-                "LogNormal 5%",
-                "LogNormal 50%",
-                "LogNormal 95%",
-                "LogNormal Mean",
-                "Error Factor",
-                /*"Moment 5%",
-                "Moment 50%",
-                "Moment 95%",
-                "Moment Mean",*/
-            };
+                var str = new List<string>
+                {
+                    /*"Normal 5%",
+                    "Normal 50%",
+                    "Normal 95%",
+                    "Normal Mean",*/
+                    "LogNormal 5%",
+                    "LogNormal 50%",
+                    "LogNormal 95%",
+                    "LogNormal Mean",
+                    "Error Factor",
+                    /*"Moment 5%",
+                    "Moment 50%",
+                    "Moment 95%",
+                    "Moment Mean",*/
+                };
 
-            for (var i = 0; i < str.Count; i++)
-            {
-                this.dgvResults.Columns.Add("Distribution", str[i]);
+                for (var i = 0; i < str.Count; i++)
+                {
+                    this.dgvResults.Columns.Add("Distribution", str[i]);
+                }
             }
 
             var columnLength = this.dgvResults.Columns.Count;
@@ -91,26 +96,29 @@ namespace MELCORUncertaintyHelper.View.ResultView
                     values.Add(this.refineDatas[j].timeRecordDatas[idx].value[i].ToString());
                 }
 
-                for (var j = 0; j < this.distributionDatas.Length; j++)
+                if (this.isCheckedStatistics == true)
                 {
-                    var variableName = this.distributionDatas[j].variableName;
-                    if (variableName.Equals(target))
+                    for (var j = 0; j < this.distributionDatas.Length; j++)
                     {
-                        /*values.Add(this.distributionDatas[j].normalDistributions[i].fivePercentage.ToString());
-                        values.Add(this.distributionDatas[j].normalDistributions[i].fiftyPercentage.ToString());
-                        values.Add(this.distributionDatas[j].normalDistributions[i].ninetyFivePercentage.ToString());
-                        values.Add(this.distributionDatas[j].normalDistributions[i].mean.ToString());*/
+                        var variableName = this.distributionDatas[j].variableName;
+                        if (variableName.Equals(target))
+                        {
+                            /*values.Add(this.distributionDatas[j].normalDistributions[i].fivePercentage.ToString());
+                            values.Add(this.distributionDatas[j].normalDistributions[i].fiftyPercentage.ToString());
+                            values.Add(this.distributionDatas[j].normalDistributions[i].ninetyFivePercentage.ToString());
+                            values.Add(this.distributionDatas[j].normalDistributions[i].mean.ToString());*/
 
-                        values.Add(this.distributionDatas[j].lognormalDistributions[i].fivePercentage.ToString());
-                        values.Add(this.distributionDatas[j].lognormalDistributions[i].fiftyPercentage.ToString());
-                        values.Add(this.distributionDatas[j].lognormalDistributions[i].ninetyFivePercentage.ToString());
-                        values.Add(this.distributionDatas[j].lognormalDistributions[i].mean.ToString());
-                        values.Add(this.distributionDatas[j].lognormalDistributions[i].errorFactor.ToString());
+                            values.Add(this.distributionDatas[j].lognormalDistributions[i].fivePercentage.ToString());
+                            values.Add(this.distributionDatas[j].lognormalDistributions[i].fiftyPercentage.ToString());
+                            values.Add(this.distributionDatas[j].lognormalDistributions[i].ninetyFivePercentage.ToString());
+                            values.Add(this.distributionDatas[j].lognormalDistributions[i].mean.ToString());
+                            values.Add(this.distributionDatas[j].lognormalDistributions[i].errorFactor.ToString());
 
-                        /*values.Add(this.distributionDatas[j].momentDistributions[i].fivePercentage.ToString());
-                        values.Add(this.distributionDatas[j].momentDistributions[i].fiftyPercentage.ToString());
-                        values.Add(this.distributionDatas[j].momentDistributions[i].ninetyFivePercentage.ToString());
-                        values.Add(this.distributionDatas[j].momentDistributions[i].mean.ToString());*/
+                            /*values.Add(this.distributionDatas[j].momentDistributions[i].fivePercentage.ToString());
+                            values.Add(this.distributionDatas[j].momentDistributions[i].fiftyPercentage.ToString());
+                            values.Add(this.distributionDatas[j].momentDistributions[i].ninetyFivePercentage.ToString());
+                            values.Add(this.distributionDatas[j].momentDistributions[i].mean.ToString());*/
+                        }
                     }
                 }
 

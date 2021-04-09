@@ -18,12 +18,14 @@ namespace MELCORUncertaintyHelper.Service
         private string[] variables;
         private bool isCheckedInterpolation;
         private bool isCheckedStatistics;
+        private string saveDirPath;
 
-        public CSVWriteService(string[] variables, bool isCheckedInterpolation, bool isCheckedStatistics)
+        public CSVWriteService(string[] variables, bool isCheckedInterpolation, bool isCheckedStatistics, string saveDirPath)
         {
             this.variables = variables;
             this.isCheckedInterpolation = isCheckedInterpolation;
             this.isCheckedStatistics = isCheckedStatistics;
+            this.saveDirPath = saveDirPath;
 
             if (this.isCheckedInterpolation == true)
             {
@@ -113,20 +115,35 @@ namespace MELCORUncertaintyHelper.Service
                                             str.Append(",");
                                             str.Append(this.distributionDatas[k].lognormalDistributions[j].mean);
                                             str.Append(",");
-                                            str.AppendLine(this.distributionDatas[k].lognormalDistributions[j].errorFactor.ToString());
+                                            str.Append(this.distributionDatas[k].lognormalDistributions[j].errorFactor.ToString());
                                             break;
                                         }
                                     }
                                 }
-                            }
 
-                            File.WriteAllText(this.variables[i] + ".csv", str.ToString());
+                                str.AppendLine();
+                            }
 
                             var statusMsg = new StringBuilder();
                             statusMsg.Append(DateTime.Now.ToString("[yyyy-MM-dd-HH:mm:ss]   "));
-                            statusMsg.Append("File ");
-                            statusMsg.Append(this.variables[i]);
-                            statusMsg.AppendLine(".csv is created");
+
+                            if (String.IsNullOrEmpty(this.saveDirPath))
+                            {
+                                File.WriteAllText(this.variables[i] + ".csv", str.ToString());
+
+                                statusMsg.Append("File ");
+                                statusMsg.Append(this.variables[i]);
+                                statusMsg.AppendLine(".csv is created");
+                            }
+                            else
+                            {
+                                var filePath = Path.Combine(this.saveDirPath, this.variables[i] + ".csv");
+                                File.WriteAllText(filePath, str.ToString());
+
+                                statusMsg.Append(filePath);
+                                statusMsg.AppendLine(" is created");
+                            }
+
                             frmStatus.PrintStatus(statusMsg);
                         }
                     }
@@ -195,13 +212,26 @@ namespace MELCORUncertaintyHelper.Service
                                 str.AppendLine();
                             }
 
-                            File.WriteAllText(this.variables[i] + ".csv", str.ToString());
-
                             var statusMsg = new StringBuilder();
                             statusMsg.Append(DateTime.Now.ToString("[yyyy-MM-dd-HH:mm:ss]   "));
-                            statusMsg.Append("File ");
-                            statusMsg.Append(this.variables[i]);
-                            statusMsg.AppendLine(".csv is created");
+
+                            if (String.IsNullOrEmpty(this.saveDirPath))
+                            {
+                                File.WriteAllText(this.variables[i] + ".csv", str.ToString());
+
+                                statusMsg.Append("File ");
+                                statusMsg.Append(this.variables[i]);
+                                statusMsg.AppendLine(".csv is created");
+                            }
+                            else
+                            {
+                                var filePath = Path.Combine(this.saveDirPath, this.variables[i] + ".csv");
+                                File.WriteAllText(filePath, str.ToString());
+
+                                statusMsg.Append(filePath);
+                                statusMsg.AppendLine(" is created");
+                            }
+
                             frmStatus.PrintStatus(statusMsg);
                         }
                     }

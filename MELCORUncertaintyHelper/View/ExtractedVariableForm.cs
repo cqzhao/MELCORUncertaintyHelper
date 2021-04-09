@@ -1,4 +1,5 @@
 ﻿using MELCORUncertaintyHelper.Service;
+using Ookii.Dialogs.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -138,8 +139,15 @@ namespace MELCORUncertaintyHelper.View
                 return;
             }
 
+            var folderBrowserDialog = new VistaFolderBrowserDialog();
+            string savePath = null;
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                savePath = folderBrowserDialog.SelectedPath;
+            }
+
             var variables = this.GetVariables().ToArray();
-            var csvWriteService = new CSVWriteService(variables, this.isCheckedInterpolation, this.isCheckedStatistics);
+            var csvWriteService = new CSVWriteService(variables, this.isCheckedInterpolation, this.isCheckedStatistics, savePath);
             await csvWriteService.WriteFile();
         }
 
@@ -157,6 +165,12 @@ namespace MELCORUncertaintyHelper.View
             }
 
             return variables;
+        }
+
+        public void SetFlag(bool isCheckedInterpolation, bool isCheckedStatistics)
+        {
+            this.isCheckedInterpolation = isCheckedInterpolation;
+            this.isCheckedStatistics = isCheckedStatistics;
         }
     }
 }

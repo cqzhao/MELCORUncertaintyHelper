@@ -182,6 +182,7 @@ namespace MELCORUncertaintyHelper.View
             }
 
             this.frmExtractedVariable.AddVariables(variables.ToArray());
+            this.frmExtractedVariable.SetFlag(this.isCheckedInterpolation, this.isCheckedStatistics);
         }
 
         public void ShowResult(string target)

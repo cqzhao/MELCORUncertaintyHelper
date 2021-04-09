@@ -16,12 +16,16 @@ namespace MELCORUncertaintyHelper.View
     {
         private MainForm frmMain;
         private string[] colNames;
+        private bool isCheckedInterpolation;
+        private bool isCheckedStatistics;
 
-        public ExtractedVariableForm(MainForm frmMain)
+        public ExtractedVariableForm(MainForm frmMain, bool isCheckedInterpolation, bool isCheckedStatistics)
         {
             InitializeComponent();
 
             this.frmMain = frmMain;
+            this.isCheckedInterpolation = isCheckedInterpolation;
+            this.isCheckedStatistics = isCheckedStatistics;
             this.SetColNames();
             this.ShowColNames();
         }
@@ -135,7 +139,7 @@ namespace MELCORUncertaintyHelper.View
             }
 
             var variables = this.GetVariables().ToArray();
-            var csvWriteService = new CSVWriteService(variables);
+            var csvWriteService = new CSVWriteService(variables, this.isCheckedInterpolation, this.isCheckedStatistics);
             await csvWriteService.WriteFile();
         }
 

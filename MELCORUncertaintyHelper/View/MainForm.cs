@@ -31,7 +31,7 @@ namespace MELCORUncertaintyHelper.View
 
             this.frmFileExplorer = new FileExplorerForm();
             this.frmVariableInput = VariableInputForm.GetFrmVariableInput;
-            this.frmExtractedVariable = new ExtractedVariableForm(this);
+            this.frmExtractedVariable = new ExtractedVariableForm(this, this.isCheckedInterpolation, this.isCheckedStatistics);
             this.frmStatus = StatusOutputForm.GetFrmStatus;
             this.frmTimeInput = TimeInputForm.GetFrmTimeInupt;
 

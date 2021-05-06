@@ -13,6 +13,19 @@ namespace MELCORUncertaintyHelper.Service
     public class PTFFileReadService
     {
         private PTFFile file;
+        private int leftDelimiter;
+        private int rightDelimiter;
+        private int plotKeyCnt;
+        private int plotVarCnt;
+        private string[] plotKeys;
+        private int[] offsets;
+        private string[] units;
+        private int[] indexes;
+        private InputVariableReadService inputVariableReader;
+        private string[] inputVariables;
+        private string[] inputPlotKeys;
+        private int[] inputIndexes;
+
         // PTF File에 존재하는 Package 총 개수
         private int totalPackageCnt;
         // 전체 Package에 존재하는 변수 및 Control Volume의 총 개수
@@ -40,6 +53,7 @@ namespace MELCORUncertaintyHelper.Service
         public PTFFileReadService(PTFFile file)
         {
             this.file = file;
+            inputVariableReader = InputVariableReadService.GetInputReadService;
         }
 
         public void Read()
@@ -56,10 +70,9 @@ namespace MELCORUncertaintyHelper.Service
                 var lastLeftDelimiter = this.ReadSPecialSection(fileStream, this.file.name);
                 try
                 {
-                    var inputService = InputVariableReadService.GetInputReadService;
-                    inputService.MakeIndexes(this.packageNames, this.packageVariableCnt, this.controlVolumes);
-                    this.inputs = (string[])inputService.GetInputs();
-                    this.totalIdxes = (int[])inputService.GetTotalIdxes();
+                    inputVariableReader.MakeIndexes(this.packageNames, this.packageVariableCnt, this.controlVolumes);
+                    this.inputs = (string[])inputVariableReader.GetInputs();
+                    this.totalIdxes = (int[])inputVariableReader.GetTotalIdxes();
                 }
                 catch (Exception ex)
                 {

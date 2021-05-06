@@ -16,6 +16,10 @@ namespace MELCORUncertaintyHelper.Service
         private int[] idxes;
         private int[] totalIdxes;
 
+        private string[] inputVariables;
+        private string[] inputPlotKeys;
+        private int[] inputIndexes;
+
         private InputVariableReadService()
         {
 
@@ -36,6 +40,13 @@ namespace MELCORUncertaintyHelper.Service
         public Object GetIdxes() => this.idxes.Clone();
 
         public Object GetTotalIdxes() => this.totalIdxes.Clone();
+
+        public Object GetInputVariables() => this.inputVariables.Clone();
+
+        public Object GetInputPlotKeys() => this.inputPlotKeys.Clone();
+
+        public Object GetInputIndexes() => this.inputIndexes.Clone();
+
 
         public bool InputManage()
         {
@@ -85,6 +96,7 @@ namespace MELCORUncertaintyHelper.Service
                 }
 
                 this.inputs = inputs.ToArray();
+                this.inputVariables = inputs.ToArray();
             }
             catch (Exception ex)
             {
@@ -123,6 +135,34 @@ namespace MELCORUncertaintyHelper.Service
 
                 this.inputPackageNames = packageNames.ToArray();
                 this.inputControlVolumes = controlVolumes.ToArray();
+
+                var inputPlotKeys = new List<string>();
+                var inputIndexes = new List<int>();
+
+                for (var i = 0; i < this.inputVariables.Length; i++)
+                {
+                    var input = this.inputVariables[i];
+                    string plotKey;
+                    int index;
+
+                    if (input.Contains("."))
+                    {
+                        var targetIdx = input.LastIndexOf(".");
+                        plotKey = input.Substring(0, targetIdx);
+                        index = Convert.ToInt32(input.Substring(targetIdx + 1));
+                    }
+                    else
+                    {
+                        plotKey = input;
+                        index = 0;
+                    }
+
+                    inputPlotKeys.Add(plotKey);
+                    inputIndexes.Add(index);
+                }
+
+                this.inputPlotKeys = inputPlotKeys.ToArray();
+                this.inputIndexes = inputIndexes.ToArray();
             }
             catch (Exception ex)
             {

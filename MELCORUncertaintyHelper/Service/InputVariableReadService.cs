@@ -10,7 +10,6 @@ namespace MELCORUncertaintyHelper.Service
 {
     public class InputVariableReadService
     {
-        private string[] inputs;
         private string[] inputPackageNames;
         private int[] inputControlVolumes;
         private int[] idxes;
@@ -19,6 +18,7 @@ namespace MELCORUncertaintyHelper.Service
         private string[] inputVariables;
         private string[] inputPlotKeys;
         private int[] inputIndexes;
+        private int[] inputTRIndexes;
 
         private InputVariableReadService()
         {
@@ -35,8 +35,6 @@ namespace MELCORUncertaintyHelper.Service
             }
         }
 
-        public Object GetInputs() => this.inputs.Clone();
-
         public Object GetIdxes() => this.idxes.Clone();
 
         public Object GetTotalIdxes() => this.totalIdxes.Clone();
@@ -47,13 +45,15 @@ namespace MELCORUncertaintyHelper.Service
 
         public Object GetInputIndexes() => this.inputIndexes.Clone();
 
+        public Object GetInputTRIndexes() => this.inputTRIndexes.Clone();
+
 
         public bool InputManage()
         {
             try
             {
                 this.ReadInput();
-                if (this.inputs.Length < 0 || this.inputs == null)
+                if (this.inputVariables.Length < 0 || this.inputVariables == null)
                 {
                     MessageBox.Show("There is no search word", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return false;
@@ -85,18 +85,17 @@ namespace MELCORUncertaintyHelper.Service
                     }
                 }
 
-                var inputs = new List<string>();
+                var inputVariables = new List<string>();
                 for (var i = 0; i < dgvInputs.RowCount - 1; i++)
                 {
                     var input = dgvInputs[colIdx, i].Value.ToString();
                     if (!string.IsNullOrEmpty(input))
                     {
-                        inputs.Add(input);
+                        inputVariables.Add(input);
                     }
                 }
 
-                this.inputs = inputs.ToArray();
-                this.inputVariables = inputs.ToArray();
+                this.inputVariables = inputVariables.ToArray();
             }
             catch (Exception ex)
             {
@@ -113,19 +112,19 @@ namespace MELCORUncertaintyHelper.Service
                 var packageNames = new List<string>();
                 var controlVolumes = new List<int>();
 
-                for (var i = 0; i < this.inputs.Length; i++)
+                for (var i = 0; i < this.inputVariables.Length; i++)
                 {
                     string name;
                     int node;
 
-                    if (this.inputs[i].Contains("."))
+                    if (this.inputVariables[i].Contains("."))
                     {
-                        name = this.inputs[i].Substring(0, this.inputs[i].LastIndexOf("."));
-                        node = Convert.ToInt32(this.inputs[i].Substring(this.inputs[i].LastIndexOf(".") + 1));
+                        name = this.inputVariables[i].Substring(0, this.inputVariables[i].LastIndexOf("."));
+                        node = Convert.ToInt32(this.inputVariables[i].Substring(this.inputVariables[i].LastIndexOf(".") + 1));
                     }
                     else
                     {
-                        name = this.inputs[i];
+                        name = this.inputVariables[i];
                         node = 0;
                     }
 
@@ -182,13 +181,13 @@ namespace MELCORUncertaintyHelper.Service
                 int rearIdx;
                 int totalIdx;
 
-                for (var i = 0; i < this.inputs.Length; i++)
+                for (var i = 0; i < this.inputVariables.Length; i++)
                 {
                     frontIdx = Array.IndexOf(packageNames, this.inputPackageNames[i]);
                     rearIdx = Array.LastIndexOf(packageNames, this.inputPackageNames[i]);
                     if (frontIdx == -1)
                     {
-                        frontIdx = Array.IndexOf(packageNames, this.inputs[i]);
+                        frontIdx = Array.IndexOf(packageNames, this.inputVariables[i]);
                         if (frontIdx == -1)
                         {
                             totalIdx = packageVariableCnt[frontIdx] - 1;
@@ -214,6 +213,39 @@ namespace MELCORUncertaintyHelper.Service
 
                 this.idxes = idxes.ToArray();
                 this.totalIdxes = totalIdxes.ToArray();
+            }
+            catch (Exception ex)
+            {
+                var logWrite = new LogFileWriteService(ex);
+                logWrite.MakeLogFile();
+            }
+        }
+
+        public void FindInputTRIndexes(string[] plotKeys, int[] offsets, int[] indexes)
+        {
+            try
+            {
+                var inputTRIndexes = new List<int>();
+                for (var i = 0; i < this.inputPlotKeys.Length; i++)
+                {
+                    var plotKeyIdx = Array.FindIndex(plotKeys, x => x.Equals(this.inputPlotKeys[i]));
+                    var plotKeyOffset = offsets[plotKeyIdx];
+                    int plotKeyNextOffset;
+                    if (plotKeyIdx == offsets.Length - 1)
+                    {
+                        plotKeyNextOffset = indexes.Length;
+                    }
+                    else
+                    {
+                        plotKeyNextOffset = offsets[plotKeyIdx + 1];
+                    }
+
+                    var start = plotKeyOffset - 1;
+                    var end = plotKeyNextOffset;
+                    var idx = Array.IndexOf(indexes, this.inputIndexes[i], start, end - start) + 4;
+                    inputTRIndexes.Add(idx);
+                }
+                this.inputTRIndexes = inputTRIndexes.ToArray();
             }
             catch (Exception ex)
             {

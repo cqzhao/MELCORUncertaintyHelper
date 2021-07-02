@@ -62,13 +62,13 @@ namespace MELCORUncertaintyHelper.Service
                         observations.Add(value);
                     }
 
-                    var normalDistribution = this.CalcNormalDistribution(observations.ToArray());
+                    //var normalDistribution = this.CalcNormalDistribution(observations.ToArray());
                     var lognormalDistribution = this.CalcLognormalDistribution(observations.ToArray());
-                    var momentDistribution = this.CalcMomentDistribution(observations.ToArray());
+                    //var momentDistribution = this.CalcMomentDistribution(observations.ToArray());
 
-                    this.distributionDatas[i].normalDistributions[j] = normalDistribution;
+                    //this.distributionDatas[i].normalDistributions[j] = normalDistribution;
                     this.distributionDatas[i].lognormalDistributions[j] = lognormalDistribution;
-                    this.distributionDatas[i].momentDistributions[j] = momentDistribution;
+                    //this.distributionDatas[i].momentDistributions[j] = momentDistribution;
                 }
             }
         }
@@ -119,12 +119,6 @@ namespace MELCORUncertaintyHelper.Service
 
         private Distribution CalcLognormalDistribution(double[] observations)
         {
-            /*var lognormal = new LognormalDistribution();
-            lognormal.Fit(observations);
-
-            var mu = lognormal.Location;
-            var sigma = lognormal.Shape;*/
-
             var mean = Statistics.Mean(observations);
             var stddev = Statistics.StandardDeviation(observations);
             var mu = Math.Log((mean * mean) / Math.Sqrt(stddev * stddev + mean * mean));

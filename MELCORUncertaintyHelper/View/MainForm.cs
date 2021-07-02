@@ -119,7 +119,7 @@ namespace MELCORUncertaintyHelper.View
             this.isCheckedStatistics = frmServiceCheck.isCheckedStatistics;
 
             var str = new StringBuilder();
-            str.Append(DateTime.Now.ToString("[yyyy-MM-dd-HH:mm:ss]   "));
+            str.Append(DateTime.Now.ToString("[yyyy-MM-dd HH:mm:ss]   "));
             str.AppendLine("Running is started");
             this.frmStatus.PrintStatus(str);
             var manager = new ExtractManager(this.isCheckedInterpolation, this.isCheckedStatistics);
@@ -128,7 +128,7 @@ namespace MELCORUncertaintyHelper.View
             this.PrintExtractedVariables();
 
             str.Clear();
-            str.Append(DateTime.Now.ToString("[yyyy-MM-dd-HH:mm:ss]   "));
+            str.Append(DateTime.Now.ToString("[yyyy-MM-dd HH:mm:ss]   "));
             str.AppendLine("Running is completed");
             this.frmStatus.PrintStatus(str);
         }

@@ -59,7 +59,7 @@ namespace MELCORUncertaintyHelper.Manager
                     this.ptfReadService = new PTFFileReadService(ptfFiles[i]);
                     this.ptfReadService.Read();
                     msg = new StringBuilder();
-                    msg.Append(DateTime.Now.ToString("[yyyy-MM-dd-HH:mm:ss]   "));
+                    msg.Append(DateTime.Now.ToString("[yyyy-MM-dd HH:mm:ss]   "));
                     msg.Append("Completed Read ");
                     msg.AppendLine(ptfFiles[i].fullPath);
                     frmStatus.PrintStatus(msg);
@@ -68,7 +68,7 @@ namespace MELCORUncertaintyHelper.Manager
                 if (this.isCheckedInterpolation == true)
                 {
                     msg = new StringBuilder();
-                    msg.Append(DateTime.Now.ToString("[yyyy-MM-dd-HH:mm:ss]   "));
+                    msg.Append(DateTime.Now.ToString("[yyyy-MM-dd HH:mm:ss]   "));
                     msg.AppendLine("Interpolation Process is started");
                     frmStatus.PrintStatus(msg);
 
@@ -79,7 +79,7 @@ namespace MELCORUncertaintyHelper.Manager
                     this.refineProcessService.Refine();
 
                     msg = new StringBuilder();
-                    msg.Append(DateTime.Now.ToString("[yyyy-MM-dd-HH:mm:ss]   "));
+                    msg.Append(DateTime.Now.ToString("[yyyy-MM-dd HH:mm:ss]   "));
                     msg.AppendLine("Interpolation Process is completed");
                     frmStatus.PrintStatus(msg);
                 }
@@ -87,7 +87,7 @@ namespace MELCORUncertaintyHelper.Manager
                 if (this.isCheckedStatistics == true)
                 {
                     msg = new StringBuilder();
-                    msg.Append(DateTime.Now.ToString("[yyyy-MM-dd-HH:mm:ss]   "));
+                    msg.Append(DateTime.Now.ToString("[yyyy-MM-dd HH:mm:ss]   "));
                     msg.AppendLine("Distribution Process is started");
                     frmStatus.PrintStatus(msg);
 
@@ -95,7 +95,7 @@ namespace MELCORUncertaintyHelper.Manager
                     this.distributionService.Run();
 
                     msg = new StringBuilder();
-                    msg.Append(DateTime.Now.ToString("[yyyy-MM-dd-HH:mm:ss]   "));
+                    msg.Append(DateTime.Now.ToString("[yyyy-MM-dd HH:mm:ss]   "));
                     msg.AppendLine("Distribution Process is completed");
                     frmStatus.PrintStatus(msg);
                 }

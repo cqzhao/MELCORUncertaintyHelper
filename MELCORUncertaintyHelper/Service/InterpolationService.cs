@@ -16,12 +16,22 @@ namespace MELCORUncertaintyHelper.Service
 
         public InterpolationService()
         {
-
+            this.extractDatas = (ExtractData[])ExtractDataManager.GetDataManager.GetExtractDatas();
+            this.refineDatas = (RefineData[])RefineDataManager.GetRefineDataManager.GetRefineDatas();
         }
 
         public void Interpolation()
         {
-            this.LoadData();
+            if (this.extractDatas == null || this.extractDatas.Length < 0)
+            {
+                return;
+            }
+
+            if (this.refineDatas == null || this.refineDatas.Length < 0)
+            {
+                return;
+            }
+
             var dataLength = this.refineDatas.Length;
             var variableLength = this.refineDatas[0].timeRecordDatas.Length;
 
@@ -43,6 +53,10 @@ namespace MELCORUncertaintyHelper.Service
                         var xPrime = this.extractDatas[i].timeRecordDatas[j].time[xPrimeIdx];
                         var yPrime = this.extractDatas[i].timeRecordDatas[j].value[xPrimeIdx];
                         var q = this.Calculation(x, y, xPrime, yPrime, p);
+                        if(Double.IsNaN(q))
+                        {
+                            q = this.extractDatas[i].timeRecordDatas[j].value[xIdx];
+                        }
                         this.refineDatas[i].timeRecordDatas[j].value[k] = q;
                     }
                 }
@@ -50,20 +64,6 @@ namespace MELCORUncertaintyHelper.Service
 
             this.refineDataManager = RefineDataManager.GetRefineDataManager;
             this.refineDataManager.SetRefineDatas(this.refineDatas.Clone());
-        }
-
-        private void LoadData()
-        {
-            this.extractDatas = (ExtractData[])ExtractDataManager.GetDataManager.GetExtractDatas();
-            if (this.extractDatas == null || this.extractDatas.Length < 0)
-            {
-                return;
-            }
-            this.refineDatas = (RefineData[])RefineDataManager.GetRefineDataManager.GetRefineDatas();
-            if (this.refineDatas == null || this.refineDatas.Length < 0)
-            {
-                return;
-            }
         }
 
         private double Calculation(double x, double y, double xPrime, double yPrime, double p)

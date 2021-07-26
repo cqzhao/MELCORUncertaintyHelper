@@ -1,1 +1,1 @@
-# Code Of MELcor uncertainty analysis, COMEL
+# MELCOR Result to Table And Graph, MERTAG

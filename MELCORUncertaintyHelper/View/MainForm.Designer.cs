@@ -42,6 +42,8 @@
             this.msiShowTimeInput = new System.Windows.Forms.ToolStripMenuItem();
             this.buildBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msiRun = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpHToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.msiAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.dockPnlMain = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             this.vS2015DarkTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2015DarkTheme();
@@ -54,7 +56,8 @@
             this.fileFToolStripMenuItem,
             this.editEToolStripMenuItem,
             this.viewVToolStripMenuItem,
-            this.buildBToolStripMenuItem});
+            this.buildBToolStripMenuItem,
+            this.helpHToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1264, 24);
@@ -153,6 +156,21 @@
             this.msiRun.Text = "Run(&R)";
             this.msiRun.Click += new System.EventHandler(this.MsiRun_Click);
             // 
+            // helpHToolStripMenuItem
+            // 
+            this.helpHToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.msiAbout});
+            this.helpHToolStripMenuItem.Name = "helpHToolStripMenuItem";
+            this.helpHToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.helpHToolStripMenuItem.Text = "Help(&H)";
+            // 
+            // msiAbout
+            // 
+            this.msiAbout.Name = "msiAbout";
+            this.msiAbout.Size = new System.Drawing.Size(180, 22);
+            this.msiAbout.Text = "About(&A)";
+            this.msiAbout.Click += new System.EventHandler(this.MsiAbout_Click);
+            // 
             // statusStrip1
             // 
             this.statusStrip1.Location = new System.Drawing.Point(0, 659);
@@ -214,5 +232,7 @@
         private System.Windows.Forms.ToolStripMenuItem msiShowExtracted;
         private System.Windows.Forms.ToolStripMenuItem msiShowStatus;
         private System.Windows.Forms.ToolStripMenuItem msiShowTimeInput;
+        private System.Windows.Forms.ToolStripMenuItem helpHToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem msiAbout;
     }
 }

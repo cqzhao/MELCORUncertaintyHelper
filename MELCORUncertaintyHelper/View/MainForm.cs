@@ -246,5 +246,11 @@ namespace MELCORUncertaintyHelper.View
                 }
             }
         }
+
+        private void MsiAbout_Click(object sender, EventArgs e)
+        {
+            var frmAbout = new HelpAboutForm();
+            frmAbout.ShowDialog();
+        }
     }
 }

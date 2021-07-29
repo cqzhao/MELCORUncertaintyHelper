@@ -138,6 +138,12 @@
     <Compile Include="View\FileExplorerForm.Designer.cs">
       <DependentUpon>FileExplorerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\HelpAboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\HelpAboutForm.Designer.cs">
+      <DependentUpon>HelpAboutForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -222,6 +228,9 @@
     </Compile>
     <EmbeddedResource Include="View\FileExplorerForm.resx">
       <DependentUpon>FileExplorerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\HelpAboutForm.resx">
+      <DependentUpon>HelpAboutForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

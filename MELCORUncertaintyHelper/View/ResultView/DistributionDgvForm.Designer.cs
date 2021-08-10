@@ -79,6 +79,7 @@
             this.dgvResults.RowTemplate.Height = 23;
             this.dgvResults.Size = new System.Drawing.Size(800, 450);
             this.dgvResults.TabIndex = 3;
+            this.dgvResults.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DgvResults_ColumnAdded);
             // 
             // DistributionDgvForm
             // 

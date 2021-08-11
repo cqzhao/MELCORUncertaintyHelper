@@ -58,7 +58,8 @@ namespace MELCORUncertaintyHelper.View.ResultView
                     var dataLength = this.refineDatas[i].timeRecordDatas[targetIdx].time.Length;
                     var series = new LineSeries()
                     {
-                        Title = this.refineDatas[i].fileName,
+                        //Title = this.refineDatas[i].fileName,
+                        Color = OxyColors.DimGray,
                     };
                     for (var j = 0; j < dataLength; j++)
                     {

@@ -307,6 +307,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\save_image.png" />
     <Content Include="ScreenShot\The_screenshot_of_MERTAG.JPG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -3,6 +3,7 @@ using MELCORUncertaintyHelper.Model;
 using OxyPlot;
 using OxyPlot.Axes;
 using OxyPlot.Series;
+using OxyPlot.WindowsForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,7 @@ namespace MELCORUncertaintyHelper.View.ResultView
 {
     public partial class VariableResultGphForm : DockContent
     {
+        private StatusOutputForm frmStatus;
         private ExtractData[] extractDatas;
         private RefineData[] refineDatas;
         private PlotModel plotModel;
@@ -27,6 +29,7 @@ namespace MELCORUncertaintyHelper.View.ResultView
         {
             InitializeComponent();
 
+            this.frmStatus = StatusOutputForm.GetFrmStatus;
             this.extractDatas = (ExtractData[])ExtractDataManager.GetDataManager.GetExtractDatas();
             this.refineDatas = (RefineData[])RefineDataManager.GetRefineDataManager.GetRefineDatas();
             this.plotModel = new PlotModel()
@@ -39,6 +42,28 @@ namespace MELCORUncertaintyHelper.View.ResultView
             };
             this.gphResults.Model = this.plotModel;
             this.isCheckedInterpolation = isCheckedInterpolation;
+        }
+
+        private async void TsbtnSave_Click(object sender, EventArgs e)
+        {
+            var sfd = new SaveFileDialog()
+            {
+                DefaultExt = "png",
+                Filter = "PNG Files(*.png)|*.png",
+            };
+            string fileName = string.Format("{0}.png", this.TabText.ToString());
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                fileName = sfd.FileName;
+            }
+            await Task.Run(() =>
+            {
+                PngExporter.Export(this.plotModel, fileName, 800, 600, OxyColors.White);
+                var statusContents = new StringBuilder();
+                statusContents.AppendFormat("{0}   File {1} is created{2}",
+                    DateTime.Now.ToString("[yyyy-MM-dd HH:mm:ss]"), fileName, Environment.NewLine);
+                this.frmStatus.PrintStatus(statusContents);
+            });
         }
 
         public void PrintResult(string target)

@@ -283,9 +283,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Images\graph.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Images\file_csv.png" />
   </ItemGroup>
   <ItemGroup>
@@ -308,6 +305,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\save_image.png" />
+    <None Include="Images\splinechart.ico" />
     <Content Include="ScreenShot\The_screenshot_of_MERTAG.JPG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -30,8 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LogNormalDistributionGphForm));
             this.tsrMenu = new System.Windows.Forms.ToolStrip();
-            this.gphResults = new OxyPlot.WindowsForms.PlotView();
             this.tsbtnSave = new System.Windows.Forms.ToolStripButton();
+            this.gphResults = new OxyPlot.WindowsForms.PlotView();
             this.tsrMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,6 +46,15 @@
             this.tsrMenu.TabIndex = 0;
             this.tsrMenu.Text = "toolStrip1";
             // 
+            // tsbtnSave
+            // 
+            this.tsbtnSave.Image = global::MELCORUncertaintyHelper.Properties.Resources.save_image;
+            this.tsbtnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnSave.Name = "tsbtnSave";
+            this.tsbtnSave.Size = new System.Drawing.Size(100, 22);
+            this.tsbtnSave.Text = "Save Graph";
+            this.tsbtnSave.Click += new System.EventHandler(this.TsbtnSave_Click);
+            // 
             // gphResults
             // 
             this.gphResults.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -57,15 +66,6 @@
             this.gphResults.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
             this.gphResults.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
             this.gphResults.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
-            // 
-            // tsbtnSave
-            // 
-            this.tsbtnSave.Image = global::MELCORUncertaintyHelper.Properties.Resources.save_image;
-            this.tsbtnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbtnSave.Name = "tsbtnSave";
-            this.tsbtnSave.Size = new System.Drawing.Size(100, 22);
-            this.tsbtnSave.Text = "Save Graph";
-            this.tsbtnSave.Click += new System.EventHandler(this.TsbtnSave_Click);
             // 
             // LogNormalDistributionGphForm
             // 

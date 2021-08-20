@@ -286,9 +286,6 @@
     <None Include="Images\file_csv.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Images\table.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Images\appIcon.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -306,6 +303,7 @@
   <ItemGroup>
     <Content Include="Images\save_image.png" />
     <None Include="Images\splinechart.ico" />
+    <None Include="Images\table.ico" />
     <Content Include="ScreenShot\The_screenshot_of_MERTAG.JPG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

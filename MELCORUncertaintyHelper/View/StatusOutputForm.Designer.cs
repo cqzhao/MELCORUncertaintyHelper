@@ -38,9 +38,9 @@
             // 
             // 
             this.txtStatus.CustomButton.Image = null;
-            this.txtStatus.CustomButton.Location = new System.Drawing.Point(352, 2);
+            this.txtStatus.CustomButton.Location = new System.Drawing.Point(446, 1);
             this.txtStatus.CustomButton.Name = "";
-            this.txtStatus.CustomButton.Size = new System.Drawing.Size(445, 445);
+            this.txtStatus.CustomButton.Size = new System.Drawing.Size(598, 610);
             this.txtStatus.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.txtStatus.CustomButton.TabIndex = 1;
             this.txtStatus.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -61,7 +61,7 @@
             this.txtStatus.SelectionLength = 0;
             this.txtStatus.SelectionStart = 0;
             this.txtStatus.ShortcutsEnabled = true;
-            this.txtStatus.Size = new System.Drawing.Size(800, 450);
+            this.txtStatus.Size = new System.Drawing.Size(914, 525);
             this.txtStatus.TabIndex = 0;
             this.txtStatus.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.txtStatus.UseSelectable = true;
@@ -70,10 +70,11 @@
             // 
             // StatusOutputForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(914, 525);
             this.Controls.Add(this.txtStatus);
+            this.Font = new System.Drawing.Font("Verdana", 9F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "StatusOutputForm";
             this.TabText = "Status";

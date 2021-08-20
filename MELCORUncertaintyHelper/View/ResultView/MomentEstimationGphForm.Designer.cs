@@ -38,7 +38,7 @@
             this.gphResults.Location = new System.Drawing.Point(0, 0);
             this.gphResults.Name = "gphResults";
             this.gphResults.PanCursor = System.Windows.Forms.Cursors.Hand;
-            this.gphResults.Size = new System.Drawing.Size(800, 450);
+            this.gphResults.Size = new System.Drawing.Size(914, 525);
             this.gphResults.TabIndex = 3;
             this.gphResults.ZoomHorizontalCursor = System.Windows.Forms.Cursors.SizeWE;
             this.gphResults.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
@@ -46,10 +46,11 @@
             // 
             // MomentEstimationGphForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(914, 525);
             this.Controls.Add(this.gphResults);
+            this.Font = new System.Drawing.Font("Verdana", 9F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MomentEstimationGphForm";
             this.ResumeLayout(false);

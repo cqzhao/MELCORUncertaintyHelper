@@ -52,6 +52,7 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.Font = new System.Drawing.Font("Verdana", 9F);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileFToolStripMenuItem,
             this.editEToolStripMenuItem,
@@ -60,7 +61,8 @@
             this.helpHToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1264, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1445, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -68,14 +70,15 @@
             // 
             this.fileFToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.msiOpen});
+            this.fileFToolStripMenuItem.Font = new System.Drawing.Font("Verdana", 9F);
             this.fileFToolStripMenuItem.Name = "fileFToolStripMenuItem";
-            this.fileFToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
+            this.fileFToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.fileFToolStripMenuItem.Text = "File(&F)";
             // 
             // msiOpen
             // 
             this.msiOpen.Name = "msiOpen";
-            this.msiOpen.Size = new System.Drawing.Size(120, 22);
+            this.msiOpen.Size = new System.Drawing.Size(180, 22);
             this.msiOpen.Text = "Open(&O)";
             this.msiOpen.Click += new System.EventHandler(this.MsiOpen_Click);
             // 
@@ -83,14 +86,15 @@
             // 
             this.editEToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.msiDeleteAllFiles});
+            this.editEToolStripMenuItem.Font = new System.Drawing.Font("Verdana", 9F);
             this.editEToolStripMenuItem.Name = "editEToolStripMenuItem";
-            this.editEToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.editEToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.editEToolStripMenuItem.Text = "Edit(&E)";
             // 
             // msiDeleteAllFiles
             // 
             this.msiDeleteAllFiles.Name = "msiDeleteAllFiles";
-            this.msiDeleteAllFiles.Size = new System.Drawing.Size(202, 22);
+            this.msiDeleteAllFiles.Size = new System.Drawing.Size(222, 22);
             this.msiDeleteAllFiles.Text = "Delete All Input Files(&D)";
             this.msiDeleteAllFiles.Click += new System.EventHandler(this.MsiDeleteAllFiles_Click);
             // 
@@ -102,42 +106,43 @@
             this.msiShowExtracted,
             this.msiShowStatus,
             this.msiShowTimeInput});
+            this.viewVToolStripMenuItem.Font = new System.Drawing.Font("Verdana", 9F);
             this.viewVToolStripMenuItem.Name = "viewVToolStripMenuItem";
-            this.viewVToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.viewVToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
             this.viewVToolStripMenuItem.Text = "View(&V)";
             // 
             // msiShowInputFileList
             // 
             this.msiShowInputFileList.Name = "msiShowInputFileList";
-            this.msiShowInputFileList.Size = new System.Drawing.Size(171, 22);
+            this.msiShowInputFileList.Size = new System.Drawing.Size(188, 22);
             this.msiShowInputFileList.Text = "Input File List";
             this.msiShowInputFileList.Click += new System.EventHandler(this.MsiShowInputFileList_Click);
             // 
             // msiShowVariableInput
             // 
             this.msiShowVariableInput.Name = "msiShowVariableInput";
-            this.msiShowVariableInput.Size = new System.Drawing.Size(171, 22);
+            this.msiShowVariableInput.Size = new System.Drawing.Size(188, 22);
             this.msiShowVariableInput.Text = "Variable Input List";
             this.msiShowVariableInput.Click += new System.EventHandler(this.MsiShowVariableInput_Click);
             // 
             // msiShowExtracted
             // 
             this.msiShowExtracted.Name = "msiShowExtracted";
-            this.msiShowExtracted.Size = new System.Drawing.Size(171, 22);
+            this.msiShowExtracted.Size = new System.Drawing.Size(188, 22);
             this.msiShowExtracted.Text = "Extracted Variable";
             this.msiShowExtracted.Click += new System.EventHandler(this.MsiShowExtracted_Click);
             // 
             // msiShowStatus
             // 
             this.msiShowStatus.Name = "msiShowStatus";
-            this.msiShowStatus.Size = new System.Drawing.Size(171, 22);
+            this.msiShowStatus.Size = new System.Drawing.Size(188, 22);
             this.msiShowStatus.Text = "Status Output";
             this.msiShowStatus.Click += new System.EventHandler(this.MsiShowStatus_Click);
             // 
             // msiShowTimeInput
             // 
             this.msiShowTimeInput.Name = "msiShowTimeInput";
-            this.msiShowTimeInput.Size = new System.Drawing.Size(171, 22);
+            this.msiShowTimeInput.Size = new System.Drawing.Size(188, 22);
             this.msiShowTimeInput.Text = "Time Input";
             this.msiShowTimeInput.Click += new System.EventHandler(this.MsiShowTimeInput_Click);
             // 
@@ -145,14 +150,15 @@
             // 
             this.buildBToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.msiRun});
+            this.buildBToolStripMenuItem.Font = new System.Drawing.Font("Verdana", 9F);
             this.buildBToolStripMenuItem.Name = "buildBToolStripMenuItem";
-            this.buildBToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.buildBToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
             this.buildBToolStripMenuItem.Text = "Build(&B)";
             // 
             // msiRun
             // 
             this.msiRun.Name = "msiRun";
-            this.msiRun.Size = new System.Drawing.Size(110, 22);
+            this.msiRun.Size = new System.Drawing.Size(180, 22);
             this.msiRun.Text = "Run(&R)";
             this.msiRun.Click += new System.EventHandler(this.MsiRun_Click);
             // 
@@ -160,8 +166,9 @@
             // 
             this.helpHToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.msiAbout});
+            this.helpHToolStripMenuItem.Font = new System.Drawing.Font("Verdana", 9F);
             this.helpHToolStripMenuItem.Name = "helpHToolStripMenuItem";
-            this.helpHToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.helpHToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.helpHToolStripMenuItem.Text = "Help(&H)";
             // 
             // msiAbout
@@ -173,9 +180,11 @@
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 659);
+            this.statusStrip1.Font = new System.Drawing.Font("Verdana", 9F);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 772);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1264, 22);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(1445, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -187,18 +196,19 @@
             this.dockPnlMain.Name = "dockPnlMain";
             this.dockPnlMain.Padding = new System.Windows.Forms.Padding(6);
             this.dockPnlMain.ShowAutoHideContentOnHover = false;
-            this.dockPnlMain.Size = new System.Drawing.Size(1264, 635);
+            this.dockPnlMain.Size = new System.Drawing.Size(1445, 748);
             this.dockPnlMain.TabIndex = 2;
             this.dockPnlMain.Theme = this.vS2015DarkTheme1;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.ClientSize = new System.Drawing.Size(1445, 794);
             this.Controls.Add(this.dockPnlMain);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
+            this.Font = new System.Drawing.Font("Verdana", 9F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;

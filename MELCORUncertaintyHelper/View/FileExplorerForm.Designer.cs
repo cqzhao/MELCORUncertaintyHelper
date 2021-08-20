@@ -36,20 +36,21 @@
             // 
             this.tvwFiles.AllowDrop = true;
             this.tvwFiles.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tvwFiles.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.tvwFiles.Font = new System.Drawing.Font("Verdana", 12F);
             this.tvwFiles.Location = new System.Drawing.Point(0, 0);
             this.tvwFiles.Name = "tvwFiles";
-            this.tvwFiles.Size = new System.Drawing.Size(800, 450);
+            this.tvwFiles.Size = new System.Drawing.Size(914, 525);
             this.tvwFiles.TabIndex = 0;
             this.tvwFiles.DragDrop += new System.Windows.Forms.DragEventHandler(this.TvwFiles_DragDrop);
             this.tvwFiles.DragEnter += new System.Windows.Forms.DragEventHandler(this.TvwFiles_DragEnter);
             // 
             // FileExplorerForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(914, 525);
             this.Controls.Add(this.tvwFiles);
+            this.Font = new System.Drawing.Font("Verdana", 9F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FileExplorerForm";
             this.TabText = "File Explorer";

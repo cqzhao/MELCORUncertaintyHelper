@@ -54,18 +54,18 @@
             this.tsBtnSave});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(800, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(914, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // tsBtnCheckAll
             // 
             this.tsBtnCheckAll.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsBtnCheckAll.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsBtnCheckAll.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tsBtnCheckAll.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnCheckAll.Image")));
             this.tsBtnCheckAll.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsBtnCheckAll.Name = "tsBtnCheckAll";
-            this.tsBtnCheckAll.Size = new System.Drawing.Size(64, 22);
+            this.tsBtnCheckAll.Size = new System.Drawing.Size(72, 22);
             this.tsBtnCheckAll.Text = "Check All";
             this.tsBtnCheckAll.Click += new System.EventHandler(this.TsBtnCheckAll_Click);
             // 
@@ -77,11 +77,11 @@
             // tsBtnUncheckAll
             // 
             this.tsBtnUncheckAll.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsBtnUncheckAll.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.tsBtnUncheckAll.Font = new System.Drawing.Font("Verdana", 9.75F);
             this.tsBtnUncheckAll.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnUncheckAll.Image")));
             this.tsBtnUncheckAll.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsBtnUncheckAll.Name = "tsBtnUncheckAll";
-            this.tsBtnUncheckAll.Size = new System.Drawing.Size(80, 22);
+            this.tsBtnUncheckAll.Size = new System.Drawing.Size(89, 22);
             this.tsBtnUncheckAll.Text = "UnCheck All";
             this.tsBtnUncheckAll.Click += new System.EventHandler(this.TsBtnUncheckAll_Click);
             // 
@@ -92,12 +92,12 @@
             // 
             // tsBtnSave
             // 
-            this.tsBtnSave.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.tsBtnSave.Font = new System.Drawing.Font("Verdana", 9.75F);
             this.tsBtnSave.ForeColor = System.Drawing.Color.Black;
             this.tsBtnSave.Image = global::MELCORUncertaintyHelper.Properties.Resources.file_csv;
             this.tsBtnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsBtnSave.Name = "tsBtnSave";
-            this.tsBtnSave.Size = new System.Drawing.Size(55, 22);
+            this.tsBtnSave.Size = new System.Drawing.Size(61, 22);
             this.tsBtnSave.Text = "Save";
             this.tsBtnSave.Click += new System.EventHandler(this.TsBtnSave_Click);
             // 
@@ -110,7 +110,7 @@
             this.dgvVariables.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.EnableWithoutHeaderText;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 10F);
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Verdana", 9F);
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -119,7 +119,7 @@
             this.dgvVariables.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 9F);
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -131,7 +131,7 @@
             this.dgvVariables.Name = "dgvVariables";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Verdana", 9F);
             dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -139,20 +139,21 @@
             this.dgvVariables.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvVariables.RowHeadersVisible = false;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Verdana", 9.75F);
             this.dgvVariables.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvVariables.RowTemplate.Height = 23;
-            this.dgvVariables.Size = new System.Drawing.Size(800, 425);
+            this.dgvVariables.Size = new System.Drawing.Size(914, 500);
             this.dgvVariables.TabIndex = 2;
             this.dgvVariables.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DdgvVariables_CellDoubleClick);
             // 
             // ExtractedVariableForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(914, 525);
             this.Controls.Add(this.dgvVariables);
             this.Controls.Add(this.toolStrip1);
+            this.Font = new System.Drawing.Font("Verdana", 9F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ExtractedVariableForm";
             this.TabText = "Extracted Variable";

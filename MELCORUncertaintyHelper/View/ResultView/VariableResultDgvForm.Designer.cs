@@ -80,6 +80,7 @@
             this.dgvResults.Size = new System.Drawing.Size(914, 525);
             this.dgvResults.TabIndex = 2;
             this.dgvResults.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.DgvResults_CellPainting);
+            this.dgvResults.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DgvResults_ColumnAdded);
             this.dgvResults.ColumnWidthChanged += new System.Windows.Forms.DataGridViewColumnEventHandler(this.DgvResults_ColumnWidthChanged);
             this.dgvResults.Scroll += new System.Windows.Forms.ScrollEventHandler(this.DgvResults_Scroll);
             this.dgvResults.Paint += new System.Windows.Forms.PaintEventHandler(this.DgvResults_Paint);

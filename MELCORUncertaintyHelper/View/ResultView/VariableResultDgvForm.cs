@@ -121,6 +121,11 @@ namespace MELCORUncertaintyHelper.View.ResultView
             }
         }
 
+        private void DgvResults_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
+        {
+            e.Column.FillWeight = 10;
+        }
+
         public void PrintResult(string target)
         {
             var rowSize = this.FindMaxTimeLength(target);

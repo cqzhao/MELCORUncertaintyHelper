@@ -66,6 +66,9 @@
     <Reference Include="Accord.Statistics, Version=3.8.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
       <HintPath>..\packages\Accord.Statistics.3.8.0\lib\net462\Accord.Statistics.dll</HintPath>
     </Reference>
+    <Reference Include="MaterialSkin, Version=2.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialSkin.2.2.3.1\lib\net461\MaterialSkin.dll</HintPath>
+    </Reference>
     <Reference Include="MathNet.Numerics, Version=4.15.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MathNet.Numerics.4.15.0\lib\net461\MathNet.Numerics.dll</HintPath>
     </Reference>
@@ -137,6 +140,12 @@
     </Compile>
     <Compile Include="View\FileExplorerForm.Designer.cs">
       <DependentUpon>FileExplorerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\GphAxisControlForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\GphAxisControlForm.Designer.cs">
+      <DependentUpon>GphAxisControlForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\HelpAboutForm.cs">
       <SubType>Form</SubType>
@@ -229,6 +238,9 @@
     <EmbeddedResource Include="View\FileExplorerForm.resx">
       <DependentUpon>FileExplorerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\GphAxisControlForm.resx">
+      <DependentUpon>GphAxisControlForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\HelpAboutForm.resx">
       <DependentUpon>HelpAboutForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -301,6 +313,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Images\Axis_16x.png" />
     <Content Include="Images\save_image.png" />
     <None Include="Images\splinechart.ico" />
     <None Include="Images\table.ico" />

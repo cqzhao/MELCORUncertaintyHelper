@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VariableResultGphForm));
             this.tsrMenu = new System.Windows.Forms.ToolStrip();
             this.tsbtnSave = new System.Windows.Forms.ToolStripButton();
+            this.tsbtnAxisSetting = new System.Windows.Forms.ToolStripButton();
             this.gphResults = new OxyPlot.WindowsForms.PlotView();
             this.tsrMenu.SuspendLayout();
             this.SuspendLayout();
@@ -39,7 +40,8 @@
             // 
             this.tsrMenu.Font = new System.Drawing.Font("Verdana", 9F);
             this.tsrMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbtnSave});
+            this.tsbtnSave,
+            this.tsbtnAxisSetting});
             this.tsrMenu.Location = new System.Drawing.Point(0, 0);
             this.tsrMenu.Name = "tsrMenu";
             this.tsrMenu.Size = new System.Drawing.Size(914, 25);
@@ -55,6 +57,15 @@
             this.tsbtnSave.Size = new System.Drawing.Size(100, 22);
             this.tsbtnSave.Text = "Save Graph";
             this.tsbtnSave.Click += new System.EventHandler(this.TsbtnSave_Click);
+            // 
+            // tsbtnAxisSetting
+            // 
+            this.tsbtnAxisSetting.Image = global::MELCORUncertaintyHelper.Properties.Resources.Axis_16x;
+            this.tsbtnAxisSetting.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnAxisSetting.Name = "tsbtnAxisSetting";
+            this.tsbtnAxisSetting.Size = new System.Drawing.Size(101, 22);
+            this.tsbtnAxisSetting.Text = "Axis Setting";
+            this.tsbtnAxisSetting.Click += new System.EventHandler(this.TsbtnAxisSetting_Click);
             // 
             // gphResults
             // 
@@ -91,5 +102,6 @@
         private System.Windows.Forms.ToolStrip tsrMenu;
         private OxyPlot.WindowsForms.PlotView gphResults;
         private System.Windows.Forms.ToolStripButton tsbtnSave;
+        private System.Windows.Forms.ToolStripButton tsbtnAxisSetting;
     }
 }

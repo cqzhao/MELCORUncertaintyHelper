@@ -1,6 +1,7 @@
 ﻿using MELCORUncertaintyHelper.Manager;
 using MELCORUncertaintyHelper.Model;
 using OxyPlot;
+using OxyPlot.Axes;
 using OxyPlot.Series;
 using OxyPlot.WindowsForms;
 using System;
@@ -18,15 +19,22 @@ namespace MELCORUncertaintyHelper.View.ResultView
 {
     public partial class LogNormalDistributionGphForm : DockContent
     {
+        private GphAxisControlForm frmGphAxisControl;
         private StatusOutputForm frmStatus;
         private RefineData[] refineDatas;
         private DistributionData[] distributionDatas;
         private PlotModel plotModel;
 
+        private bool isOKClicked;
+        private string axisXTitle;
+        private string axisYTitle;
+
         public LogNormalDistributionGphForm()
         {
             InitializeComponent();
 
+            this.frmGphAxisControl = new GphAxisControlForm();
+            this.isOKClicked = this.frmGphAxisControl.GetIsOkClicked();
             this.frmStatus = StatusOutputForm.GetFrmStatus;
             this.refineDatas = (RefineData[])RefineDataManager.GetRefineDataManager.GetRefineDatas();
             this.distributionDatas = (DistributionData[])DistributionDataManager.GetDistributionDataManager.GetDistributionDatas();
@@ -61,6 +69,42 @@ namespace MELCORUncertaintyHelper.View.ResultView
                     DateTime.Now.ToString("[yyyy-MM-dd HH:mm:ss]"), fileName, Environment.NewLine);
                 this.frmStatus.PrintStatus(statusContents);
             });
+        }
+
+        private void TsbtnAxisSetting_Click(object sender, EventArgs e)
+        {
+            this.frmGphAxisControl.ShowDialog();
+            this.isOKClicked = this.frmGphAxisControl.GetIsOkClicked();
+            if (this.isOKClicked == false)
+            {
+                return;
+            }
+            this.axisXTitle = this.frmGphAxisControl.GetAxisXTitle();
+            this.axisYTitle = this.frmGphAxisControl.GetAxisYTitle();
+            this.gphResults.Invalidate(true);
+            this.plotModel.Axes.Clear();
+            var axisX = new LinearAxis
+            {
+                Title = this.axisXTitle,
+                TitleFont = "Segoe UI",
+                TitleFontSize = 15,
+                AxisTitleDistance = 30,
+                Position = AxisPosition.Bottom,
+            };
+            var axisY = new LinearAxis
+            {
+                Title = this.axisYTitle,
+                TitleFont = "Segoe UI",
+                TitleFontSize = 15,
+                AxisTitleDistance = 30,
+                Position = AxisPosition.Left,
+            };
+            this.plotModel.Axes.Add(axisX);
+            this.plotModel.Axes.Add(axisY);
+            axisX.Reset();
+            axisY.Reset();
+            this.plotModel.ResetAllAxes();
+            this.plotModel.InvalidatePlot(true);
         }
 
         public void PrintResult(string target)

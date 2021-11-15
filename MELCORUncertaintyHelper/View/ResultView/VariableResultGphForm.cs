@@ -19,16 +19,23 @@ namespace MELCORUncertaintyHelper.View.ResultView
 {
     public partial class VariableResultGphForm : DockContent
     {
+        private GphAxisControlForm frmGphAxisControl;
         private StatusOutputForm frmStatus;
         private ExtractData[] extractDatas;
         private RefineData[] refineDatas;
         private PlotModel plotModel;
         private bool isCheckedInterpolation;
 
+        private bool isOKClicked;
+        private string axisXTitle;
+        private string axisYTitle;
+
         public VariableResultGphForm(bool isCheckedInterpolation)
         {
             InitializeComponent();
 
+            this.frmGphAxisControl = new GphAxisControlForm();
+            this.isOKClicked = this.frmGphAxisControl.GetIsOkClicked();
             this.frmStatus = StatusOutputForm.GetFrmStatus;
             this.extractDatas = (ExtractData[])ExtractDataManager.GetDataManager.GetExtractDatas();
             this.refineDatas = (RefineData[])RefineDataManager.GetRefineDataManager.GetRefineDatas();
@@ -64,6 +71,42 @@ namespace MELCORUncertaintyHelper.View.ResultView
                     DateTime.Now.ToString("[yyyy-MM-dd HH:mm:ss]"), fileName, Environment.NewLine);
                 this.frmStatus.PrintStatus(statusContents);
             });
+        }
+
+        private void TsbtnAxisSetting_Click(object sender, EventArgs e)
+        {
+            this.frmGphAxisControl.ShowDialog();
+            this.isOKClicked = this.frmGphAxisControl.GetIsOkClicked();
+            if (this.isOKClicked == false)
+            {
+                return;
+            }
+            this.axisXTitle = this.frmGphAxisControl.GetAxisXTitle();
+            this.axisYTitle = this.frmGphAxisControl.GetAxisYTitle();
+            this.gphResults.Invalidate(true);
+            this.plotModel.Axes.Clear();
+            var axisX = new LinearAxis
+            {
+                Title = this.axisXTitle,
+                TitleFont = "Segoe UI",
+                TitleFontSize = 15,
+                AxisTitleDistance = 30,
+                Position = AxisPosition.Bottom,
+            };
+            var axisY = new LinearAxis
+            {
+                Title = this.axisYTitle,
+                TitleFont = "Segoe UI",
+                TitleFontSize = 15,
+                AxisTitleDistance = 30,
+                Position = AxisPosition.Left,
+            };
+            this.plotModel.Axes.Add(axisX);
+            this.plotModel.Axes.Add(axisY);
+            axisX.Reset();
+            axisY.Reset();
+            this.plotModel.ResetAllAxes();
+            this.plotModel.InvalidatePlot(true);
         }
 
         public void PrintResult(string target)

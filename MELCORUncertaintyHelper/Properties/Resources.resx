@@ -1542,6 +1542,13 @@
         AAAAAP////////////////gAAB//////////////////////////////
 </value>
   </data>
+  <data name="Axis_16x" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAA6SURBVDhPY/j27dt/Jyen/yCagRwwasCoASAwuAwgB8MN
+        IAfDDaAEQz2C6hViaahWCAAJkIoZGBgYALKYW5uIPMCVAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="file_csv" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGOfPtRkwAAACBjSFJNAACH

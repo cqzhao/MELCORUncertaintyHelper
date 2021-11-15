@@ -32,6 +32,7 @@
             this.tsrMenu = new System.Windows.Forms.ToolStrip();
             this.tsbtnSave = new System.Windows.Forms.ToolStripButton();
             this.gphResults = new OxyPlot.WindowsForms.PlotView();
+            this.tsbtnAxisSetting = new System.Windows.Forms.ToolStripButton();
             this.tsrMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -39,7 +40,8 @@
             // 
             this.tsrMenu.Font = new System.Drawing.Font("Verdana", 9F);
             this.tsrMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbtnSave});
+            this.tsbtnSave,
+            this.tsbtnAxisSetting});
             this.tsrMenu.Location = new System.Drawing.Point(0, 0);
             this.tsrMenu.Name = "tsrMenu";
             this.tsrMenu.Size = new System.Drawing.Size(914, 25);
@@ -67,6 +69,15 @@
             this.gphResults.ZoomRectangleCursor = System.Windows.Forms.Cursors.SizeNWSE;
             this.gphResults.ZoomVerticalCursor = System.Windows.Forms.Cursors.SizeNS;
             // 
+            // tsbtnAxisSetting
+            // 
+            this.tsbtnAxisSetting.Image = global::MELCORUncertaintyHelper.Properties.Resources.Axis_16x;
+            this.tsbtnAxisSetting.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtnAxisSetting.Name = "tsbtnAxisSetting";
+            this.tsbtnAxisSetting.Size = new System.Drawing.Size(101, 22);
+            this.tsbtnAxisSetting.Text = "Axis Setting";
+            this.tsbtnAxisSetting.Click += new System.EventHandler(this.TsbtnAxisSetting_Click);
+            // 
             // LogNormalDistributionGphForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 14F);
@@ -89,5 +100,6 @@
         private System.Windows.Forms.ToolStrip tsrMenu;
         private OxyPlot.WindowsForms.PlotView gphResults;
         private System.Windows.Forms.ToolStripButton tsbtnSave;
+        private System.Windows.Forms.ToolStripButton tsbtnAxisSetting;
     }
 }
